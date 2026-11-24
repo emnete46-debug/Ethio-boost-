@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EthioBoost — Instant Telegram Growth in ETB</title>
+  <style>
+    :root {
+      --bg: #040711;
+      --bg-deep: #071126;
+      --glass: rgba(13, 23, 50, 0.62);
+      --glass-card: rgba(16, 28, 60, 0.58);
+      --glass-modal: rgba(10, 17, 36, 0.92);
+      --glass-pill: rgba(255, 255, 255, 0.1);
+      --border: rgba(255, 255, 255, 0.12);
+      --border-spec: rgba(255, 255, 255, 0.28);
+      --text: #f4f8ff;
+      --muted: #93a7ce;
+      --blue: #2f80ff;
+      --blue-glow: rgba(47, 128, 255, 0.38);
+      --amber: #ffa301;
+      --green: #22c55e;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+
+      /* True iOS Damped Spring Curves */
+      --spring-snappy: cubic-bezier(0.22, 1.36, 0.36, 1);
+      --spring-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --spring-bounce: linear(
+        0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%,
+        1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%,
+        1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%,
+        0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1
+      );
+    }
+
+    [data-theme="light"] {
+      --bg: #eef4ff;
+      --bg-deep: #ddeaff;
+      --glass: rgba(255, 255, 255, 0.76);
+      --glass-card: rgba(255, 255, 255, 0.82);
+      --glass-modal: rgba(255, 255, 255, 0.96);
+      --glass-pill: rgba(47, 128, 255, 0.1);
+      --border: rgba(30, 64, 175, 0.12);
+      --border-spec: rgba(255, 255, 255, 0.98);
+      --text: #091326;
+      --muted: #495f88;
+      --blue: #1d6ff2;
+      --blue-glow: rgba(29, 111, 242, 0.26);
+      --shadow: 0 18px 44px rgba(30, 64, 175, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(650px circle at 12% 8%, rgba(47, 128, 255, 0.22), transparent 65%),
+        radial-gradient(580px circle at 88% 35%, rgba(14, 165, 233, 0.14), transparent 65%),
+        radial-gradient(700px circle at 35% 92%, rgba(30, 58, 138, 0.24), transparent 70%),
+        linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+      color: var(--text);
+      overflow-x: hidden;
+      padding: 16px 16px 76px;
+      transition: background-color 0.35s ease, color 0.3s ease;
+    }
+
+    /* GPU-Optimized Liquid Glass Surface */
+    .glass {
+      position: relative;
+      background: var(--glass);
+      backdrop-filter: blur(20px) saturate(165%);
+      -webkit-backdrop-filter: blur(20px) saturate(165%);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 0 var(--border-spec), var(--shadow);
+      border-radius: 26px;
+    }
+
+    /* Lightweight Card Surface (Zero Lag Scrolling) */
+    .glass-card {
+      position: relative;
+      background: var(--glass-card);
+      border: 1px solid var(--border);
+      box-shadow: inset 0 1px 0 0 var(--border-spec), 0 14px 34px rgba(0, 0, 0, 0.28);
+      border-radius: 24px;
+      will-change: transform;
+    }
+
+    /* Single-Target Specular Sheen (Only computes on the hovered card) */
+    .sheen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        240px circle at var(--mx, -200px) var(--my, -200px),
+        rgba(255, 255, 255, 0.16),
+        transparent 70%
+      );
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.22s ease;
+    }
+    .sheen:hover::after { opacity: 1; }
+
+    /* Silky iOS Tactile Spring Physics */
+    .tactile {
+      transition:
+        transform 0.38s var(--spring-snappy),
+        border-color 0.22s ease,
+        box-shadow 0.25s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .tactile:hover {
+      transform: translate3d(0, -4px, 0) scale(1.016);
+      border-color: var(--border-spec);
+    }
+    .tactile:active {
+      transform: translate3d(0, 0, 0) scale(0.94);
+      transition-duration: 0.12s;
+    }
+
+    /* Dynamic Island Pill */
+    #dynamicIsland {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translate3d(-50%, -84px, 0) scale(0.76);
+      background: #040710;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 0.87rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.72);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      will-change: transform, opacity;
+      transition:
+        transform 0.55s var(--spring-bounce),
+        opacity 0.24s ease;
+      white-space: nowrap;
+    }
+    #dynamicIsland.show {
+      transform: translate3d(-50%, 0, 0) scale(1);
+      opacity: 1;
+    }
+    .di-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* Top Navigation */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 20px;
+      margin-bottom: 24px;
+      border-radius: 22px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.32rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--blue), #0ea5e9);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: 0 6px 18px var(--blue-glow);
+    }
+    .brand span { color: var(--amber); }
+    .nav-actions { display: flex; gap: 9px; align-items: center; }
+    .pill-btn {
+      background: var(--glass-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 24px;
+      align-items: center;
+      padding: 34px 30px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 840px) {
+      .hero { grid-template-columns: 1fr; padding: 26px 20px; text-align: center; }
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(47, 128, 255, 0.16);
+      border: 1px solid rgba(47, 128, 255, 0.35);
+      color: var(--blue);
+      font-size: 0.79rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 3.8vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.12;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 840px) { .hero-cta-row { justify-content: center; } }
+
+    .primary-cta {
+      background: linear-gradient(135deg, #2f80ff, #1a5ed6);
+      color: #fff;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 15px;
+      font-weight: 700;
+      font-size: 0.93rem;
+      box-shadow: 0 10px 24px var(--blue-glow);
+    }
+
+    /* Live Growth Preview Card */
+    .preview-card { padding: 22px; }
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--green);
+      background: rgba(34, 197, 94, 0.14);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .metric-big {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(47, 128, 255, 0.12);
+      border: 1px solid rgba(47, 128, 255, 0.25);
+      margin-bottom: 12px;
+    }
+    .metric-big .num { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
+    .metric-big .lbl { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    .metric-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .metric-mini {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+    }
+    .metric-mini .num { font-size: 1.15rem; font-weight: 800; }
+    .metric-mini .lbl { font-size: 0.76rem; color: var(--muted); }
+
+    /* iOS Liquid Glass Sliding Segmented Control */
+    .segment-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 26px;
+    }
+    .segmented-control {
+      position: relative;
+      display: inline-flex;
+      padding: 6px;
+      border-radius: 22px;
+      gap: 4px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .segment-glider {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      height: calc(100% - 12px);
+      background: linear-gradient(135deg, #2f80ff, #1d63dc);
+      border-radius: 16px;
+      box-shadow: 0 8px 20px var(--blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      will-change: transform, width;
+      transition:
+        transform 0.48s var(--spring-bounce),
+        width 0.38s var(--spring-smooth);
+      z-index: 0;
+    }
+    .seg-tab {
+      position: relative;
+      z-index: 1;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 20px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 0.22s ease, transform 0.2s ease;
+    }
+    .seg-tab:active { transform: scale(0.93); }
+    .seg-tab.active { color: #fff; }
+
+    /* Packages Grid */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+    .pkg-card {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    .pkg-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .pkg-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: rgba(255, 163, 1, 0.16);
+      border: 1px solid rgba(255, 163, 1, 0.38);
+      color: var(--amber);
+      white-space: nowrap;
+    }
+    .pkg-card h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .pkg-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.45; margin-bottom: 16px; }
+    .pkg-guarantees { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .g-chip {
+      font-size: 0.73rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 9px;
+      background: var(--glass-pill);
+      color: var(--text);
+    }
+    .pkg-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .price-block .old-price {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      display: block;
+    }
+    .price-block .now-price { font-size: 1.38rem; font-weight: 800; color: var(--text); }
+    .price-block .now-price small { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+    .order-btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 9px 17px;
+      border-radius: 13px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 6px 16px var(--blue-glow);
+    }
+
+    /* Recent Local Orders */
+    .orders-strip { padding: 22px; margin-bottom: 28px; }
+    .section-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.02em; }
+    .order-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 13px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      font-size: 0.86rem;
+    }
+
+    /* How It Works & FAQ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .step-card { padding: 22px; }
+    .step-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: rgba(47, 128, 255, 0.18);
+      border: 1px solid rgba(47, 128, 255, 0.35);
+      color: var(--blue);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+    .step-card h4 { font-size: 1rem; margin-bottom: 6px; }
+    .step-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.45; }
+
+    .faq-box { padding: 22px; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 13px 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      text-align: left;
+      font-size: 0.94rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .faq-a {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* GPU-Accelerated Modal Overlay (Only animates opacity) */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 5, 14, 0.68);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+      opacity: 0;
+      will-change: opacity;
+    }
+    .backdrop.open { display: flex; }
+
+    .modal-window {
+      width: 100%;
+      max-width: 465px;
+      background: var(--glass-modal);
+      border: 1px solid var(--border-spec);
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: 0 32px 85px rgba(0, 0, 0, 0.72), inset 0 1px 0 var(--border-spec);
+      max-height: 92vh;
+      overflow-y: auto;
+      will-change: transform, opacity;
+      transform-origin: center center;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .close-x {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--glass-card);
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 0.77rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.24);
+      color: var(--text);
+      font-size: 0.94rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    [data-theme="light"] .input { background: rgba(255, 255, 255, 0.92); }
+    .input:focus { border-color: var(--blue); }
+
+    .pay-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .pay-choice {
+      padding: 11px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--glass-card);
+      color: var(--text);
+      font-weight: 700;
+      text-align: center;
+    }
+    .pay-choice.active {
+      border-color: var(--blue);
+      background: rgba(47, 128, 255, 0.22);
+    }
+
+    .acc-box {
+      padding: 13px 15px;
+      border-radius: 16px;
+      background: rgba(47, 128, 255, 0.13);
+      border: 1px solid rgba(47, 128, 255, 0.34);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .copy-pill {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .dropzone {
+      display: block;
+      border: 1.5px dashed var(--border-spec);
+      border-radius: 16px;
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    #previewImg {
+      max-width: 100%;
+      max-height: 150px;
+      border-radius: 12px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .submit-cta {
+      width: 100%;
+      padding: 14px;
+      border-radius: 16px;
+      border: none;
+      background: linear-gradient(135deg, #2f80ff, #1b5ed4);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-top: 4px;
+      box-shadow: 0 12px 26px var(--blue-glow);
+    }
+    .submit-cta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .success-card { text-align: center; padding: 8px 4px; }
+    .ok-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(34, 197, 94, 0.18);
+      border: 1px solid rgba(34, 197, 94, 0.45);
+      color: var(--green);
+      font-size: 1.8rem;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 12px;
+    }
+    .summary-box {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      margin: 14px 0;
+      font-size: 0.85rem;
+      line-height: 1.65;
+    }
+    .dual-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .ghost-btn {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--glass-card);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="dynamicIsland"><span class="di-pulse"></span><span id="diText">EthioBoost Ready</span></div>
+
+  <div class="wrapper">
+    <!-- Top Navigation -->
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>Ethio<span>Boost</span></div>
+      </div>
+      <div class="nav-actions">
+        <button class="pill-btn tactile" id="navTrackBtn" onclick="openTracker('', this)">Track Order</button>
+        <button class="pill-btn tactile" onclick="toggleTheme(this)">◐ Theme</button>
+      </div>
+    </header>
+
+    <!-- Hero Section with Live Growth Preview -->
+    <section class="hero glass sheen" onpointermove="trackSheen(event, this)">
+      <div>
+        <div class="hero-tag">🇪🇹 Ethiopia's #1 Telegram Growth Store • ETB</div>
+        <h1>Boost Your Telegram Channel & Posts Instantly</h1>
+        <p>Real global members, instant post views, emoji reactions, and channel boosts. No password required—pay smoothly with TeleBirr or M-Pesa.</p>
+        <div class="hero-cta-row">
+          <button class="primary-cta tactile" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore Packages ↓</button>
+          <button class="pill-btn tactile" style="padding:12px 18px;border-radius:15px;" onclick="openTracker('', this)">Check Order Status</button>
+        </div>
+      </div>
+
+      <div class="preview-card glass-card sheen" onpointermove="trackSheen(event, this)">
+        <div class="preview-header">
+          <strong style="font-size:0.9rem;">Live Growth Preview</strong>
+          <span class="live-badge">● Delivering Fast</span>
+        </div>
+        <div class="metric-big">
+          <div class="num">+12,840</div>
+          <div class="lbl">Active Channel Members Delivered</div>
+        </div>
+        <div class="metric-split">
+          <div class="metric-mini">
+            <div class="num" style="color:var(--blue);">94,200</div>
+            <div class="lbl">Post Views</div>
+          </div>
+          <div class="metric-mini">
+            <div class="num" style="color:var(--amber);">3,100</div>
+            <div class="lbl">Emoji Reacts</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- iOS Sliding Segmented Category Bar -->
+    <div id="catalogAnchor" class="segment-container">
+      <div class="segmented-control glass" id="segmentedControl">
+        <div class="segment-glider" id="segmentGlider"></div>
+        <button class="seg-tab active" data-cat="Members">Members</button>
+        <button class="seg-tab" data-cat="Views">Views</button>
+        <button class="seg-tab" data-cat="Reactions">Reactions</button>
+        <button class="seg-tab" data-cat="Boosts">Boosts</button>
+      </div>
+    </div>
+
+    <!-- Package Cards Grid -->
+    <section class="packages-grid" id="packagesGrid"></section>
+
+    <!-- Device Order History -->
+    <section class="orders-strip glass" id="historySection" style="display:none;">
+      <div class="section-title">Your Recent Orders</div>
+      <div id="historyList"></div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="steps-grid">
+      <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
+        <div class="step-num">1</div>
+        <h4>Choose a Package</h4>
+        <p>Pick the member, view, reaction, or boost package that matches your Telegram channel goal.</p>
+      </div>
+      <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
+        <div class="step-num">2</div>
+        <h4>Paste Your Public Link</h4>
+        <p>Enter your public @channel username or post link—we never ask for your Telegram password.</p>
+      </div>
+      <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
+        <div class="step-num">3</div>
+        <h4>Pay in ETB & Auto-Dispatch</h4>
+        <p>Send via TeleBirr or M-Pesa, attach your receipt, and your order dispatches automatically.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-box glass">
+      <div class="section-title">Frequently Asked Questions</div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need to share my Telegram password? <span>+</span></button>
+        <div class="faq-a">Never. We only use your public Telegram channel, group, or post link to deliver growth safely.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How fast does delivery start after payment? <span>+</span></button>
+        <div class="faq-a">Once your TeleBirr or M-Pesa receipt is verified, smaller orders usually complete within 15–60 minutes while larger orders roll out gradually to stay natural.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What does the 30–360 Day Stay Guarantee mean? <span>+</span></button>
+        <div class="faq-a">If any delivered members drop during the guarantee window, we refill them free of charge using your Order ID.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Checkout & Confirmation Modal -->
+  <div class="backdrop" id="checkoutBackdrop" onclick="if(event.target===this) closeCheckout()">
+    <div class="modal-window" id="checkoutWindow">
+      <div class="modal-head">
+        <div>
+          <div style="font-size:0.75rem;color:var(--amber);font-weight:800;letter-spacing:0.05em;" id="modalCat">MEMBERS</div>
+          <h3 id="modalTitle" style="font-size:1.18rem;">1,000 Global Members</h3>
+        </div>
+        <button type="button" class="close-x tactile" onclick="closeCheckout()">✕</button>
+      </div>
+
+      <!-- Checkout Form -->
+      <form id="orderForm">
+        <div class="field">
+          <label id="linkLabel">Public Channel or Group Link</label>
+          <input class="input" id="targetLink" placeholder="https://t.me/yourchannel or @yourchannel" required />
+        </div>
+
+        <div class="field">
+          <label>1. Pay Exact Amount (<span id="modalPrice" style="color:var(--amber);">340 ETB</span>)</label>
+          <div class="pay-tabs">
+            <div class="pay-choice active tactile" data-method="TeleBirr" onclick="selectMethod('TeleBirr', this)">TeleBirr</div>
+            <div class="pay-choice tactile" data-method="M-Pesa" onclick="selectMethod('M-Pesa', this)">M-Pesa</div>
+          </div>
+
+          <div class="acc-box">
+            <div>
+              <div style="font-size:0.75rem;color:var(--muted);" id="accHolder">TeleBirr Account</div>
+              <div style="font-weight:800;font-size:1.08rem;letter-spacing:0.02em;" id="accNumber">0953001360</div>
+            </div>
+            <button type="button" class="copy-pill tactile" onclick="copyAccount(this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>2. Transaction Reference / ID</label>
+          <input class="input" id="txRef" placeholder="e.g. BHG82K91LM" required />
+        </div>
+
+        <div class="field">
+          <label>3. Payment Screenshot</label>
+          <label class="dropzone" for="receiptFile">
+            <span id="filePrompt">Tap to attach TeleBirr / M-Pesa screenshot</span>
+            <img id="previewImg" alt="Receipt Preview" />
+          </label>
+          <input type="file" id="receiptFile" accept="image/*" style="display:none;" />
+        </div>
+
+        <button type="submit" class="submit-cta tactile" id="submitBtn">Confirm & Submit Order</button>
+      </form>
+
+      <!-- Auto-Sent Confirmation -->
+      <div id="confirmationView" class="success-card" style="display:none;">
+        <div class="ok-badge">✓</div>
+        <h3 style="font-size:1.25rem;margin-bottom:4px;">Order Dispatched!</h3>
+        <p style="color:var(--muted);font-size:0.86rem;">Your receipt was sent automatically. Save your Order ID below.</p>
+        <div class="summary-box" id="receiptSummary"></div>
+        <div class="dual-btns">
+          <button type="button" class="ghost-btn tactile" id="copyOrderIdBtn">Copy Order ID</button>
+          <button type="button" class="submit-cta tactile" style="margin-top:0;padding:12px;" onclick="switchToTracker()">Track Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Track Order Modal -->
+  <div class="backdrop" id="trackerBackdrop" onclick="if(event.target===this) closeTracker()">
+    <div class="modal-window" id="trackerWindow">
+      <div class="modal-head">
+        <h3 style="font-size:1.15rem;">Track Your Order</h3>
+        <button type="button" class="close-x tactile" onclick="closeTracker()">✕</button>
+      </div>
+      <div class="field">
+        <label>Enter Order ID</label>
+        <input class="input" id="trackInput" placeholder="e.g. EB-48291" />
+      </div>
+      <button type="button" class="submit-cta tactile" onclick="lookupOrder()">Check Status</button>
+      <div id="trackResult" class="summary-box" style="display:none;margin-top:14px;"></div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. PRE-CONFIGURED BOT & LOCAL PAYMENT ACCOUNTS
+    // =========================================================================
+    const CONFIG = {
+      BOT_TOKEN: "9156801499:AAHOYRRFjhpnE082Bh0TQJzpH_Bqt6ONuCw",
+      ADMIN_CHAT_ID: "6452851282",
+      PAYMENTS: {
+        "TeleBirr": { number: "0953001360", holder: "TeleBirr — EthioBoost" },
+        "M-Pesa":   { number: "0701217060", holder: "M-Pesa — EthioBoost" }
+      }
+    };
+
+    // =========================================================================
+    // 2. FULL TELEGRAM GROWTH CATALOG IN ETB
+    // =========================================================================
+    const PACKAGES = [
+      // Members
+      { id: "m1", cat: "Members", title: "100 Global Members", desc: "Fast start with real global Telegram accounts.", guarantees: ["30-Day Stay", "No Password"], oldPrice: null, price: 75, badge: "Starter" },
+      { id: "m2", cat: "Members", title: "1,000 Global Members", desc: "Steady join rate to build instant channel credibility.", guarantees: ["30-Day Stay", "Fast Start"], oldPrice: 680, price: 340, badge: "50% OFF" },
+      { id: "m3", cat: "Members", title: "1,000 Members (3 Months)", desc: "Extended retention guarantee for growing channels.", guarantees: ["90-Day Stay", "Auto-Refill"], oldPrice: 1360, price: 680, badge: "Popular" },
+      { id: "m4", cat: "Members", title: "10,000 Global Members", desc: "High-volume growth pack at our lowest per-member rate.", guarantees: ["30-Day Stay", "Gradual Pace"], oldPrice: 6800, price: 2050, badge: "70% OFF" },
+      { id: "m5", cat: "Members", title: "1,000 Search Ranking Members", desc: "Premium active members that help rank higher in Telegram search.", guarantees: ["30-Day Stay", "Search Boost"], oldPrice: 2720, price: 1360, badge: "Premium" },
+      { id: "m6", cat: "Members", title: "1,000 Members (12 Months)", desc: "Long-term 360-day stay protection for flagship channels.", guarantees: ["360-Day Stay", "VIP Quality"], oldPrice: 2700, price: 1850, badge: "1 Year" },
+
+      // Views
+      { id: "v1", cat: "Views", title: "1,000 Post Views", desc: "Instant view boost on any public channel post.", guarantees: ["Instant Start", "Public Post"], oldPrice: null, price: 45, badge: "Fast" },
+      { id: "v2", cat: "Views", title: "5,000 Post Views", desc: "Increase reach and social proof on key announcements.", guarantees: ["Instant Start", "High Speed"], oldPrice: 250, price: 150, badge: "Popular" },
+      { id: "v3", cat: "Views", title: "10,000 Post Views", desc: "Viral post reach delivered smoothly within minutes.", guarantees: ["Instant Start", "Best Value"], oldPrice: 520, price: 260, badge: "50% OFF" },
+      { id: "v4", cat: "Views", title: "1,000 Premium Views", desc: "Gradual organic-style view curve for natural analytics.", guarantees: ["Organic Pace", "Safe"], oldPrice: null, price: 190, badge: "Premium" },
+
+      // Reactions
+      { id: "r1", cat: "Reactions", title: "500 Post Reactions", desc: "Positive emoji reactions (👍 ❤️ 🔥 🎉) on your post.", guarantees: ["Fast Delivery", "Mixed Emojis"], oldPrice: null, price: 95, badge: "Fast" },
+      { id: "r2", cat: "Reactions", title: "2,000 Post Reactions", desc: "High engagement boost to make posts stand out.", guarantees: ["Instant Start", "Positive Set"], oldPrice: 480, price: 290, badge: "Popular" },
+      { id: "r3", cat: "Reactions", title: "1,000 Premium Reactions", desc: "High-retention accounts reacting at a natural pace.", guarantees: ["High Retention", "Natural Pace"], oldPrice: null, price: 450, badge: "Premium" },
+
+      // Boosts
+      { id: "b1", cat: "Boosts", title: "10 Channel Boosts", desc: "Level up your channel to unlock custom Stories & colors.", guarantees: ["30-Day Active", "Story Unlock"], oldPrice: null, price: 490, badge: "Level Up" },
+      { id: "b2", cat: "Boosts", title: "25 Channel Boosts", desc: "Jump multiple channel levels with active Telegram boosts.", guarantees: ["30-Day Active", "Fast Delivery"], oldPrice: 1500, price: 1150, badge: "Popular" },
+      { id: "b3", cat: "Boosts", title: "50 Channel Boosts", desc: "Maximum channel perks, custom wallpapers & emoji status.", guarantees: ["30-Day Active", "Pro Tier"], oldPrice: 3100, price: 2150, badge: "Pro" }
+    ];
+
+    let activeCategory = "Members";
+    let selectedPkg = null;
+    let selectedMethod = "TeleBirr";
+    let lastCompletedOrderId = "";
+    let checkoutOriginEl = null;
+    let trackerOriginEl = null;
+
+    // Zero-overhead specular reflection (runs only on hovered element)
+    function trackSheen(e, el) {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      el.style.setProperty("--my", `${e.clientY - r.top}px`);
+    }
+
+    // GPU Spring Wobble using Web Animations API
+    function springPop(el) {
+      if (!el || !el.animate) return;
+      el.animate(
+        [
+          { transform: "scale(0.93)" },
+          { transform: "scale(1.038)", offset: 0.42 },
+          { transform: "scale(0.99)", offset: 0.72 },
+          { transform: "scale(1)" }
+        ],
+        { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+      );
+    }
+
+    // Dynamic Island Toast
+    let islandTimer = null;
+    function showIsland(msg) {
+      const el = document.getElementById("dynamicIsland");
+      document.getElementById("diText").textContent = msg;
+      el.classList.add("show");
+      clearTimeout(islandTimer);
+      islandTimer = setTimeout(() => el.classList.remove("show"), 2600);
+    }
+
+    function toggleTheme(btn) {
+      springPop(btn);
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+      showIsland(`Switched to ${root.dataset.theme} mode`);
+    }
+
+    function escapeHTML(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    // =========================================================================
+    // 3. 120HZ COMPOSITOR FLIP OPEN & RETURN-TO-ORIGIN CLOSE ("✕")
+    // =========================================================================
+    function openWindowFromOrigin(backdropEl, windowEl, originEl) {
+      backdropEl.classList.add("open");
+
+      // Fade backdrop smoothly on GPU
+      backdropEl.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 240,
+        easing: "ease-out",
+        fill: "forwards"
+      });
+
+      const targetRect = windowEl.getBoundingClientRect();
+      let dx = 0, dy = 28, sx = 0.86, sy = 0.86;
+
+      if (originEl && document.body.contains(originEl)) {
+        const src = originEl.getBoundingClientRect();
+        dx = (src.left + src.width / 2) - (targetRect.left + targetRect.width / 2);
+        dy = (src.top + src.height / 2) - (targetRect.top + targetRect.height / 2);
+        sx = Math.max(0.18, Math.min(0.9, src.width / targetRect.width));
+        sy = Math.max(0.14, Math.min(0.9, src.height / targetRect.height));
+      }
+
+      windowEl.animate(
+        [
+          { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`, opacity: 0.2 },
+          { transform: "translate3d(0, 0, 0) scale(1.015, 1.015)", opacity: 1, offset: 0.72 },
+          { transform: "translate3d(0, 0, 0) scale(1, 1)", opacity: 1 }
+        ],
+        {
+          duration: 420,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          fill: "forwards"
+        }
+      );
+    }
+
+    function closeWindowToOrigin(backdropEl, windowEl, originEl) {
+      if (!backdropEl.classList.contains("open")) return;
+
+      const currentRect = windowEl.getBoundingClientRect();
+      let dx = 0, dy = 26, sx = 0.84, sy = 0.84;
+
+      if (originEl && document.body.contains(originEl)) {
+        const dest = originEl.getBoundingClientRect();
+        dx = (dest.left + dest.width / 2) - (currentRect.left + currentRect.width / 2);
+        dy = (dest.top + dest.height / 2) - (currentRect.top + currentRect.height / 2);
+        sx = Math.max(0.16, Math.min(0.88, dest.width / currentRect.width));
+        sy = Math.max(0.12, Math.min(0.88, dest.height / currentRect.height));
+      }
+
+      backdropEl.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 280,
+        easing: "cubic-bezier(0.32, 0.72, 0, 1)",
+        fill: "forwards"
+      });
+
+      const anim = windowEl.animate(
+        [
+          { transform: "translate3d(0, 0, 0) scale(1, 1)", opacity: 1 },
+          { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`, opacity: 0 }
+        ],
+        {
+          duration: 310,
+          easing: "cubic-bezier(0.32, 0.72, 0, 1)",
+          fill: "forwards"
+        }
+      );
+
+      anim.onfinish = () => {
+        backdropEl.classList.remove("open");
+        windowEl.getAnimations().forEach((a) => a.cancel());
+        backdropEl.getAnimations().forEach((a) => a.cancel());
+        if (originEl && document.body.contains(originEl)) {
+          springPop(originEl);
+        }
+      };
+    }
+
+    // =========================================================================
+    // 4. SEGMENTED TABS & PACKAGE RENDERING
+    // =========================================================================
+    function updateGlider(activeBtn) {
+      const glider = document.getElementById("segmentGlider");
+      if (!activeBtn || !glider) return;
+      glider.style.width = `${activeBtn.offsetWidth}px`;
+      glider.style.transform = `translate3d(${activeBtn.offsetLeft}px, 0, 0)`;
+    }
+
+    document.querySelectorAll("#segmentedControl .seg-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll("#segmentedControl .seg-tab").forEach((t) => t.classList.remove("active"));
+        tab.classList.add("active");
+        updateGlider(tab);
+        activeCategory = tab.dataset.cat;
+        renderPackages();
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      updateGlider(document.querySelector("#segmentedControl .seg-tab.active"));
+    });
+
+    function renderPackages() {
+      const grid = document.getElementById("packagesGrid");
+      const list = PACKAGES.filter((p) => p.cat === activeCategory);
+      grid.innerHTML = list
+        .map(
+          (p, i) => `
+        <div class="pkg-card glass-card sheen tactile"
+             style="animation: cardFadeIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) ${i * 35}ms both;"
+             onpointermove="trackSheen(event, this)"
+             onclick="openCheckout('${p.id}', this)">
+          <div>
+            <div class="pkg-top">
+              <h3>${p.title}</h3>
+              ${p.badge ? `<span class="pkg-badge">${p.badge}</span>` : ""}
+            </div>
+            <p class="pkg-desc">${p.desc}</p>
+            <div class="pkg-guarantees">
+              ${p.guarantees.map((g) => `<span class="g-chip">✓ ${g}</span>`).join("")}
+            </div>
+          </div>
+          <div class="pkg-footer">
+            <div class="price-block">
+              ${p.oldPrice ? `<span class="old-price">${p.oldPrice.toLocaleString()} ETB</span>` : ""}
+              <span class="now-price">${p.price.toLocaleString()} <small>ETB</small></span>
+            </div>
+            <button type="button" class="order-btn">Order</button>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    // Inject lightweight card entrance keyframes
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = `
+      @keyframes cardFadeIn {
+        from { opacity: 0; transform: translate3d(0, 12px, 0) scale(0.97); }
+        to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+      }
+    `;
+    document.head.appendChild(styleSheet);
+
+    // =========================================================================
+    // 5. CHECKOUT & AUTOMATIC TELEGRAM BOT SUBMISSION
+    // =========================================================================
+    function openCheckout(pkgId, cardEl) {
+      checkoutOriginEl = cardEl || null;
+      selectedPkg = PACKAGES.find((p) => p.id === pkgId);
+
+      document.getElementById("orderForm").style.display = "block";
+      document.getElementById("confirmationView").style.display = "none";
+
+      document.getElementById("modalCat").textContent = selectedPkg.cat.toUpperCase();
+      document.getElementById("modalTitle").textContent = selectedPkg.title;
+      document.getElementById("modalPrice").textContent = `${selectedPkg.price.toLocaleString()} ETB`;
+
+      const isPost = selectedPkg.cat === "Views" || selectedPkg.cat === "Reactions";
+      document.getElementById("linkLabel").textContent = isPost
+        ? "Public Telegram Post Link"
+        : "Public Channel or Group Link";
+      document.getElementById("targetLink").placeholder = isPost
+        ? "https://t.me/yourchannel/123"
+        : "https://t.me/yourchannel or @yourchannel";
+
+      selectMethod(selectedMethod);
+      openWindowFromOrigin(
+        document.getElementById("checkoutBackdrop"),
+        document.getElementById("checkoutWindow"),
+        checkoutOriginEl
+      );
+    }
+
+    function closeCheckout() {
+      closeWindowToOrigin(
+        document.getElementById("checkoutBackdrop"),
+        document.getElementById("checkoutWindow"),
+        checkoutOriginEl
+      );
+    }
+
+    function selectMethod(method, el) {
+      selectedMethod = method;
+      document.querySelectorAll(".pay-choice").forEach((b) => {
+        b.classList.toggle("active", b.dataset.method === method);
+      });
+      if (el) springPop(el);
+      const info = CONFIG.PAYMENTS[method];
+      document.getElementById("accHolder").textContent = info.holder;
+      document.getElementById("accNumber").textContent = info.number;
+    }
+
+    function copyAccount(btn) {
+      springPop(btn);
+      const num = CONFIG.PAYMENTS[selectedMethod].number;
+      navigator.clipboard.writeText(num);
+      showIsland(`Copied ${selectedMethod}: ${num}`);
+    }
+
+    document.getElementById("receiptFile").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const img = document.getElementById("previewImg");
+      const prompt = document.getElementById("filePrompt");
+      if (!file) {
+        img.style.display = "none";
+        prompt.textContent = "Tap to attach TeleBirr / M-Pesa screenshot";
+        return;
+      }
+      prompt.textContent = `Attached: ${file.name}`;
+      img.src = URL.createObjectURL(file);
+      img.style.display = "inline-block";
+    });
+
+    async function pushToTelegram(order, screenshotFile) {
+      const captionHTML = [
+        "🚀 <b>NEW ETHIOBOOST ORDER</b>",
+        "",
+        `🆔 <b>Order ID:</b> <code>${escapeHTML(order.orderId)}</code>`,
+        `📦 <b>Package:</b> ${escapeHTML(order.serviceName)} (${escapeHTML(order.category)})`,
+        `🔗 <b>Target:</b> ${escapeHTML(order.targetLink)}`,
+        `💰 <b>Amount:</b> ${escapeHTML(order.priceETB)} ETB`,
+        `💳 <b>Method:</b> ${escapeHTML(order.paymentMethod)}`,
+        `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`
+      ].join("\n");
+
+      if (screenshotFile) {
+        const fd = new FormData();
+        fd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
+        fd.append("photo", screenshotFile);
+        fd.append("caption", captionHTML);
+        fd.append("parse_mode", "HTML");
+
+        let res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendPhoto`, {
+          method: "POST",
+          body: fd
+        });
+        let data = await res.json();
+
+        if (!data.ok) {
+          const docFd = new FormData();
+          docFd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
+          docFd.append("document", screenshotFile);
+          docFd.append("caption", captionHTML);
+          docFd.append("parse_mode", "HTML");
+
+          res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendDocument`, {
+            method: "POST",
+            body: docFd
+          });
+          data = await res.json();
+        }
+        if (!data.ok) throw new Error(data.description || "Telegram upload failed");
+      } else {
+        const res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CONFIG.ADMIN_CHAT_ID,
+            text: captionHTML,
+            parse_mode: "HTML"
+          })
+        });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.description || "Telegram send failed");
+      }
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("submitBtn");
+      const targetLink = document.getElementById("targetLink").value.trim();
+      const txRef = document.getElementById("txRef").value.trim();
+      const file = document.getElementById("receiptFile").files[0] || null;
+
+      if (!targetLink.includes("t.me/") && !targetLink.startsWith("@")) {
+        showIsland("Enter a valid @channel or t.me/ link");
+        return;
+      }
+
+      const order = {
+        orderId: "EB-" + Math.floor(10000 + Math.random() * 90000),
+        serviceName: selectedPkg.title,
+        category: selectedPkg.cat,
+        targetLink,
+        priceETB: selectedPkg.price,
+        paymentMethod: selectedMethod,
+        txRef,
+        status: "Verifying Payment & Queuing",
+        createdAt: new Date().toLocaleString()
+      };
+
+      btn.disabled = true;
+      btn.textContent = "Dispatching Order...";
+
+      try {
+        await pushToTelegram(order, file);
+
+        const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
+        saved.unshift(order);
+        localStorage.setItem("eb_orders", JSON.stringify(saved.slice(0, 15)));
+        renderHistory();
+
+        lastCompletedOrderId = order.orderId;
+        document.getElementById("receiptSummary").innerHTML = `
+          <div><strong>Order ID:</strong> ${escapeHTML(order.orderId)}</div>
+          <div><strong>Package:</strong> ${escapeHTML(order.serviceName)}</div>
+          <div><strong>Target:</strong> ${escapeHTML(order.targetLink)}</div>
+          <div><strong>Paid:</strong> ${order.priceETB.toLocaleString()} ETB (${escapeHTML(order.paymentMethod)})</div>
+          <div><strong>Tx Ref:</strong> ${escapeHTML(order.txRef)}</div>
+        `;
+        document.getElementById("copyOrderIdBtn").onclick = (ev) => {
+          springPop(ev.currentTarget);
+          navigator.clipboard.writeText(order.orderId);
+          showIsland(`Copied ${order.orderId}`);
+        };
+
+        e.target.reset();
+        document.getElementById("previewImg").style.display = "none";
+        document.getElementById("filePrompt").textContent = "Tap to attach TeleBirr / M-Pesa screenshot";
+
+        document.getElementById("orderForm").style.display = "none";
+        document.getElementById("confirmationView").style.display = "block";
+        showIsland(`Order ${order.orderId} sent automatically!`);
+      } catch (err) {
+        alert("Could not send order: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Confirm & Submit Order";
+      }
+    });
+
+    // =========================================================================
+    // 6. ORDER TRACKER & FAQ
+    // =========================================================================
+    function openTracker(prefillId = "", originEl = null) {
+      trackerOriginEl = originEl || document.getElementById("navTrackBtn");
+      document.getElementById("trackInput").value = prefillId;
+      document.getElementById("trackResult").style.display = "none";
+      openWindowFromOrigin(
+        document.getElementById("trackerBackdrop"),
+        document.getElementById("trackerWindow"),
+        trackerOriginEl
+      );
+      if (prefillId) lookupOrder();
+    }
+
+    function closeTracker() {
+      closeWindowToOrigin(
+        document.getElementById("trackerBackdrop"),
+        document.getElementById("trackerWindow"),
+        trackerOriginEl
+      );
+    }
+
+    function switchToTracker() {
+      document.getElementById("checkoutBackdrop").classList.remove("open");
+      openTracker(lastCompletedOrderId, document.getElementById("navTrackBtn"));
+    }
+
+    function lookupOrder() {
+      const query = document.getElementById("trackInput").value.trim().toUpperCase();
+      const box = document.getElementById("trackResult");
+      if (!query) return;
+
+      const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
+      const found = saved.find((o) => o.orderId.toUpperCase() === query);
+      box.style.display = "block";
+
+      if (!found) {
+        box.innerHTML = `<div style="color:var(--amber);font-weight:700;">Order not found on this device.</div><div style="color:var(--muted);margin-top:4px;">Check that you entered the exact ID (e.g. EB-12345) from this browser.</div>`;
+        return;
+      }
+
+      box.innerHTML = `
+        <div style="color:var(--green);font-weight:800;margin-bottom:6px;">● ${escapeHTML(found.status)}</div>
+        <div><strong>Order ID:</strong> ${escapeHTML(found.orderId)}</div>
+        <div><strong>Package:</strong> ${escapeHTML(found.serviceName)}</div>
+        <div><strong>Target:</strong> ${escapeHTML(found.targetLink)}</div>
+        <div><strong>Paid via:</strong> ${escapeHTML(found.paymentMethod)} (${found.priceETB.toLocaleString()} ETB)</div>
+        <div><strong>Submitted:</strong> ${escapeHTML(found.createdAt)}</div>
+      `;
+    }
+
+    function renderHistory() {
+      const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
+      const box = document.getElementById("historySection");
+      const list = document.getElementById("historyList");
+      if (!saved.length) {
+        box.style.display = "none";
+        return;
+      }
+      box.style.display = "block";
+      list.innerHTML = saved
+        .map(
+          (o) => `
+        <div class="order-row tactile" onclick="openTracker('${escapeHTML(o.orderId)}', this)">
+          <div>
+            <strong>${escapeHTML(o.orderId)}</strong> • ${escapeHTML(o.serviceName)}
+            <div style="color:var(--muted);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)} Ref: ${escapeHTML(o.txRef)}</div>
+          </div>
+          <div style="color:var(--green);font-weight:700;">Sent (${o.priceETB.toLocaleString()} ETB) →</div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isOpen = item.classList.toggle("open");
+      btn.querySelector("span").textContent = isOpen ? "−" : "+";
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeCheckout();
+        closeTracker();
+      }
+    });
+
+    // Init
+    renderPackages();
+    renderHistory();
+    requestAnimationFrame(() => {
+      updateGlider(document.querySelector("#segmentedControl .seg-tab.active"));
+    });
+  </script>
+</body>
+</html>
