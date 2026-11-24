@@ -221,6 +221,7 @@
     }
 
     .pill-btn {
+      position: relative;
       background: var(--glass-card);
       border: 1px solid var(--border);
       color: var(--text);
@@ -228,6 +229,17 @@
       border-radius: 999px;
       font-size: 0.84rem;
       font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .order-count-badge {
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 1px 7px;
+      border-radius: 999px;
     }
 
     /* Hero */
@@ -513,7 +525,7 @@
 
     .modal-window {
       width: 100%;
-      max-width: 470px;
+      max-width: 500px;
       background: var(--glass-modal);
       border: 1px solid var(--border-spec);
       border-radius: 30px;
@@ -530,6 +542,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 16px;
+      gap: 10px;
     }
     .close-x {
       width: 34px;
@@ -542,6 +555,7 @@
       font-weight: 800;
       display: grid;
       place-items: center;
+      flex-shrink: 0;
     }
 
     .field { margin-bottom: 14px; }
@@ -701,6 +715,62 @@
       font-weight: 700;
       font-size: 0.88rem;
     }
+
+    /* Live Order Tracker Card & Progress Bar */
+    .track-card {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .track-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .st-hold { background: rgba(255, 163, 1, 0.18); color: var(--amber); border: 1px solid rgba(255, 163, 1, 0.35); }
+    .st-approved { background: rgba(47, 128, 255, 0.2); color: var(--blue); border: 1px solid rgba(47, 128, 255, 0.38); }
+    .st-halfway { background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.38); }
+    .st-done { background: rgba(34, 197, 94, 0.18); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.38); }
+    .st-rejected { background: rgba(239, 68, 68, 0.18); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.38); }
+
+    .progress-track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin: 12px 0 6px;
+    }
+    .prog-seg {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      transition: background 0.3s ease;
+    }
+    .prog-seg.filled-amber { background: var(--amber); }
+    .prog-seg.filled-blue { background: var(--blue); }
+    .prog-seg.filled-green { background: var(--green); }
+    .prog-seg.filled-red { background: var(--red); }
+
+    .prog-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.69rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -718,7 +788,10 @@
           <span>💳 <span id="navWalletBalance">0</span> ETB</span>
           <span class="wallet-plus">+ Deposit</span>
         </button>
-        <button class="pill-btn tactile" id="navTrackBtn" onclick="openTracker('', this)">Track Order</button>
+        <button class="pill-btn tactile" id="navTrackBtn" onclick="openTracker(this)">
+          <span>Track Orders</span>
+          <span class="order-count-badge" id="navOrderCount" style="display:none;">0</span>
+        </button>
         <button class="pill-btn tactile" onclick="toggleTheme(this)">◐</button>
       </div>
     </header>
@@ -731,7 +804,7 @@
         <p>Real global members, instant post views, emoji reactions, and channel boosts. Deposit once (min 50 ETB) for 1-tap wallet orders or pay per order via TeleBirr & M-Pesa.</p>
         <div class="hero-cta-row">
           <button class="primary-cta tactile" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore Packages ↓</button>
-          <button class="pill-btn tactile" style="padding:12px 18px;border-radius:15px;" onclick="openWallet(this)">Top Up Wallet (Min 50 ETB)</button>
+          <button class="pill-btn tactile" style="padding:12px 18px;border-radius:15px;" onclick="openTracker(this)">View My Orders</button>
         </div>
       </div>
 
@@ -773,7 +846,10 @@
 
     <!-- Device Order History -->
     <section class="orders-strip glass" id="historySection" style="display:none;">
-      <div class="section-title">Your Recent Orders</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <div class="section-title" style="margin-bottom:0;">Your Orders</div>
+        <button class="pill-btn tactile" style="padding:6px 12px;font-size:0.78rem;" onclick="openTracker(this)">Live Progress →</button>
+      </div>
       <div id="historyList"></div>
     </section>
 
@@ -791,8 +867,8 @@
       </div>
       <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
         <div class="step-num">3</div>
-        <h4>Instant Auto-Dispatch</h4>
-        <p>Wallet orders dispatch immediately in 1 tap with no repeated receipt uploads.</p>
+        <h4>Live Progress Tracking</h4>
+        <p>Tap Track Orders anytime to watch your order move from Payment Approval to Half Way There to Done.</p>
       </div>
     </section>
 
@@ -809,14 +885,12 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">What does the 30–360 Day Stay Guarantee mean? <span>+</span></button>
-        <div class="faq-a">If any delivered members drop during the guarantee window, we refill them free of charge using your Order ID.</div>
+        <div class="faq-a">If any delivered members drop during the guarantee window, we refill them free of charge.</div>
       </div>
     </section>
   </div>
 
-  <!-- ======================================================================= -->
-  <!-- MODAL 1: WALLET DEPOSIT & VOUCHER REDEMPTION (MIN 50 ETB)               -->
-  <!-- ======================================================================= -->
+  <!-- MODAL 1: WALLET DEPOSIT & VOUCHER REDEMPTION (MIN 50 ETB) -->
   <div class="backdrop" id="walletBackdrop" onclick="if(event.target===this) closeWallet()">
     <div class="modal-window" id="walletWindow">
       <div class="modal-head">
@@ -827,13 +901,11 @@
         <button type="button" class="close-x tactile" onclick="closeWallet()">✕</button>
       </div>
 
-      <!-- Mode Switcher: Deposit vs Redeem Code -->
       <div class="pay-tabs-2">
         <div class="pay-choice active tactile" id="wTabDeposit" onclick="switchWalletTab('deposit', this)">+ Deposit (Min 50 ETB)</div>
         <div class="pay-choice tactile" id="wTabRedeem" onclick="switchWalletTab('redeem', this)">🎟 Redeem Top-Up Code</div>
       </div>
 
-      <!-- Tab A: Deposit Form -->
       <form id="depositForm">
         <div class="field">
           <label>Select or Enter Amount (Minimum 50 ETB)</label>
@@ -883,18 +955,16 @@
         <button type="submit" class="submit-cta tactile" id="depositSubmitBtn">Submit Deposit Request</button>
       </form>
 
-      <!-- Deposit Submitted Confirmation -->
       <div id="depositSuccessView" class="success-card" style="display:none;">
         <div class="ok-badge">✓</div>
         <h3 style="font-size:1.2rem;margin-bottom:6px;">Deposit Request Sent!</h3>
         <p style="color:var(--muted);font-size:0.86rem;line-height:1.5;">
-          Once your payment is verified, we will send your Top-Up Code on Telegram. Paste it under <strong>Redeem Top-Up Code</strong> to load your balance.
+          Once verified, we will send your Top-Up Code on Telegram. Paste it under <strong>Redeem Top-Up Code</strong> to load your balance.
         </p>
         <div class="summary-box" id="depositSummaryBox"></div>
         <button type="button" class="submit-cta tactile" onclick="switchWalletTab('redeem')">Enter Top-Up Code →</button>
       </div>
 
-      <!-- Tab B: Redeem Top-Up Code -->
       <form id="redeemForm" style="display:none;">
         <div class="field">
           <label>Paste Your Top-Up Code</label>
@@ -908,9 +978,7 @@
     </div>
   </div>
 
-  <!-- ======================================================================= -->
-  <!-- MODAL 2: PACKAGE CHECKOUT (WALLET OR DIRECT TELEBIRR / M-PESA)          -->
-  <!-- ======================================================================= -->
+  <!-- MODAL 2: PACKAGE CHECKOUT -->
   <div class="backdrop" id="checkoutBackdrop" onclick="if(event.target===this) closeCheckout()">
     <div class="modal-window" id="checkoutWindow">
       <div class="modal-head">
@@ -935,7 +1003,6 @@
             <div class="pay-choice tactile" data-method="M-Pesa" onclick="selectMethod('M-Pesa', this)">M-Pesa</div>
           </div>
 
-          <!-- Wallet Payment Panel -->
           <div id="walletCheckoutPanel" class="wallet-pay-box">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
               <span>Available Balance:</span>
@@ -949,7 +1016,6 @@
             </div>
           </div>
 
-          <!-- Direct TeleBirr / M-Pesa Panel -->
           <div id="directCheckoutPanel" style="display:none;">
             <div class="acc-box">
               <div>
@@ -978,56 +1044,49 @@
         <button type="submit" class="submit-cta tactile" id="submitBtn">Pay & Dispatch Order</button>
       </form>
 
-      <!-- Auto-Sent Confirmation -->
       <div id="confirmationView" class="success-card" style="display:none;">
         <div class="ok-badge">✓</div>
-        <h3 style="font-size:1.25rem;margin-bottom:4px;">Order Dispatched!</h3>
-        <p style="color:var(--muted);font-size:0.86rem;">Your order has been sent automatically. Save your Order ID below.</p>
+        <h3 style="font-size:1.25rem;margin-bottom:4px;">Order Placed!</h3>
+        <p style="color:var(--muted);font-size:0.86rem;" id="confirmSubtext">Payment is on hold while we verify your receipt.</p>
         <div class="summary-box" id="receiptSummary"></div>
         <div class="dual-btns">
-          <button type="button" class="ghost-btn tactile" id="copyOrderIdBtn">Copy Order ID</button>
-          <button type="button" class="submit-cta tactile" style="margin-top:0;padding:12px;" onclick="switchToTracker()">Track Order</button>
+          <button type="button" class="ghost-btn tactile" onclick="closeCheckout()">Done</button>
+          <button type="button" class="submit-cta tactile" style="margin-top:0;padding:12px;" onclick="switchToTracker()">Track All Orders</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ======================================================================= -->
-  <!-- MODAL 3: ORDER TRACKER                                                  -->
-  <!-- ======================================================================= -->
+  <!-- MODAL 3: ALL ORDERS LIVE TRACKER (NO CODE NEEDED) -->
   <div class="backdrop" id="trackerBackdrop" onclick="if(event.target===this) closeTracker()">
     <div class="modal-window" id="trackerWindow">
       <div class="modal-head">
-        <h3 style="font-size:1.15rem;">Track Your Order</h3>
-        <button type="button" class="close-x tactile" onclick="closeTracker()">✕</button>
+        <div>
+          <div style="font-size:0.75rem;color:var(--blue);font-weight:800;letter-spacing:0.05em;">LIVE ORDER STATUS • AUTO-SYNC</div>
+          <h3 style="font-size:1.18rem;">Your Orders (<span id="trackerTotalCount">0</span>)</h3>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button type="button" class="pill-btn tactile" style="padding:7px 12px;font-size:0.78rem;" id="syncBtn" onclick="refreshAllOrderStatuses(this)">↻ Sync</button>
+          <button type="button" class="close-x tactile" onclick="closeTracker()">✕</button>
+        </div>
       </div>
-      <div class="field">
-        <label>Enter Order ID</label>
-        <input class="input" id="trackInput" placeholder="e.g. EB-48291" />
-      </div>
-      <button type="button" class="submit-cta tactile" onclick="lookupOrder()">Check Status</button>
-      <div id="trackResult" class="summary-box" style="display:none;margin-top:14px;"></div>
+
+      <div id="allOrdersList"></div>
     </div>
   </div>
 
   <script>
-    // =========================================================================
-    // 1. CONFIGURATION
-    // =========================================================================
     const CONFIG = {
       BOT_TOKEN: "9156801499:AAHOYRRFjhpnE082Bh0TQJzpH_Bqt6ONuCw",
       ADMIN_CHAT_ID: "6452851282",
       MIN_DEPOSIT_ETB: 50,
-      WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY", // Change to your own private phrase
+      WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY",
       PAYMENTS: {
         "TeleBirr": { number: "0953001360", holder: "TeleBirr — EthioBoost" },
         "M-Pesa":   { number: "0701217060", holder: "M-Pesa — EthioBoost" }
       }
     };
 
-    // =========================================================================
-    // 2. CATALOG IN ETB
-    // =========================================================================
     const PACKAGES = [
       { id: "m1", cat: "Members", title: "100 Global Members", desc: "Fast start with real global Telegram accounts.", guarantees: ["30-Day Stay", "No Password"], oldPrice: null, price: 75, badge: "Starter" },
       { id: "m2", cat: "Members", title: "1,000 Global Members", desc: "Steady join rate to build instant channel credibility.", guarantees: ["30-Day Stay", "Fast Start"], oldPrice: 680, price: 340, badge: "50% OFF" },
@@ -1054,15 +1113,127 @@
     let selectedPkg = null;
     let selectedMethod = "Wallet";
     let selectedWalletMethod = "TeleBirr";
-    let lastCompletedOrderId = "";
 
     let checkoutOriginEl = null;
     let trackerOriginEl = null;
     let walletOriginEl = null;
+    let trackerPollTimer = null;
 
-    // =========================================================================
-    // 3. WALLET BALANCE & SHA-256 VOUCHER ENGINE
-    // =========================================================================
+    const STAGE_META = {
+      hold: {
+        step: 1,
+        label: "Payment on Hold / Being Approved",
+        pillClass: "st-hold",
+        barClass: "filled-amber",
+        icon: "⏳"
+      },
+      approved: {
+        step: 2,
+        label: "Payment Approved • Starting",
+        pillClass: "st-approved",
+        barClass: "filled-blue",
+        icon: "💳"
+      },
+      halfway: {
+        step: 3,
+        label: "Half Way There (50% Delivered)",
+        pillClass: "st-halfway",
+        barClass: "filled-blue",
+        icon: "🚀"
+      },
+      done: {
+        step: 4,
+        label: "Done • Completed",
+        pillClass: "st-done",
+        barClass: "filled-green",
+        icon: "✅"
+      },
+      rejected: {
+        step: 1,
+        label: "Payment Not Verified / Rejected",
+        pillClass: "st-rejected",
+        barClass: "filled-red",
+        icon: "❌"
+      }
+    };
+
+    function getOrders() {
+      return JSON.parse(localStorage.getItem("eb_orders") || "[]");
+    }
+
+    function saveOrders(list) {
+      localStorage.setItem("eb_orders", JSON.stringify(list));
+      updateOrderCountBadge();
+    }
+
+    function updateOrderCountBadge() {
+      const count = getOrders().length;
+      const badge = document.getElementById("navOrderCount");
+      if (count > 0) {
+        badge.style.display = "inline-block";
+        badge.textContent = count;
+      } else {
+        badge.style.display = "none";
+      }
+    }
+
+    async function syncStatusesFromTelegram(notify = false) {
+      const orders = getOrders();
+      if (!orders.length) return;
+
+      try {
+        const res = await fetch(
+          `https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?limit=100&allowed_updates=${encodeURIComponent(JSON.stringify(["callback_query", "message"]))}`
+        );
+        const data = await res.json();
+        if (!data.ok || !Array.isArray(data.result)) return;
+
+        const statusMap = {};
+        const adminId = String(CONFIG.ADMIN_CHAT_ID);
+
+        for (const upd of data.result) {
+          if (upd.callback_query && String(upd.callback_query.from?.id) === adminId) {
+            const raw = String(upd.callback_query.data || "");
+            const [oid, st] = raw.split(":");
+            if (oid && STAGE_META[st]) {
+              statusMap[oid.toUpperCase()] = st;
+            }
+          }
+          if (upd.message && String(upd.message.from?.id) === adminId && upd.message.text) {
+            const m = upd.message.text.trim().match(/^\/(approve|approved|half|halfway|done|reject|rejected)\s+(EB-\d+)/i);
+            if (m) {
+              const cmd = m[1].toLowerCase();
+              const oid = m[2].toUpperCase();
+              if (cmd.startsWith("approv")) statusMap[oid] = "approved";
+              else if (cmd.startsWith("half")) statusMap[oid] = "halfway";
+              else if (cmd === "done") statusMap[oid] = "done";
+              else if (cmd.startsWith("reject")) statusMap[oid] = "rejected";
+            }
+          }
+        }
+
+        let changed = 0;
+        for (const o of orders) {
+          const nextStage = statusMap[o.orderId.toUpperCase()];
+          if (nextStage && o.stage !== nextStage) {
+            o.stage = nextStage;
+            changed++;
+          }
+        }
+
+        if (changed > 0) {
+          saveOrders(orders);
+          renderHistory();
+          if (document.getElementById("trackerBackdrop").classList.contains("open")) {
+            renderAllOrdersModal();
+          }
+          if (notify) showIsland(`Updated ${changed} order status${changed > 1 ? "es" : ""}!`);
+        } else if (notify) {
+          showIsland("All orders are up to date");
+        }
+      } catch (_) {}
+    }
+
     function getWalletBalance() {
       return Math.max(0, Number(localStorage.getItem("eb_wallet_etb") || 0));
     }
@@ -1094,9 +1265,6 @@
       return expected === rawCode.trim().toUpperCase() ? amount : null;
     }
 
-    // =========================================================================
-    // 4. UI MOTION & HELPERS
-    // =========================================================================
     function trackSheen(e, el) {
       const r = el.getBoundingClientRect();
       el.style.setProperty("--mx", `${e.clientX - r.left}px`);
@@ -1203,16 +1371,14 @@
       };
     }
 
-    // =========================================================================
-    // 5. TELEGRAM BOT SENDER (SHARED BY WALLET DEPOSIT & ORDERS)
-    // =========================================================================
-    async function sendTelegramPayload(captionHTML, file) {
+    async function sendTelegramPayload(captionHTML, file, replyMarkup = null) {
       if (file) {
         const fd = new FormData();
         fd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
         fd.append("photo", file);
         fd.append("caption", captionHTML);
         fd.append("parse_mode", "HTML");
+        if (replyMarkup) fd.append("reply_markup", JSON.stringify(replyMarkup));
 
         let res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendPhoto`, {
           method: "POST",
@@ -1226,6 +1392,7 @@
           docFd.append("document", file);
           docFd.append("caption", captionHTML);
           docFd.append("parse_mode", "HTML");
+          if (replyMarkup) docFd.append("reply_markup", JSON.stringify(replyMarkup));
 
           res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendDocument`, {
             method: "POST",
@@ -1235,23 +1402,24 @@
         }
         if (!data.ok) throw new Error(data.description || "Telegram upload failed");
       } else {
+        const body = {
+          chat_id: CONFIG.ADMIN_CHAT_ID,
+          text: captionHTML,
+          parse_mode: "HTML"
+        };
+        if (replyMarkup) body.reply_markup = replyMarkup;
+
         const res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: CONFIG.ADMIN_CHAT_ID,
-            text: captionHTML,
-            parse_mode: "HTML"
-          })
+          body: JSON.stringify(body)
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.description || "Telegram send failed");
       }
     }
 
-    // =========================================================================
-    // 6. WALLET MODAL LOGIC (MIN 50 ETB DEPOSIT & VOUCHER REDEEM)
-    // =========================================================================
+    // Wallet Modal Logic
     function openWallet(originEl = null) {
       walletOriginEl = originEl || document.getElementById("navWalletBtn");
       setWalletBalance(getWalletBalance());
@@ -1346,7 +1514,7 @@
           `🧾 <b>Tx Ref:</b> <code>${escapeHTML(txRef)}</code>`,
           `👤 <b>Customer TG:</b> ${escapeHTML(userTg)}`,
           "",
-          "✅ <b>Approve & Send This Code to Customer:</b>",
+          "✅ <b>Send This Top-Up Code to Customer:</b>",
           `<code>${escapeHTML(voucherCode)}</code>`
         ].join("\n");
 
@@ -1397,12 +1565,10 @@
       setWalletBalance(updated);
 
       e.target.reset();
-      showIsland(`+${credit.toLocaleString()} ETB added! New balance: ${updated.toLocaleString()} ETB`);
+      showIsland(`+${credit.toLocaleString()} ETB added! Balance: ${updated.toLocaleString()} ETB`);
     });
 
-    // =========================================================================
-    // 7. SEGMENTED TABS & PACKAGE RENDERING
-    // =========================================================================
+    // Segmented Tabs & Package Rendering
     function updateGlider(activeBtn) {
       const glider = document.getElementById("segmentGlider");
       if (!activeBtn || !glider) return;
@@ -1466,9 +1632,7 @@
     `;
     document.head.appendChild(styleSheet);
 
-    // =========================================================================
-    // 8. PACKAGE CHECKOUT (WALLET OR DIRECT TELEBIRR / M-PESA)
-    // =========================================================================
+    // Checkout Logic
     function openCheckout(pkgId, cardEl) {
       checkoutOriginEl = cardEl || null;
       selectedPkg = PACKAGES.find((p) => p.id === pkgId);
@@ -1488,7 +1652,6 @@
         ? "https://t.me/yourchannel/123"
         : "https://t.me/yourchannel or @yourchannel";
 
-      // Default to Wallet if they have enough balance, otherwise TeleBirr
       const defaultMethod = getWalletBalance() >= selectedPkg.price ? "Wallet" : "TeleBirr";
       selectMethod(defaultMethod);
 
@@ -1589,6 +1752,7 @@
 
       const txRef = isWallet ? "WALLET-PAID" : document.getElementById("txRef").value.trim();
       const file = isWallet ? null : (document.getElementById("receiptFile").files[0] || null);
+      const initialStage = isWallet ? "approved" : "hold";
 
       const order = {
         orderId: "EB-" + Math.floor(10000 + Math.random() * 90000),
@@ -1598,7 +1762,7 @@
         priceETB: selectedPkg.price,
         paymentMethod: isWallet ? "EthioBoost Wallet" : selectedMethod,
         txRef,
-        status: isWallet ? "Paid via Wallet • Queued" : "Verifying Payment & Queuing",
+        stage: initialStage,
         createdAt: new Date().toLocaleString()
       };
 
@@ -1614,33 +1778,46 @@
           `🔗 <b>Target:</b> ${escapeHTML(order.targetLink)}`,
           `💰 <b>Amount:</b> ${escapeHTML(order.priceETB)} ETB`,
           `💳 <b>Method:</b> ${escapeHTML(order.paymentMethod)}`,
-          `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`
+          `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`,
+          "",
+          "👇 <i>Tap a button below or send /approve, /half, or /done + ID:</i>"
         ].join("\n");
 
-        await sendTelegramPayload(captionHTML, file);
+        const inlineKeyboard = {
+          inline_keyboard: [
+            [
+              { text: "💳 Approve", callback_data: `${order.orderId}:approved` },
+              { text: "⏳ Half Way", callback_data: `${order.orderId}:halfway` }
+            ],
+            [
+              { text: "✅ Done", callback_data: `${order.orderId}:done` },
+              { text: "❌ Reject", callback_data: `${order.orderId}:rejected` }
+            ]
+          ]
+        };
+
+        await sendTelegramPayload(captionHTML, file, inlineKeyboard);
 
         if (isWallet) {
           setWalletBalance(getWalletBalance() - selectedPkg.price);
         }
 
-        const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
+        const saved = getOrders();
         saved.unshift(order);
-        localStorage.setItem("eb_orders", JSON.stringify(saved.slice(0, 15)));
+        saveOrders(saved.slice(0, 25));
         renderHistory();
 
-        lastCompletedOrderId = order.orderId;
+        document.getElementById("confirmSubtext").textContent = isWallet
+          ? "Paid via Wallet! Your order is approved and starting."
+          : `${selectedMethod} payment is on hold while being approved.`;
+
         document.getElementById("receiptSummary").innerHTML = `
           <div><strong>Order ID:</strong> ${escapeHTML(order.orderId)}</div>
           <div><strong>Package:</strong> ${escapeHTML(order.serviceName)}</div>
           <div><strong>Target:</strong> ${escapeHTML(order.targetLink)}</div>
-          <div><strong>Paid:</strong> ${order.priceETB.toLocaleString()} ETB (${escapeHTML(order.paymentMethod)})</div>
-          ${isWallet ? `<div><strong>Remaining Wallet:</strong> ${getWalletBalance().toLocaleString()} ETB</div>` : `<div><strong>Tx Ref:</strong> ${escapeHTML(order.txRef)}</div>`}
+          <div><strong>Payment:</strong> ${order.priceETB.toLocaleString()} ETB (${escapeHTML(order.paymentMethod)})</div>
+          <div><strong>Status:</strong> ${STAGE_META[order.stage].icon} ${STAGE_META[order.stage].label}</div>
         `;
-        document.getElementById("copyOrderIdBtn").onclick = (ev) => {
-          springPop(ev.currentTarget);
-          navigator.clipboard.writeText(order.orderId);
-          showIsland(`Copied ${order.orderId}`);
-        };
 
         e.target.reset();
         document.getElementById("previewImg").style.display = "none";
@@ -1648,7 +1825,7 @@
 
         document.getElementById("orderForm").style.display = "none";
         document.getElementById("confirmationView").style.display = "block";
-        showIsland(`Order ${order.orderId} dispatched!`);
+        showIsland(`Order ${order.orderId} submitted!`);
       } catch (err) {
         alert("Could not send order: " + err.message);
       } finally {
@@ -1657,22 +1834,30 @@
       }
     });
 
-    // =========================================================================
-    // 9. ORDER TRACKER & FAQ
-    // =========================================================================
-    function openTracker(prefillId = "", originEl = null) {
+    // All-Orders Live Tracker (Auto-syncs every 10s while open)
+    async function openTracker(originEl = null) {
       trackerOriginEl = originEl || document.getElementById("navTrackBtn");
-      document.getElementById("trackInput").value = prefillId;
-      document.getElementById("trackResult").style.display = "none";
+      renderAllOrdersModal();
       openWindowFromOrigin(
         document.getElementById("trackerBackdrop"),
         document.getElementById("trackerWindow"),
         trackerOriginEl
       );
-      if (prefillId) lookupOrder();
+      await syncStatusesFromTelegram(false);
+      renderAllOrdersModal();
+
+      clearInterval(trackerPollTimer);
+      trackerPollTimer = setInterval(() => {
+        if (document.getElementById("trackerBackdrop").classList.contains("open")) {
+          syncStatusesFromTelegram(false);
+        } else {
+          clearInterval(trackerPollTimer);
+        }
+      }, 10000);
     }
 
     function closeTracker() {
+      clearInterval(trackerPollTimer);
       closeWindowToOrigin(
         document.getElementById("trackerBackdrop"),
         document.getElementById("trackerWindow"),
@@ -1682,35 +1867,77 @@
 
     function switchToTracker() {
       document.getElementById("checkoutBackdrop").classList.remove("open");
-      openTracker(lastCompletedOrderId, document.getElementById("navTrackBtn"));
+      openTracker(document.getElementById("navTrackBtn"));
     }
 
-    function lookupOrder() {
-      const query = document.getElementById("trackInput").value.trim().toUpperCase();
-      const box = document.getElementById("trackResult");
-      if (!query) return;
+    async function refreshAllOrderStatuses(btn) {
+      if (btn) springPop(btn);
+      await syncStatusesFromTelegram(true);
+      renderAllOrdersModal();
+    }
 
-      const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
-      const found = saved.find((o) => o.orderId.toUpperCase() === query);
-      box.style.display = "block";
+    function renderAllOrdersModal() {
+      const orders = getOrders();
+      document.getElementById("trackerTotalCount").textContent = orders.length;
+      const box = document.getElementById("allOrdersList");
 
-      if (!found) {
-        box.innerHTML = `<div style="color:var(--amber);font-weight:700;">Order not found on this device.</div><div style="color:var(--muted);margin-top:4px;">Check that you entered the exact ID (e.g. EB-12345) from this browser.</div>`;
+      if (!orders.length) {
+        box.innerHTML = `
+          <div style="text-align:center;padding:32px 12px;color:var(--muted);">
+            <div style="font-size:2rem;margin-bottom:8px;">📦</div>
+            <div style="font-weight:700;color:var(--text);margin-bottom:4px;">No orders yet</div>
+            <div style="font-size:0.85rem;">Once you place an order, its live delivery progress will appear right here automatically.</div>
+          </div>
+        `;
         return;
       }
 
-      box.innerHTML = `
-        <div style="color:var(--green);font-weight:800;margin-bottom:6px;">● ${escapeHTML(found.status)}</div>
-        <div><strong>Order ID:</strong> ${escapeHTML(found.orderId)}</div>
-        <div><strong>Package:</strong> ${escapeHTML(found.serviceName)}</div>
-        <div><strong>Target:</strong> ${escapeHTML(found.targetLink)}</div>
-        <div><strong>Paid via:</strong> ${escapeHTML(found.paymentMethod)} (${found.priceETB.toLocaleString()} ETB)</div>
-        <div><strong>Submitted:</strong> ${escapeHTML(found.createdAt)}</div>
-      `;
+      box.innerHTML = orders
+        .map((o) => {
+          const stKey = o.stage || (o.paymentMethod === "EthioBoost Wallet" ? "approved" : "hold");
+          const meta = STAGE_META[stKey] || STAGE_META.hold;
+          const isRejected = stKey === "rejected";
+
+          const segs = [1, 2, 3, 4]
+            .map((n) => {
+              if (isRejected) return `<div class="prog-seg ${n === 1 ? "filled-red" : ""}"></div>`;
+              return `<div class="prog-seg ${n <= meta.step ? meta.barClass : ""}"></div>`;
+            })
+            .join("");
+
+          return `
+            <div class="track-card">
+              <div class="track-card-top">
+                <div>
+                  <div style="font-weight:800;font-size:0.98rem;">${escapeHTML(o.serviceName)}</div>
+                  <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">
+                    ${escapeHTML(o.orderId)} • ${escapeHTML(o.targetLink)}
+                  </div>
+                </div>
+                <span class="status-pill ${meta.pillClass}">${meta.icon} ${meta.label}</span>
+              </div>
+
+              <div class="progress-track">${segs}</div>
+              <div class="prog-labels">
+                <span>On Hold</span>
+                <span>Approved</span>
+                <span>Half Way</span>
+                <span>Done</span>
+              </div>
+
+              <div style="display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);">
+                <span>${escapeHTML(o.paymentMethod)} • ${o.priceETB.toLocaleString()} ETB</span>
+                <span>${escapeHTML(o.createdAt)}</span>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
     }
 
     function renderHistory() {
-      const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
+      const saved = getOrders();
+      updateOrderCountBadge();
       const box = document.getElementById("historySection");
       const list = document.getElementById("historyList");
       if (!saved.length) {
@@ -1719,17 +1946,19 @@
       }
       box.style.display = "block";
       list.innerHTML = saved
-        .map(
-          (o) => `
-        <div class="order-row tactile" onclick="openTracker('${escapeHTML(o.orderId)}', this)">
-          <div>
-            <strong>${escapeHTML(o.orderId)}</strong> • ${escapeHTML(o.serviceName)}
-            <div style="color:var(--muted);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)}</div>
-          </div>
-          <div style="color:var(--green);font-weight:700;">Sent (${o.priceETB.toLocaleString()} ETB) →</div>
-        </div>
-      `
-        )
+        .map((o) => {
+          const stKey = o.stage || (o.paymentMethod === "EthioBoost Wallet" ? "approved" : "hold");
+          const meta = STAGE_META[stKey] || STAGE_META.hold;
+          return `
+            <div class="order-row tactile" onclick="openTracker(this)">
+              <div>
+                <strong>${escapeHTML(o.serviceName)}</strong>
+                <div style="color:var(--muted);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)} (${o.priceETB.toLocaleString()} ETB)</div>
+              </div>
+              <span class="status-pill ${meta.pillClass}">${meta.icon} ${meta.label}</span>
+            </div>
+          `;
+        })
         .join("");
     }
 
@@ -1747,10 +1976,10 @@
       }
     });
 
-    // Init
     setWalletBalance(getWalletBalance());
     renderPackages();
     renderHistory();
+    syncStatusesFromTelegram(false);
     requestAnimationFrame(() => {
       updateGlider(document.querySelector("#segmentedControl .seg-tab.active"));
     });
