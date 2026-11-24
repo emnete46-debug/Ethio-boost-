@@ -10,7 +10,7 @@
       --bg-deep: #071126;
       --glass: rgba(13, 23, 50, 0.62);
       --glass-card: rgba(16, 28, 60, 0.58);
-      --glass-modal: rgba(10, 17, 36, 0.92);
+      --glass-modal: rgba(10, 17, 36, 0.94);
       --glass-pill: rgba(255, 255, 255, 0.1);
       --border: rgba(255, 255, 255, 0.12);
       --border-spec: rgba(255, 255, 255, 0.28);
@@ -20,9 +20,9 @@
       --blue-glow: rgba(47, 128, 255, 0.38);
       --amber: #ffa301;
       --green: #22c55e;
+      --red: #ef4444;
       --shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
 
-      /* True iOS Damped Spring Curves */
       --spring-snappy: cubic-bezier(0.22, 1.36, 0.36, 1);
       --spring-smooth: cubic-bezier(0.16, 1, 0.3, 1);
       --spring-bounce: linear(
@@ -37,7 +37,7 @@
       --bg: #eef4ff;
       --bg-deep: #ddeaff;
       --glass: rgba(255, 255, 255, 0.76);
-      --glass-card: rgba(255, 255, 255, 0.82);
+      --glass-card: rgba(255, 255, 255, 0.84);
       --glass-modal: rgba(255, 255, 255, 0.96);
       --glass-pill: rgba(47, 128, 255, 0.1);
       --border: rgba(30, 64, 175, 0.12);
@@ -74,7 +74,6 @@
       transition: background-color 0.35s ease, color 0.3s ease;
     }
 
-    /* GPU-Optimized Liquid Glass Surface */
     .glass {
       position: relative;
       background: var(--glass);
@@ -85,7 +84,6 @@
       border-radius: 26px;
     }
 
-    /* Lightweight Card Surface (Zero Lag Scrolling) */
     .glass-card {
       position: relative;
       background: var(--glass-card);
@@ -95,7 +93,6 @@
       will-change: transform;
     }
 
-    /* Single-Target Specular Sheen (Only computes on the hovered card) */
     .sheen::after {
       content: "";
       position: absolute;
@@ -112,7 +109,6 @@
     }
     .sheen:hover::after { opacity: 1; }
 
-    /* Silky iOS Tactile Spring Physics */
     .tactile {
       transition:
         transform 0.38s var(--spring-snappy),
@@ -130,7 +126,7 @@
       transition-duration: 0.12s;
     }
 
-    /* Dynamic Island Pill */
+    /* Dynamic Island */
     #dynamicIsland {
       position: fixed;
       top: 14px;
@@ -168,16 +164,15 @@
       box-shadow: 0 0 10px var(--green);
     }
 
-    .wrapper {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
+    .wrapper { max-width: 1120px; margin: 0 auto; }
 
     /* Top Navigation */
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
       padding: 13px 20px;
       margin-bottom: 24px;
       border-radius: 22px;
@@ -202,18 +197,40 @@
       box-shadow: 0 6px 18px var(--blue-glow);
     }
     .brand span { color: var(--amber); }
-    .nav-actions { display: flex; gap: 9px; align-items: center; }
+    .nav-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+    .wallet-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(47, 128, 255, 0.18));
+      border: 1px solid rgba(34, 197, 94, 0.42);
+      color: var(--text);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+    .wallet-plus {
+      background: var(--green);
+      color: #041309;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 900;
+    }
+
     .pill-btn {
       background: var(--glass-card);
       border: 1px solid var(--border);
       color: var(--text);
-      padding: 8px 15px;
+      padding: 8px 14px;
       border-radius: 999px;
       font-size: 0.84rem;
       font-weight: 700;
     }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
       display: grid;
       grid-template-columns: 1.25fr 0.95fr;
@@ -303,12 +320,8 @@
     .metric-mini .num { font-size: 1.15rem; font-weight: 800; }
     .metric-mini .lbl { font-size: 0.76rem; color: var(--muted); }
 
-    /* iOS Liquid Glass Sliding Segmented Control */
-    .segment-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 26px;
-    }
+    /* Segmented Tabs */
+    .segment-container { display: flex; justify-content: center; margin-bottom: 26px; }
     .segmented-control {
       position: relative;
       display: inline-flex;
@@ -481,7 +494,7 @@
     }
     .faq-item.open .faq-a { display: block; }
 
-    /* GPU-Accelerated Modal Overlay (Only animates opacity) */
+    /* GPU-Accelerated Modal Overlay */
     .backdrop {
       position: fixed;
       inset: 0;
@@ -500,7 +513,7 @@
 
     .modal-window {
       width: 100%;
-      max-width: 465px;
+      max-width: 470px;
       background: var(--glass-modal);
       border: 1px solid var(--border-spec);
       border-radius: 30px;
@@ -555,19 +568,43 @@
     [data-theme="light"] .input { background: rgba(255, 255, 255, 0.92); }
     .input:focus { border-color: var(--blue); }
 
-    .pay-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .pay-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .pay-tabs-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
     .pay-choice {
-      padding: 11px;
+      padding: 10px 8px;
       border-radius: 14px;
       border: 1px solid var(--border);
       background: var(--glass-card);
       color: var(--text);
       font-weight: 700;
+      font-size: 0.85rem;
       text-align: center;
     }
     .pay-choice.active {
       border-color: var(--blue);
       background: rgba(47, 128, 255, 0.22);
+    }
+
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .preset-chip {
+      padding: 8px 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--glass-card);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-align: center;
+    }
+    .preset-chip.active {
+      border-color: var(--amber);
+      background: rgba(255, 163, 1, 0.18);
+      color: var(--amber);
     }
 
     .acc-box {
@@ -579,6 +616,15 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 14px;
+    }
+    .wallet-pay-box {
+      padding: 15px;
+      border-radius: 16px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      line-height: 1.5;
     }
     .copy-pill {
       background: var(--blue);
@@ -600,9 +646,9 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-    #previewImg {
+    .preview-thumb {
       max-width: 100%;
-      max-height: 150px;
+      max-height: 145px;
       border-radius: 12px;
       margin-top: 10px;
       display: none;
@@ -668,20 +714,24 @@
         <div>Ethio<span>Boost</span></div>
       </div>
       <div class="nav-actions">
+        <button class="wallet-pill tactile" id="navWalletBtn" onclick="openWallet(this)">
+          <span>💳 <span id="navWalletBalance">0</span> ETB</span>
+          <span class="wallet-plus">+ Deposit</span>
+        </button>
         <button class="pill-btn tactile" id="navTrackBtn" onclick="openTracker('', this)">Track Order</button>
-        <button class="pill-btn tactile" onclick="toggleTheme(this)">◐ Theme</button>
+        <button class="pill-btn tactile" onclick="toggleTheme(this)">◐</button>
       </div>
     </header>
 
-    <!-- Hero Section with Live Growth Preview -->
+    <!-- Hero Section -->
     <section class="hero glass sheen" onpointermove="trackSheen(event, this)">
       <div>
         <div class="hero-tag">🇪🇹 Ethiopia's #1 Telegram Growth Store • ETB</div>
         <h1>Boost Your Telegram Channel & Posts Instantly</h1>
-        <p>Real global members, instant post views, emoji reactions, and channel boosts. No password required—pay smoothly with TeleBirr or M-Pesa.</p>
+        <p>Real global members, instant post views, emoji reactions, and channel boosts. Deposit once (min 50 ETB) for 1-tap wallet orders or pay per order via TeleBirr & M-Pesa.</p>
         <div class="hero-cta-row">
           <button class="primary-cta tactile" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore Packages ↓</button>
-          <button class="pill-btn tactile" style="padding:12px 18px;border-radius:15px;" onclick="openTracker('', this)">Check Order Status</button>
+          <button class="pill-btn tactile" style="padding:12px 18px;border-radius:15px;" onclick="openWallet(this)">Top Up Wallet (Min 50 ETB)</button>
         </div>
       </div>
 
@@ -707,7 +757,7 @@
       </div>
     </section>
 
-    <!-- iOS Sliding Segmented Category Bar -->
+    <!-- Sliding Segmented Category Bar -->
     <div id="catalogAnchor" class="segment-container">
       <div class="segmented-control glass" id="segmentedControl">
         <div class="segment-glider" id="segmentGlider"></div>
@@ -731,8 +781,8 @@
     <section class="steps-grid">
       <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
         <div class="step-num">1</div>
-        <h4>Choose a Package</h4>
-        <p>Pick the member, view, reaction, or boost package that matches your Telegram channel goal.</p>
+        <h4>Top Up or Choose a Pack</h4>
+        <p>Deposit 50+ ETB into your EthioBoost wallet or pay directly for any single growth package.</p>
       </div>
       <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
         <div class="step-num">2</div>
@@ -741,8 +791,8 @@
       </div>
       <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
         <div class="step-num">3</div>
-        <h4>Pay in ETB & Auto-Dispatch</h4>
-        <p>Send via TeleBirr or M-Pesa, attach your receipt, and your order dispatches automatically.</p>
+        <h4>Instant Auto-Dispatch</h4>
+        <p>Wallet orders dispatch immediately in 1 tap with no repeated receipt uploads.</p>
       </div>
     </section>
 
@@ -750,12 +800,12 @@
     <section class="faq-box glass">
       <div class="section-title">Frequently Asked Questions</div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Do I need to share my Telegram password? <span>+</span></button>
-        <div class="faq-a">Never. We only use your public Telegram channel, group, or post link to deliver growth safely.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">How does the EthioBoost Wallet work? <span>+</span></button>
+        <div class="faq-a">Tap Wallet (+ Deposit), send at least 50 ETB via TeleBirr or M-Pesa, and upload your screenshot. Once verified, you receive a Top-Up Code on Telegram to load your balance for 1-tap orders.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How fast does delivery start after payment? <span>+</span></button>
-        <div class="faq-a">Once your TeleBirr or M-Pesa receipt is verified, smaller orders usually complete within 15–60 minutes while larger orders roll out gradually to stay natural.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need to share my Telegram password? <span>+</span></button>
+        <div class="faq-a">Never. We only use your public Telegram channel, group, or post link to deliver growth safely.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">What does the 30–360 Day Stay Guarantee mean? <span>+</span></button>
@@ -764,7 +814,103 @@
     </section>
   </div>
 
-  <!-- Checkout & Confirmation Modal -->
+  <!-- ======================================================================= -->
+  <!-- MODAL 1: WALLET DEPOSIT & VOUCHER REDEMPTION (MIN 50 ETB)               -->
+  <!-- ======================================================================= -->
+  <div class="backdrop" id="walletBackdrop" onclick="if(event.target===this) closeWallet()">
+    <div class="modal-window" id="walletWindow">
+      <div class="modal-head">
+        <div>
+          <div style="font-size:0.75rem;color:var(--green);font-weight:800;letter-spacing:0.05em;">ETHIOBOOST WALLET</div>
+          <h3 style="font-size:1.22rem;">Balance: <span id="modalWalletBalance">0</span> ETB</h3>
+        </div>
+        <button type="button" class="close-x tactile" onclick="closeWallet()">✕</button>
+      </div>
+
+      <!-- Mode Switcher: Deposit vs Redeem Code -->
+      <div class="pay-tabs-2">
+        <div class="pay-choice active tactile" id="wTabDeposit" onclick="switchWalletTab('deposit', this)">+ Deposit (Min 50 ETB)</div>
+        <div class="pay-choice tactile" id="wTabRedeem" onclick="switchWalletTab('redeem', this)">🎟 Redeem Top-Up Code</div>
+      </div>
+
+      <!-- Tab A: Deposit Form -->
+      <form id="depositForm">
+        <div class="field">
+          <label>Select or Enter Amount (Minimum 50 ETB)</label>
+          <div class="preset-row">
+            <div class="preset-chip tactile" onclick="setDepositAmount(50, this)">50 ETB</div>
+            <div class="preset-chip active tactile" onclick="setDepositAmount(100, this)">100 ETB</div>
+            <div class="preset-chip tactile" onclick="setDepositAmount(250, this)">250 ETB</div>
+            <div class="preset-chip tactile" onclick="setDepositAmount(500, this)">500 ETB</div>
+          </div>
+          <input class="input" id="depositAmount" type="number" min="50" step="1" value="100" required />
+        </div>
+
+        <div class="field">
+          <label>1. Send Deposit To</label>
+          <div class="pay-tabs-2">
+            <div class="pay-choice active tactile" data-wmethod="TeleBirr" onclick="selectWalletMethod('TeleBirr', this)">TeleBirr</div>
+            <div class="pay-choice tactile" data-wmethod="M-Pesa" onclick="selectWalletMethod('M-Pesa', this)">M-Pesa</div>
+          </div>
+          <div class="acc-box">
+            <div>
+              <div style="font-size:0.75rem;color:var(--muted);" id="wAccHolder">TeleBirr Account</div>
+              <div style="font-weight:800;font-size:1.08rem;" id="wAccNumber">0953001360</div>
+            </div>
+            <button type="button" class="copy-pill tactile" onclick="copyWalletAccount(this)">Copy</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>2. Your Telegram Username (So we send your code)</label>
+          <input class="input" id="depositUserTg" placeholder="@yourusername" required />
+        </div>
+
+        <div class="field">
+          <label>3. Transaction Reference / ID</label>
+          <input class="input" id="depositTxRef" placeholder="e.g. BHG82K91LM" required />
+        </div>
+
+        <div class="field">
+          <label>4. Deposit Receipt Screenshot</label>
+          <label class="dropzone" for="depositFile">
+            <span id="depositFilePrompt">Tap to attach TeleBirr / M-Pesa screenshot</span>
+            <img id="depositPreviewImg" class="preview-thumb" alt="Deposit Receipt" />
+          </label>
+          <input type="file" id="depositFile" accept="image/*" style="display:none;" />
+        </div>
+
+        <button type="submit" class="submit-cta tactile" id="depositSubmitBtn">Submit Deposit Request</button>
+      </form>
+
+      <!-- Deposit Submitted Confirmation -->
+      <div id="depositSuccessView" class="success-card" style="display:none;">
+        <div class="ok-badge">✓</div>
+        <h3 style="font-size:1.2rem;margin-bottom:6px;">Deposit Request Sent!</h3>
+        <p style="color:var(--muted);font-size:0.86rem;line-height:1.5;">
+          Once your payment is verified, we will send your Top-Up Code on Telegram. Paste it under <strong>Redeem Top-Up Code</strong> to load your balance.
+        </p>
+        <div class="summary-box" id="depositSummaryBox"></div>
+        <button type="button" class="submit-cta tactile" onclick="switchWalletTab('redeem')">Enter Top-Up Code →</button>
+      </div>
+
+      <!-- Tab B: Redeem Top-Up Code -->
+      <form id="redeemForm" style="display:none;">
+        <div class="field">
+          <label>Paste Your Top-Up Code</label>
+          <input class="input" id="voucherCodeInput" placeholder="e.g. EB-100-BHG82K-8F3A19C2" style="text-transform:uppercase;font-weight:700;" required />
+        </div>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;line-height:1.45;">
+          Enter the code sent to your Telegram after your TeleBirr or M-Pesa deposit was verified.
+        </p>
+        <button type="submit" class="submit-cta tactile">Add Funds to Wallet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 2: PACKAGE CHECKOUT (WALLET OR DIRECT TELEBIRR / M-PESA)          -->
+  <!-- ======================================================================= -->
   <div class="backdrop" id="checkoutBackdrop" onclick="if(event.target===this) closeCheckout()">
     <div class="modal-window" id="checkoutWindow">
       <div class="modal-head">
@@ -775,7 +921,6 @@
         <button type="button" class="close-x tactile" onclick="closeCheckout()">✕</button>
       </div>
 
-      <!-- Checkout Form -->
       <form id="orderForm">
         <div class="field">
           <label id="linkLabel">Public Channel or Group Link</label>
@@ -783,43 +928,61 @@
         </div>
 
         <div class="field">
-          <label>1. Pay Exact Amount (<span id="modalPrice" style="color:var(--amber);">340 ETB</span>)</label>
+          <label>Pay <span id="modalPrice" style="color:var(--amber);">340 ETB</span> Via</label>
           <div class="pay-tabs">
-            <div class="pay-choice active tactile" data-method="TeleBirr" onclick="selectMethod('TeleBirr', this)">TeleBirr</div>
+            <div class="pay-choice active tactile" data-method="Wallet" onclick="selectMethod('Wallet', this)">💳 Wallet</div>
+            <div class="pay-choice tactile" data-method="TeleBirr" onclick="selectMethod('TeleBirr', this)">TeleBirr</div>
             <div class="pay-choice tactile" data-method="M-Pesa" onclick="selectMethod('M-Pesa', this)">M-Pesa</div>
           </div>
 
-          <div class="acc-box">
-            <div>
-              <div style="font-size:0.75rem;color:var(--muted);" id="accHolder">TeleBirr Account</div>
-              <div style="font-weight:800;font-size:1.08rem;letter-spacing:0.02em;" id="accNumber">0953001360</div>
+          <!-- Wallet Payment Panel -->
+          <div id="walletCheckoutPanel" class="wallet-pay-box">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <span>Available Balance:</span>
+              <strong style="font-size:1.05rem;color:var(--green);" id="checkoutWalletBal">0 ETB</strong>
             </div>
-            <button type="button" class="copy-pill tactile" onclick="copyAccount(this)">Copy</button>
+            <div id="walletShortfallNote" style="font-size:0.82rem;color:var(--amber);display:none;">
+              Insufficient balance. Top up at least 50 ETB or pay directly with TeleBirr/M-Pesa.
+              <div style="margin-top:8px;">
+                <button type="button" class="copy-pill tactile" onclick="jumpToDepositFromCheckout()">+ Deposit Funds (Min 50 ETB)</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct TeleBirr / M-Pesa Panel -->
+          <div id="directCheckoutPanel" style="display:none;">
+            <div class="acc-box">
+              <div>
+                <div style="font-size:0.75rem;color:var(--muted);" id="accHolder">TeleBirr Account</div>
+                <div style="font-weight:800;font-size:1.08rem;" id="accNumber">0953001360</div>
+              </div>
+              <button type="button" class="copy-pill tactile" onclick="copyAccount(this)">Copy</button>
+            </div>
+
+            <div class="field">
+              <label>Transaction Reference / ID</label>
+              <input class="input" id="txRef" placeholder="e.g. BHG82K91LM" />
+            </div>
+
+            <div class="field" style="margin-bottom:4px;">
+              <label>Payment Screenshot</label>
+              <label class="dropzone" for="receiptFile">
+                <span id="filePrompt">Tap to attach TeleBirr / M-Pesa screenshot</span>
+                <img id="previewImg" class="preview-thumb" alt="Receipt Preview" />
+              </label>
+              <input type="file" id="receiptFile" accept="image/*" style="display:none;" />
+            </div>
           </div>
         </div>
 
-        <div class="field">
-          <label>2. Transaction Reference / ID</label>
-          <input class="input" id="txRef" placeholder="e.g. BHG82K91LM" required />
-        </div>
-
-        <div class="field">
-          <label>3. Payment Screenshot</label>
-          <label class="dropzone" for="receiptFile">
-            <span id="filePrompt">Tap to attach TeleBirr / M-Pesa screenshot</span>
-            <img id="previewImg" alt="Receipt Preview" />
-          </label>
-          <input type="file" id="receiptFile" accept="image/*" style="display:none;" />
-        </div>
-
-        <button type="submit" class="submit-cta tactile" id="submitBtn">Confirm & Submit Order</button>
+        <button type="submit" class="submit-cta tactile" id="submitBtn">Pay & Dispatch Order</button>
       </form>
 
       <!-- Auto-Sent Confirmation -->
       <div id="confirmationView" class="success-card" style="display:none;">
         <div class="ok-badge">✓</div>
         <h3 style="font-size:1.25rem;margin-bottom:4px;">Order Dispatched!</h3>
-        <p style="color:var(--muted);font-size:0.86rem;">Your receipt was sent automatically. Save your Order ID below.</p>
+        <p style="color:var(--muted);font-size:0.86rem;">Your order has been sent automatically. Save your Order ID below.</p>
         <div class="summary-box" id="receiptSummary"></div>
         <div class="dual-btns">
           <button type="button" class="ghost-btn tactile" id="copyOrderIdBtn">Copy Order ID</button>
@@ -829,7 +992,9 @@
     </div>
   </div>
 
-  <!-- Track Order Modal -->
+  <!-- ======================================================================= -->
+  <!-- MODAL 3: ORDER TRACKER                                                  -->
+  <!-- ======================================================================= -->
   <div class="backdrop" id="trackerBackdrop" onclick="if(event.target===this) closeTracker()">
     <div class="modal-window" id="trackerWindow">
       <div class="modal-head">
@@ -847,11 +1012,13 @@
 
   <script>
     // =========================================================================
-    // 1. PRE-CONFIGURED BOT & LOCAL PAYMENT ACCOUNTS
+    // 1. CONFIGURATION
     // =========================================================================
     const CONFIG = {
       BOT_TOKEN: "9156801499:AAHOYRRFjhpnE082Bh0TQJzpH_Bqt6ONuCw",
       ADMIN_CHAT_ID: "6452851282",
+      MIN_DEPOSIT_ETB: 50,
+      WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY", // Change to your own private phrase
       PAYMENTS: {
         "TeleBirr": { number: "0953001360", holder: "TeleBirr — EthioBoost" },
         "M-Pesa":   { number: "0701217060", holder: "M-Pesa — EthioBoost" }
@@ -859,10 +1026,9 @@
     };
 
     // =========================================================================
-    // 2. FULL TELEGRAM GROWTH CATALOG IN ETB
+    // 2. CATALOG IN ETB
     // =========================================================================
     const PACKAGES = [
-      // Members
       { id: "m1", cat: "Members", title: "100 Global Members", desc: "Fast start with real global Telegram accounts.", guarantees: ["30-Day Stay", "No Password"], oldPrice: null, price: 75, badge: "Starter" },
       { id: "m2", cat: "Members", title: "1,000 Global Members", desc: "Steady join rate to build instant channel credibility.", guarantees: ["30-Day Stay", "Fast Start"], oldPrice: 680, price: 340, badge: "50% OFF" },
       { id: "m3", cat: "Members", title: "1,000 Members (3 Months)", desc: "Extended retention guarantee for growing channels.", guarantees: ["90-Day Stay", "Auto-Refill"], oldPrice: 1360, price: 680, badge: "Popular" },
@@ -870,18 +1036,15 @@
       { id: "m5", cat: "Members", title: "1,000 Search Ranking Members", desc: "Premium active members that help rank higher in Telegram search.", guarantees: ["30-Day Stay", "Search Boost"], oldPrice: 2720, price: 1360, badge: "Premium" },
       { id: "m6", cat: "Members", title: "1,000 Members (12 Months)", desc: "Long-term 360-day stay protection for flagship channels.", guarantees: ["360-Day Stay", "VIP Quality"], oldPrice: 2700, price: 1850, badge: "1 Year" },
 
-      // Views
       { id: "v1", cat: "Views", title: "1,000 Post Views", desc: "Instant view boost on any public channel post.", guarantees: ["Instant Start", "Public Post"], oldPrice: null, price: 45, badge: "Fast" },
       { id: "v2", cat: "Views", title: "5,000 Post Views", desc: "Increase reach and social proof on key announcements.", guarantees: ["Instant Start", "High Speed"], oldPrice: 250, price: 150, badge: "Popular" },
       { id: "v3", cat: "Views", title: "10,000 Post Views", desc: "Viral post reach delivered smoothly within minutes.", guarantees: ["Instant Start", "Best Value"], oldPrice: 520, price: 260, badge: "50% OFF" },
       { id: "v4", cat: "Views", title: "1,000 Premium Views", desc: "Gradual organic-style view curve for natural analytics.", guarantees: ["Organic Pace", "Safe"], oldPrice: null, price: 190, badge: "Premium" },
 
-      // Reactions
       { id: "r1", cat: "Reactions", title: "500 Post Reactions", desc: "Positive emoji reactions (👍 ❤️ 🔥 🎉) on your post.", guarantees: ["Fast Delivery", "Mixed Emojis"], oldPrice: null, price: 95, badge: "Fast" },
       { id: "r2", cat: "Reactions", title: "2,000 Post Reactions", desc: "High engagement boost to make posts stand out.", guarantees: ["Instant Start", "Positive Set"], oldPrice: 480, price: 290, badge: "Popular" },
       { id: "r3", cat: "Reactions", title: "1,000 Premium Reactions", desc: "High-retention accounts reacting at a natural pace.", guarantees: ["High Retention", "Natural Pace"], oldPrice: null, price: 450, badge: "Premium" },
 
-      // Boosts
       { id: "b1", cat: "Boosts", title: "10 Channel Boosts", desc: "Level up your channel to unlock custom Stories & colors.", guarantees: ["30-Day Active", "Story Unlock"], oldPrice: null, price: 490, badge: "Level Up" },
       { id: "b2", cat: "Boosts", title: "25 Channel Boosts", desc: "Jump multiple channel levels with active Telegram boosts.", guarantees: ["30-Day Active", "Fast Delivery"], oldPrice: 1500, price: 1150, badge: "Popular" },
       { id: "b3", cat: "Boosts", title: "50 Channel Boosts", desc: "Maximum channel perks, custom wallpapers & emoji status.", guarantees: ["30-Day Active", "Pro Tier"], oldPrice: 3100, price: 2150, badge: "Pro" }
@@ -889,19 +1052,57 @@
 
     let activeCategory = "Members";
     let selectedPkg = null;
-    let selectedMethod = "TeleBirr";
+    let selectedMethod = "Wallet";
+    let selectedWalletMethod = "TeleBirr";
     let lastCompletedOrderId = "";
+
     let checkoutOriginEl = null;
     let trackerOriginEl = null;
+    let walletOriginEl = null;
 
-    // Zero-overhead specular reflection (runs only on hovered element)
+    // =========================================================================
+    // 3. WALLET BALANCE & SHA-256 VOUCHER ENGINE
+    // =========================================================================
+    function getWalletBalance() {
+      return Math.max(0, Number(localStorage.getItem("eb_wallet_etb") || 0));
+    }
+
+    function setWalletBalance(amount) {
+      const clean = Math.max(0, Math.round(Number(amount)));
+      localStorage.setItem("eb_wallet_etb", String(clean));
+      document.getElementById("navWalletBalance").textContent = clean.toLocaleString();
+      document.getElementById("modalWalletBalance").textContent = clean.toLocaleString();
+    }
+
+    async function signVoucher(amount, cleanRef) {
+      const msg = `${amount}:${cleanRef}:${CONFIG.WALLET_SECRET}`;
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(msg));
+      const hex = Array.from(new Uint8Array(buf))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("")
+        .toUpperCase();
+      return `EB-${amount}-${cleanRef}-${hex.slice(0, 8)}`;
+    }
+
+    async function verifyVoucher(rawCode) {
+      const parts = rawCode.trim().toUpperCase().split("-");
+      if (parts.length !== 4 || parts[0] !== "EB") return null;
+      const amount = parseInt(parts[1], 10);
+      const cleanRef = parts[2];
+      if (!amount || amount < CONFIG.MIN_DEPOSIT_ETB || !cleanRef) return null;
+      const expected = await signVoucher(amount, cleanRef);
+      return expected === rawCode.trim().toUpperCase() ? amount : null;
+    }
+
+    // =========================================================================
+    // 4. UI MOTION & HELPERS
+    // =========================================================================
     function trackSheen(e, el) {
       const r = el.getBoundingClientRect();
       el.style.setProperty("--mx", `${e.clientX - r.left}px`);
       el.style.setProperty("--my", `${e.clientY - r.top}px`);
     }
 
-    // GPU Spring Wobble using Web Animations API
     function springPop(el) {
       if (!el || !el.animate) return;
       el.animate(
@@ -915,14 +1116,13 @@
       );
     }
 
-    // Dynamic Island Toast
     let islandTimer = null;
     function showIsland(msg) {
       const el = document.getElementById("dynamicIsland");
       document.getElementById("diText").textContent = msg;
       el.classList.add("show");
       clearTimeout(islandTimer);
-      islandTimer = setTimeout(() => el.classList.remove("show"), 2600);
+      islandTimer = setTimeout(() => el.classList.remove("show"), 2700);
     }
 
     function toggleTheme(btn) {
@@ -939,13 +1139,8 @@
         .replace(/>/g, "&gt;");
     }
 
-    // =========================================================================
-    // 3. 120HZ COMPOSITOR FLIP OPEN & RETURN-TO-ORIGIN CLOSE ("✕")
-    // =========================================================================
     function openWindowFromOrigin(backdropEl, windowEl, originEl) {
       backdropEl.classList.add("open");
-
-      // Fade backdrop smoothly on GPU
       backdropEl.animate([{ opacity: 0 }, { opacity: 1 }], {
         duration: 240,
         easing: "ease-out",
@@ -969,17 +1164,12 @@
           { transform: "translate3d(0, 0, 0) scale(1.015, 1.015)", opacity: 1, offset: 0.72 },
           { transform: "translate3d(0, 0, 0) scale(1, 1)", opacity: 1 }
         ],
-        {
-          duration: 420,
-          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-          fill: "forwards"
-        }
+        { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
       );
     }
 
     function closeWindowToOrigin(backdropEl, windowEl, originEl) {
       if (!backdropEl.classList.contains("open")) return;
-
       const currentRect = windowEl.getBoundingClientRect();
       let dx = 0, dy = 26, sx = 0.84, sy = 0.84;
 
@@ -1002,25 +1192,216 @@
           { transform: "translate3d(0, 0, 0) scale(1, 1)", opacity: 1 },
           { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`, opacity: 0 }
         ],
-        {
-          duration: 310,
-          easing: "cubic-bezier(0.32, 0.72, 0, 1)",
-          fill: "forwards"
-        }
+        { duration: 310, easing: "cubic-bezier(0.32, 0.72, 0, 1)", fill: "forwards" }
       );
 
       anim.onfinish = () => {
         backdropEl.classList.remove("open");
         windowEl.getAnimations().forEach((a) => a.cancel());
         backdropEl.getAnimations().forEach((a) => a.cancel());
-        if (originEl && document.body.contains(originEl)) {
-          springPop(originEl);
-        }
+        if (originEl && document.body.contains(originEl)) springPop(originEl);
       };
     }
 
     // =========================================================================
-    // 4. SEGMENTED TABS & PACKAGE RENDERING
+    // 5. TELEGRAM BOT SENDER (SHARED BY WALLET DEPOSIT & ORDERS)
+    // =========================================================================
+    async function sendTelegramPayload(captionHTML, file) {
+      if (file) {
+        const fd = new FormData();
+        fd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
+        fd.append("photo", file);
+        fd.append("caption", captionHTML);
+        fd.append("parse_mode", "HTML");
+
+        let res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendPhoto`, {
+          method: "POST",
+          body: fd
+        });
+        let data = await res.json();
+
+        if (!data.ok) {
+          const docFd = new FormData();
+          docFd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
+          docFd.append("document", file);
+          docFd.append("caption", captionHTML);
+          docFd.append("parse_mode", "HTML");
+
+          res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendDocument`, {
+            method: "POST",
+            body: docFd
+          });
+          data = await res.json();
+        }
+        if (!data.ok) throw new Error(data.description || "Telegram upload failed");
+      } else {
+        const res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CONFIG.ADMIN_CHAT_ID,
+            text: captionHTML,
+            parse_mode: "HTML"
+          })
+        });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.description || "Telegram send failed");
+      }
+    }
+
+    // =========================================================================
+    // 6. WALLET MODAL LOGIC (MIN 50 ETB DEPOSIT & VOUCHER REDEEM)
+    // =========================================================================
+    function openWallet(originEl = null) {
+      walletOriginEl = originEl || document.getElementById("navWalletBtn");
+      setWalletBalance(getWalletBalance());
+      switchWalletTab("deposit");
+      openWindowFromOrigin(
+        document.getElementById("walletBackdrop"),
+        document.getElementById("walletWindow"),
+        walletOriginEl
+      );
+    }
+
+    function closeWallet() {
+      closeWindowToOrigin(
+        document.getElementById("walletBackdrop"),
+        document.getElementById("walletWindow"),
+        walletOriginEl
+      );
+    }
+
+    function switchWalletTab(tab, el) {
+      if (el) springPop(el);
+      document.getElementById("wTabDeposit").classList.toggle("active", tab === "deposit");
+      document.getElementById("wTabRedeem").classList.toggle("active", tab === "redeem");
+      document.getElementById("depositForm").style.display = tab === "deposit" ? "block" : "none";
+      document.getElementById("depositSuccessView").style.display = "none";
+      document.getElementById("redeemForm").style.display = tab === "redeem" ? "block" : "none";
+    }
+
+    function setDepositAmount(val, el) {
+      if (el) springPop(el);
+      document.querySelectorAll(".preset-chip").forEach((c) => c.classList.remove("active"));
+      if (el) el.classList.add("active");
+      document.getElementById("depositAmount").value = val;
+    }
+
+    function selectWalletMethod(method, el) {
+      selectedWalletMethod = method;
+      document.querySelectorAll("[data-wmethod]").forEach((b) => {
+        b.classList.toggle("active", b.dataset.wmethod === method);
+      });
+      if (el) springPop(el);
+      const info = CONFIG.PAYMENTS[method];
+      document.getElementById("wAccHolder").textContent = info.holder;
+      document.getElementById("wAccNumber").textContent = info.number;
+    }
+
+    function copyWalletAccount(btn) {
+      springPop(btn);
+      const num = CONFIG.PAYMENTS[selectedWalletMethod].number;
+      navigator.clipboard.writeText(num);
+      showIsland(`Copied ${selectedWalletMethod}: ${num}`);
+    }
+
+    document.getElementById("depositFile").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      const img = document.getElementById("depositPreviewImg");
+      const prompt = document.getElementById("depositFilePrompt");
+      if (!file) {
+        img.style.display = "none";
+        prompt.textContent = "Tap to attach TeleBirr / M-Pesa screenshot";
+        return;
+      }
+      prompt.textContent = `Attached: ${file.name}`;
+      img.src = URL.createObjectURL(file);
+      img.style.display = "inline-block";
+    });
+
+    document.getElementById("depositForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const amount = Math.floor(Number(document.getElementById("depositAmount").value));
+      if (amount < CONFIG.MIN_DEPOSIT_ETB) {
+        showIsland(`Minimum deposit is ${CONFIG.MIN_DEPOSIT_ETB} ETB`);
+        return;
+      }
+
+      const userTg = document.getElementById("depositUserTg").value.trim();
+      const txRef = document.getElementById("depositTxRef").value.trim();
+      const cleanRef = txRef.replace(/[^A-Za-z0-9]/g, "").toUpperCase().slice(0, 12) || "TX";
+      const file = document.getElementById("depositFile").files[0] || null;
+      const btn = document.getElementById("depositSubmitBtn");
+
+      btn.disabled = true;
+      btn.textContent = "Sending Deposit Request...";
+
+      try {
+        const voucherCode = await signVoucher(amount, cleanRef);
+        const caption = [
+          "💰 <b>NEW WALLET DEPOSIT REQUEST</b>",
+          "",
+          `💵 <b>Amount:</b> ${amount.toLocaleString()} ETB`,
+          `💳 <b>Method:</b> ${escapeHTML(selectedWalletMethod)}`,
+          `🧾 <b>Tx Ref:</b> <code>${escapeHTML(txRef)}</code>`,
+          `👤 <b>Customer TG:</b> ${escapeHTML(userTg)}`,
+          "",
+          "✅ <b>Approve & Send This Code to Customer:</b>",
+          `<code>${escapeHTML(voucherCode)}</code>`
+        ].join("\n");
+
+        await sendTelegramPayload(caption, file);
+
+        document.getElementById("depositSummaryBox").innerHTML = `
+          <div><strong>Amount:</strong> ${amount.toLocaleString()} ETB</div>
+          <div><strong>Method:</strong> ${escapeHTML(selectedWalletMethod)}</div>
+          <div><strong>Tx Ref:</strong> ${escapeHTML(txRef)}</div>
+          <div><strong>Send Code To:</strong> ${escapeHTML(userTg)}</div>
+        `;
+
+        e.target.reset();
+        document.getElementById("depositAmount").value = "100";
+        document.getElementById("depositPreviewImg").style.display = "none";
+        document.getElementById("depositFilePrompt").textContent = "Tap to attach TeleBirr / M-Pesa screenshot";
+
+        document.getElementById("depositForm").style.display = "none";
+        document.getElementById("depositSuccessView").style.display = "block";
+        showIsland("Deposit request sent for verification!");
+      } catch (err) {
+        alert("Could not send deposit request: " + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Submit Deposit Request";
+      }
+    });
+
+    document.getElementById("redeemForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const code = document.getElementById("voucherCodeInput").value.trim().toUpperCase();
+      const used = JSON.parse(localStorage.getItem("eb_used_vouchers") || "[]");
+
+      if (used.includes(code)) {
+        showIsland("This Top-Up Code was already redeemed!");
+        return;
+      }
+
+      const credit = await verifyVoucher(code);
+      if (!credit) {
+        showIsland("Invalid Top-Up Code. Check and try again.");
+        return;
+      }
+
+      used.push(code);
+      localStorage.setItem("eb_used_vouchers", JSON.stringify(used));
+      const updated = getWalletBalance() + credit;
+      setWalletBalance(updated);
+
+      e.target.reset();
+      showIsland(`+${credit.toLocaleString()} ETB added! New balance: ${updated.toLocaleString()} ETB`);
+    });
+
+    // =========================================================================
+    // 7. SEGMENTED TABS & PACKAGE RENDERING
     // =========================================================================
     function updateGlider(activeBtn) {
       const glider = document.getElementById("segmentGlider");
@@ -1076,7 +1457,6 @@
         .join("");
     }
 
-    // Inject lightweight card entrance keyframes
     const styleSheet = document.createElement("style");
     styleSheet.textContent = `
       @keyframes cardFadeIn {
@@ -1087,7 +1467,7 @@
     document.head.appendChild(styleSheet);
 
     // =========================================================================
-    // 5. CHECKOUT & AUTOMATIC TELEGRAM BOT SUBMISSION
+    // 8. PACKAGE CHECKOUT (WALLET OR DIRECT TELEBIRR / M-PESA)
     // =========================================================================
     function openCheckout(pkgId, cardEl) {
       checkoutOriginEl = cardEl || null;
@@ -1108,7 +1488,10 @@
         ? "https://t.me/yourchannel/123"
         : "https://t.me/yourchannel or @yourchannel";
 
-      selectMethod(selectedMethod);
+      // Default to Wallet if they have enough balance, otherwise TeleBirr
+      const defaultMethod = getWalletBalance() >= selectedPkg.price ? "Wallet" : "TeleBirr";
+      selectMethod(defaultMethod);
+
       openWindowFromOrigin(
         document.getElementById("checkoutBackdrop"),
         document.getElementById("checkoutWindow"),
@@ -1124,15 +1507,47 @@
       );
     }
 
+    function jumpToDepositFromCheckout() {
+      document.getElementById("checkoutBackdrop").classList.remove("open");
+      openWallet(document.getElementById("navWalletBtn"));
+    }
+
     function selectMethod(method, el) {
       selectedMethod = method;
-      document.querySelectorAll(".pay-choice").forEach((b) => {
+      document.querySelectorAll("[data-method]").forEach((b) => {
         b.classList.toggle("active", b.dataset.method === method);
       });
       if (el) springPop(el);
-      const info = CONFIG.PAYMENTS[method];
-      document.getElementById("accHolder").textContent = info.holder;
-      document.getElementById("accNumber").textContent = info.number;
+
+      const walletPanel = document.getElementById("walletCheckoutPanel");
+      const directPanel = document.getElementById("directCheckoutPanel");
+      const txInput = document.getElementById("txRef");
+      const submitBtn = document.getElementById("submitBtn");
+
+      if (method === "Wallet") {
+        walletPanel.style.display = "block";
+        directPanel.style.display = "none";
+        txInput.required = false;
+
+        const bal = getWalletBalance();
+        document.getElementById("checkoutWalletBal").textContent = `${bal.toLocaleString()} ETB`;
+        const enough = selectedPkg && bal >= selectedPkg.price;
+        document.getElementById("walletShortfallNote").style.display = enough ? "none" : "block";
+        submitBtn.disabled = !enough;
+        submitBtn.textContent = enough
+          ? `Pay ${selectedPkg.price.toLocaleString()} ETB from Wallet`
+          : "Insufficient Wallet Balance";
+      } else {
+        walletPanel.style.display = "none";
+        directPanel.style.display = "block";
+        txInput.required = true;
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Confirm & Submit Order";
+
+        const info = CONFIG.PAYMENTS[method];
+        document.getElementById("accHolder").textContent = info.holder;
+        document.getElementById("accNumber").textContent = info.number;
+      }
     }
 
     function copyAccount(btn) {
@@ -1156,71 +1571,24 @@
       img.style.display = "inline-block";
     });
 
-    async function pushToTelegram(order, screenshotFile) {
-      const captionHTML = [
-        "🚀 <b>NEW ETHIOBOOST ORDER</b>",
-        "",
-        `🆔 <b>Order ID:</b> <code>${escapeHTML(order.orderId)}</code>`,
-        `📦 <b>Package:</b> ${escapeHTML(order.serviceName)} (${escapeHTML(order.category)})`,
-        `🔗 <b>Target:</b> ${escapeHTML(order.targetLink)}`,
-        `💰 <b>Amount:</b> ${escapeHTML(order.priceETB)} ETB`,
-        `💳 <b>Method:</b> ${escapeHTML(order.paymentMethod)}`,
-        `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`
-      ].join("\n");
-
-      if (screenshotFile) {
-        const fd = new FormData();
-        fd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
-        fd.append("photo", screenshotFile);
-        fd.append("caption", captionHTML);
-        fd.append("parse_mode", "HTML");
-
-        let res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendPhoto`, {
-          method: "POST",
-          body: fd
-        });
-        let data = await res.json();
-
-        if (!data.ok) {
-          const docFd = new FormData();
-          docFd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
-          docFd.append("document", screenshotFile);
-          docFd.append("caption", captionHTML);
-          docFd.append("parse_mode", "HTML");
-
-          res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendDocument`, {
-            method: "POST",
-            body: docFd
-          });
-          data = await res.json();
-        }
-        if (!data.ok) throw new Error(data.description || "Telegram upload failed");
-      } else {
-        const res = await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: CONFIG.ADMIN_CHAT_ID,
-            text: captionHTML,
-            parse_mode: "HTML"
-          })
-        });
-        const data = await res.json();
-        if (!data.ok) throw new Error(data.description || "Telegram send failed");
-      }
-    }
-
     document.getElementById("orderForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const btn = document.getElementById("submitBtn");
       const targetLink = document.getElementById("targetLink").value.trim();
-      const txRef = document.getElementById("txRef").value.trim();
-      const file = document.getElementById("receiptFile").files[0] || null;
 
       if (!targetLink.includes("t.me/") && !targetLink.startsWith("@")) {
         showIsland("Enter a valid @channel or t.me/ link");
         return;
       }
+
+      const isWallet = selectedMethod === "Wallet";
+      if (isWallet && getWalletBalance() < selectedPkg.price) {
+        showIsland("Insufficient wallet balance");
+        return;
+      }
+
+      const txRef = isWallet ? "WALLET-PAID" : document.getElementById("txRef").value.trim();
+      const file = isWallet ? null : (document.getElementById("receiptFile").files[0] || null);
 
       const order = {
         orderId: "EB-" + Math.floor(10000 + Math.random() * 90000),
@@ -1228,9 +1596,9 @@
         category: selectedPkg.cat,
         targetLink,
         priceETB: selectedPkg.price,
-        paymentMethod: selectedMethod,
+        paymentMethod: isWallet ? "EthioBoost Wallet" : selectedMethod,
         txRef,
-        status: "Verifying Payment & Queuing",
+        status: isWallet ? "Paid via Wallet • Queued" : "Verifying Payment & Queuing",
         createdAt: new Date().toLocaleString()
       };
 
@@ -1238,7 +1606,22 @@
       btn.textContent = "Dispatching Order...";
 
       try {
-        await pushToTelegram(order, file);
+        const captionHTML = [
+          isWallet ? "⚡ <b>NEW WALLET ORDER (PRE-PAID)</b>" : "🚀 <b>NEW ETHIOBOOST ORDER</b>",
+          "",
+          `🆔 <b>Order ID:</b> <code>${escapeHTML(order.orderId)}</code>`,
+          `📦 <b>Package:</b> ${escapeHTML(order.serviceName)} (${escapeHTML(order.category)})`,
+          `🔗 <b>Target:</b> ${escapeHTML(order.targetLink)}`,
+          `💰 <b>Amount:</b> ${escapeHTML(order.priceETB)} ETB`,
+          `💳 <b>Method:</b> ${escapeHTML(order.paymentMethod)}`,
+          `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`
+        ].join("\n");
+
+        await sendTelegramPayload(captionHTML, file);
+
+        if (isWallet) {
+          setWalletBalance(getWalletBalance() - selectedPkg.price);
+        }
 
         const saved = JSON.parse(localStorage.getItem("eb_orders") || "[]");
         saved.unshift(order);
@@ -1251,7 +1634,7 @@
           <div><strong>Package:</strong> ${escapeHTML(order.serviceName)}</div>
           <div><strong>Target:</strong> ${escapeHTML(order.targetLink)}</div>
           <div><strong>Paid:</strong> ${order.priceETB.toLocaleString()} ETB (${escapeHTML(order.paymentMethod)})</div>
-          <div><strong>Tx Ref:</strong> ${escapeHTML(order.txRef)}</div>
+          ${isWallet ? `<div><strong>Remaining Wallet:</strong> ${getWalletBalance().toLocaleString()} ETB</div>` : `<div><strong>Tx Ref:</strong> ${escapeHTML(order.txRef)}</div>`}
         `;
         document.getElementById("copyOrderIdBtn").onclick = (ev) => {
           springPop(ev.currentTarget);
@@ -1265,7 +1648,7 @@
 
         document.getElementById("orderForm").style.display = "none";
         document.getElementById("confirmationView").style.display = "block";
-        showIsland(`Order ${order.orderId} sent automatically!`);
+        showIsland(`Order ${order.orderId} dispatched!`);
       } catch (err) {
         alert("Could not send order: " + err.message);
       } finally {
@@ -1275,7 +1658,7 @@
     });
 
     // =========================================================================
-    // 6. ORDER TRACKER & FAQ
+    // 9. ORDER TRACKER & FAQ
     // =========================================================================
     function openTracker(prefillId = "", originEl = null) {
       trackerOriginEl = originEl || document.getElementById("navTrackBtn");
@@ -1341,7 +1724,7 @@
         <div class="order-row tactile" onclick="openTracker('${escapeHTML(o.orderId)}', this)">
           <div>
             <strong>${escapeHTML(o.orderId)}</strong> • ${escapeHTML(o.serviceName)}
-            <div style="color:var(--muted);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)} Ref: ${escapeHTML(o.txRef)}</div>
+            <div style="color:var(--muted);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)}</div>
           </div>
           <div style="color:var(--green);font-weight:700;">Sent (${o.priceETB.toLocaleString()} ETB) →</div>
         </div>
@@ -1358,12 +1741,14 @@
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
+        closeWallet();
         closeCheckout();
         closeTracker();
       }
     });
 
     // Init
+    setWalletBalance(getWalletBalance());
     renderPackages();
     renderHistory();
     requestAnimationFrame(() => {
