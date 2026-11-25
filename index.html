@@ -3,28 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EthioBoost — Instant Telegram Growth in ETB</title>
+  <title>EthioBoost — Real Reach. Instant Momentum.</title>
   <style>
+    /* =========================================================================
+       1. iOS 26 LIQUID GLASS DESIGN SYSTEM & TOKENS
+       ========================================================================= */
     :root {
-      --bg: #040711;
-      --bg-deep: #071126;
-      --glass: rgba(13, 23, 50, 0.62);
-      --glass-card: rgba(16, 28, 60, 0.58);
-      --glass-modal: rgba(10, 17, 36, 0.94);
-      --glass-pill: rgba(255, 255, 255, 0.1);
-      --border: rgba(255, 255, 255, 0.12);
-      --border-spec: rgba(255, 255, 255, 0.28);
-      --text: #f4f8ff;
-      --muted: #93a7ce;
-      --blue: #2f80ff;
-      --blue-glow: rgba(47, 128, 255, 0.38);
-      --amber: #ffa301;
-      --green: #22c55e;
-      --red: #ef4444;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      --bg-canvas: #03060e;
+      --bg-depth: #071127;
+      --glass-chrome: rgba(14, 24, 52, 0.64);
+      --glass-card: rgba(17, 29, 62, 0.56);
+      --glass-card-hover: rgba(22, 37, 78, 0.68);
+      --glass-sheet: rgba(10, 17, 36, 0.92);
+      --glass-pill: rgba(255, 255, 255, 0.08);
+      --glass-input: rgba(3, 7, 18, 0.42);
+
+      --border-hairline: rgba(255, 255, 255, 0.11);
+      --border-specular: rgba(255, 255, 255, 0.28);
+      --border-glow: rgba(47, 128, 255, 0.55);
+      --inset-top: rgba(255, 255, 255, 0.26);
+      --inset-bottom: rgba(255, 255, 255, 0.04);
+
+      --text-primary: #f5f8ff;
+      --text-secondary: #95a9cf;
+      --text-tertiary: #6a7fa8;
+      --logo-e-fill: #ffffff;
+      --accent-blue: #1890ff;
+      --accent-blue-deep: #0057d9;
+      --accent-blue-glow: rgba(24, 144, 255, 0.38);
+      --accent-amber: #ffa301;
+      --accent-green: #22c55e;
+      --accent-red: #ef4444;
+
+      --shadow-chrome: 0 20px 50px rgba(0, 0, 0, 0.52);
+      --shadow-card: 0 14px 34px rgba(0, 0, 0, 0.34);
+      --shadow-sheet: 0 36px 90px rgba(0, 0, 0, 0.78);
+
+      --radius-sm: 12px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 30px;
+      --radius-pill: 999px;
 
       --spring-snappy: cubic-bezier(0.22, 1.36, 0.36, 1);
       --spring-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+      --spring-liquid: cubic-bezier(0.25, 1, 0.35, 1);
       --spring-bounce: linear(
         0, 0.009, 0.035 2.1%, 0.141, 0.281 6.7%, 0.723 12.9%, 0.938 16.7%,
         1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%,
@@ -34,19 +57,32 @@
     }
 
     [data-theme="light"] {
-      --bg: #eef4ff;
-      --bg-deep: #ddeaff;
-      --glass: rgba(255, 255, 255, 0.76);
-      --glass-card: rgba(255, 255, 255, 0.84);
-      --glass-modal: rgba(255, 255, 255, 0.96);
-      --glass-pill: rgba(47, 128, 255, 0.1);
-      --border: rgba(30, 64, 175, 0.12);
-      --border-spec: rgba(255, 255, 255, 0.98);
-      --text: #091326;
-      --muted: #495f88;
-      --blue: #1d6ff2;
-      --blue-glow: rgba(29, 111, 242, 0.26);
-      --shadow: 0 18px 44px rgba(30, 64, 175, 0.12);
+      --bg-canvas: #edf4ff;
+      --bg-depth: #dce9ff;
+      --glass-chrome: rgba(255, 255, 255, 0.78);
+      --glass-card: rgba(255, 255, 255, 0.8);
+      --glass-card-hover: rgba(255, 255, 255, 0.94);
+      --glass-sheet: rgba(255, 255, 255, 0.96);
+      --glass-pill: rgba(24, 144, 255, 0.08);
+      --glass-input: rgba(255, 255, 255, 0.92);
+
+      --border-hairline: rgba(30, 64, 175, 0.12);
+      --border-specular: rgba(255, 255, 255, 0.98);
+      --border-glow: rgba(24, 144, 255, 0.45);
+      --inset-top: rgba(255, 255, 255, 1);
+      --inset-bottom: rgba(30, 64, 175, 0.05);
+
+      --text-primary: #091326;
+      --text-secondary: #485e88;
+      --text-tertiary: #6d82aa;
+      --logo-e-fill: #0b162c;
+      --accent-blue: #0e76f5;
+      --accent-blue-deep: #004ec4;
+      --accent-blue-glow: rgba(14, 118, 245, 0.26);
+
+      --shadow-chrome: 0 18px 44px rgba(30, 64, 175, 0.11);
+      --shadow-card: 0 12px 28px rgba(30, 64, 175, 0.09);
+      --shadow-sheet: 0 32px 80px rgba(15, 23, 42, 0.22);
     }
 
     * {
@@ -57,73 +93,238 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
 
     body {
       min-height: 100vh;
-      background-color: var(--bg);
+      background-color: var(--bg-canvas);
       background-image:
-        radial-gradient(650px circle at 12% 8%, rgba(47, 128, 255, 0.22), transparent 65%),
-        radial-gradient(580px circle at 88% 35%, rgba(14, 165, 233, 0.14), transparent 65%),
-        radial-gradient(700px circle at 35% 92%, rgba(30, 58, 138, 0.24), transparent 70%),
-        linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
+        radial-gradient(680px circle at 10% 6%, rgba(24, 144, 255, 0.22), transparent 64%),
+        radial-gradient(560px circle at 90% 30%, rgba(14, 165, 233, 0.15), transparent 64%),
+        radial-gradient(720px circle at 32% 94%, rgba(30, 58, 138, 0.24), transparent 70%),
+        linear-gradient(165deg, var(--bg-canvas) 0%, var(--bg-depth) 100%);
       background-attachment: fixed;
-      color: var(--text);
+      color: var(--text-primary);
       overflow-x: hidden;
-      padding: 16px 16px 76px;
+      padding: 16px 16px 80px;
       transition: background-color 0.35s ease, color 0.3s ease;
     }
 
-    .glass {
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      :root {
+        --glass-chrome: rgba(13, 23, 50, 0.94);
+        --glass-card: rgba(16, 28, 60, 0.92);
+        --glass-sheet: rgba(10, 17, 36, 0.98);
+      }
+      [data-theme="light"] {
+        --glass-chrome: rgba(255, 255, 255, 0.96);
+        --glass-card: rgba(255, 255, 255, 0.95);
+        --glass-sheet: rgba(255, 255, 255, 0.99);
+      }
+    }
+
+    /* =========================================================================
+       2. LIQUID GLASS LAUNCH INTRO OVERLAY
+       ========================================================================= */
+    #introSplash {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(520px circle at 50% 42%, rgba(24, 144, 255, 0.26), transparent 68%),
+        rgba(3, 6, 14, 0.94);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      cursor: pointer;
+      transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    #introSplash.dismissed {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+    .intro-card {
+      text-align: center;
+      max-width: 420px;
+      padding: 36px 28px;
+      border-radius: 34px;
+      background: rgba(13, 22, 46, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow:
+        0 32px 90px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.32);
+      animation: introPop 0.72s var(--spring-snappy) both;
+    }
+    @keyframes introPop {
+      from { opacity: 0; transform: translate3d(0, 22px, 0) scale(0.9); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    }
+    .intro-logo-mark {
+      width: 118px;
+      height: 86px;
+      margin: 0 auto 12px;
+      filter: drop-shadow(0 12px 28px rgba(24, 144, 255, 0.45));
+      animation: arrowRise 0.85s var(--spring-snappy) 0.1s both;
+    }
+    @keyframes arrowRise {
+      from { opacity: 0; transform: translate3d(-8px, 12px, 0) scale(0.88); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+    }
+    .intro-wordmark {
+      font-size: 2.15rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: #ffffff;
+      line-height: 1.05;
+      margin-bottom: 10px;
+      animation: introFadeUp 0.65s var(--spring-smooth) 0.2s both;
+    }
+    .intro-wordmark span {
+      background: linear-gradient(135deg, #38bdf8, #0066ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .intro-slogan {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #e2ecff;
+      margin-bottom: 6px;
+      animation: introFadeUp 0.65s var(--spring-smooth) 0.32s both;
+    }
+    .intro-sub {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #8ba3cf;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      animation: introFadeUp 0.65s var(--spring-smooth) 0.42s both;
+    }
+    .intro-bar {
+      width: 120px;
+      height: 3px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      margin: 20px auto 0;
+      overflow: hidden;
+    }
+    .intro-bar-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #38bdf8, #1890ff);
+      transform-origin: left;
+      animation: introProgress 1.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes introProgress {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes introFadeUp {
+      from { opacity: 0; transform: translate3d(0, 10px, 0); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* =========================================================================
+       3. LAYERED LIQUID GLASS SURFACES & INTERACTION PHYSICS
+       ========================================================================= */
+    .glass-chrome {
       position: relative;
-      background: var(--glass);
-      backdrop-filter: blur(20px) saturate(165%);
-      -webkit-backdrop-filter: blur(20px) saturate(165%);
-      border: 1px solid var(--border);
-      box-shadow: inset 0 1px 0 0 var(--border-spec), var(--shadow);
-      border-radius: 26px;
+      background: var(--glass-chrome);
+      backdrop-filter: blur(22px) saturate(175%);
+      -webkit-backdrop-filter: blur(22px) saturate(175%);
+      border: 1px solid var(--border-hairline);
+      box-shadow:
+        inset 0 1px 0 0 var(--inset-top),
+        inset 0 -1px 0 0 var(--inset-bottom),
+        var(--shadow-chrome);
+      border-radius: var(--radius-lg);
     }
 
     .glass-card {
       position: relative;
       background: var(--glass-card);
-      border: 1px solid var(--border);
-      box-shadow: inset 0 1px 0 0 var(--border-spec), 0 14px 34px rgba(0, 0, 0, 0.28);
-      border-radius: 24px;
+      border: 1px solid var(--border-hairline);
+      box-shadow:
+        inset 0 1px 0 0 var(--inset-top),
+        inset 0 -1px 0 0 var(--inset-bottom),
+        var(--shadow-card);
+      border-radius: var(--radius-lg);
       will-change: transform;
+      transition:
+        transform 0.42s var(--spring-snappy),
+        background-color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.3s ease;
     }
 
-    .sheen::after {
+    .glass-card:hover {
+      background: var(--glass-card-hover);
+      border-color: var(--border-specular);
+    }
+
+    .glass-depth::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: inherit;
       background: radial-gradient(
-        240px circle at var(--mx, -200px) var(--my, -200px),
+        260px circle at var(--gx, -260px) var(--gy, -260px),
         rgba(255, 255, 255, 0.16),
-        transparent 70%
+        rgba(24, 144, 255, 0.05) 45%,
+        transparent 72%
       );
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.22s ease;
+      transition: opacity 0.25s ease;
     }
-    .sheen:hover::after { opacity: 1; }
+    .glass-depth:hover::after,
+    .glass-depth:focus-within::after {
+      opacity: 1;
+    }
 
     .tactile {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      will-change: transform;
       transition:
         transform 0.38s var(--spring-snappy),
         border-color 0.22s ease,
-        box-shadow 0.25s ease;
-      cursor: pointer;
-      user-select: none;
+        box-shadow 0.25s ease,
+        background-color 0.22s ease;
     }
+
     .tactile:hover {
-      transform: translate3d(0, -4px, 0) scale(1.016);
-      border-color: var(--border-spec);
+      transform: translate3d(var(--mag-x, 0px), calc(-3px + var(--mag-y, 0px)), 0) scale(1.016);
+      border-color: var(--border-specular);
     }
+
     .tactile:active {
-      transform: translate3d(0, 0, 0) scale(0.94);
-      transition-duration: 0.12s;
+      transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) scale(0.935);
+      transition-duration: 0.11s;
+    }
+
+    .glass-ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 72%);
+      transform: scale(0);
+      pointer-events: none;
+      animation: specularRipple 0.56s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes specularRipple {
+      to { transform: scale(2.8); opacity: 0; }
     }
 
     /* Dynamic Island */
@@ -131,26 +332,31 @@
       position: fixed;
       top: 14px;
       left: 50%;
-      transform: translate3d(-50%, -84px, 0) scale(0.76);
-      background: #040710;
+      transform: translate3d(-50%, -86px, 0) scale(0.74);
+      background: rgba(4, 7, 17, 0.94);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       padding: 10px 22px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 0.87rem;
       font-weight: 600;
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.72);
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.24);
       z-index: 9999;
       opacity: 0;
       pointer-events: none;
       will-change: transform, opacity;
       transition:
-        transform 0.55s var(--spring-bounce),
+        transform 0.56s var(--spring-bounce),
         opacity 0.24s ease;
       white-space: nowrap;
+      max-width: calc(100vw - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     #dynamicIsland.show {
       transform: translate3d(-50%, 0, 0) scale(1);
@@ -160,20 +366,23 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 10px var(--green);
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      flex-shrink: 0;
     }
 
     .wrapper { max-width: 1120px; margin: 0 auto; }
 
-    /* Top Navigation */
+    /* =========================================================================
+       4. FLOATING GLASS NAVIGATION & BRAND LOGO
+       ========================================================================= */
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
-      padding: 13px 20px;
+      padding: 11px 18px;
       margin-bottom: 24px;
       border-radius: 22px;
     }
@@ -181,52 +390,54 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 1.32rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-size: 1.36rem;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      text-decoration: none;
+      color: var(--text-primary);
     }
-    .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 11px;
-      background: linear-gradient(135deg, var(--blue), #0ea5e9);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: 1rem;
-      box-shadow: 0 6px 18px var(--blue-glow);
+    .brand-logo-svg {
+      width: 44px;
+      height: 32px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 12px var(--accent-blue-glow));
     }
-    .brand span { color: var(--amber); }
+    .brand span {
+      background: linear-gradient(135deg, #29b6f6, #0062e6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
     .nav-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
     .wallet-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(47, 128, 255, 0.18));
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.18), rgba(24, 144, 255, 0.18));
       border: 1px solid rgba(34, 197, 94, 0.42);
-      color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      color: var(--text-primary);
       padding: 7px 14px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 0.84rem;
       font-weight: 800;
     }
     .wallet-plus {
-      background: var(--green);
+      background: var(--accent-green);
       color: #041309;
-      padding: 2px 7px;
-      border-radius: 999px;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
       font-size: 0.72rem;
       font-weight: 900;
     }
 
     .pill-btn {
-      position: relative;
       background: var(--glass-card);
-      border: 1px solid var(--border);
-      color: var(--text);
+      border: 1px solid var(--border-hairline);
+      box-shadow: inset 0 1px 0 var(--inset-top);
+      color: var(--text-primary);
       padding: 8px 14px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 0.84rem;
       font-weight: 700;
       display: inline-flex;
@@ -234,15 +445,22 @@
       gap: 6px;
     }
     .order-count-badge {
-      background: var(--blue);
+      background: var(--accent-blue);
       color: #fff;
       font-size: 0.72rem;
       font-weight: 800;
       padding: 1px 7px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
     }
+    .theme-glyph {
+      display: inline-block;
+      transition: transform 0.45s var(--spring-snappy);
+    }
+    [data-theme="light"] .theme-glyph { transform: rotate(180deg); }
 
-    /* Hero */
+    /* =========================================================================
+       5. HERO & LIVE GROWTH PREVIEW
+       ========================================================================= */
     .hero {
       display: grid;
       grid-template-columns: 1.25fr 0.95fr;
@@ -259,10 +477,10 @@
       align-items: center;
       gap: 7px;
       padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(47, 128, 255, 0.16);
-      border: 1px solid rgba(47, 128, 255, 0.35);
-      color: var(--blue);
+      border-radius: var(--radius-pill);
+      background: rgba(24, 144, 255, 0.16);
+      border: 1px solid rgba(24, 144, 255, 0.35);
+      color: var(--accent-blue);
       font-size: 0.79rem;
       font-weight: 700;
       margin-bottom: 14px;
@@ -275,7 +493,7 @@
       margin-bottom: 12px;
     }
     .hero p {
-      color: var(--muted);
+      color: var(--text-secondary);
       font-size: 0.98rem;
       line-height: 1.55;
       margin-bottom: 20px;
@@ -284,17 +502,16 @@
     @media (max-width: 840px) { .hero-cta-row { justify-content: center; } }
 
     .primary-cta {
-      background: linear-gradient(135deg, #2f80ff, #1a5ed6);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
       color: #fff;
       border: none;
       padding: 12px 22px;
       border-radius: 15px;
       font-weight: 700;
       font-size: 0.93rem;
-      box-shadow: 0 10px 24px var(--blue-glow);
+      box-shadow: 0 10px 24px var(--accent-blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
 
-    /* Live Growth Preview Card */
     .preview-card { padding: 22px; }
     .preview-header {
       display: flex;
@@ -308,31 +525,33 @@
       gap: 6px;
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--green);
+      color: var(--accent-green);
       background: rgba(34, 197, 94, 0.14);
       padding: 4px 10px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
     }
     .metric-big {
       padding: 14px 16px;
       border-radius: 18px;
-      background: rgba(47, 128, 255, 0.12);
-      border: 1px solid rgba(47, 128, 255, 0.25);
+      background: rgba(24, 144, 255, 0.12);
+      border: 1px solid rgba(24, 144, 255, 0.25);
       margin-bottom: 12px;
     }
     .metric-big .num { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
-    .metric-big .lbl { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+    .metric-big .lbl { font-size: 0.8rem; color: var(--text-secondary); font-weight: 600; }
     .metric-split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .metric-mini {
       padding: 12px 14px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hairline);
     }
     .metric-mini .num { font-size: 1.15rem; font-weight: 800; }
-    .metric-mini .lbl { font-size: 0.76rem; color: var(--muted); }
+    .metric-mini .lbl { font-size: 0.76rem; color: var(--text-secondary); }
 
-    /* Segmented Tabs */
+    /* =========================================================================
+       6. SEGMENTED CONTROL & PACKAGES GRID
+       ========================================================================= */
     .segment-container { display: flex; justify-content: center; margin-bottom: 26px; }
     .segmented-control {
       position: relative;
@@ -348,12 +567,12 @@
       top: 6px;
       left: 0;
       height: calc(100% - 12px);
-      background: linear-gradient(135deg, #2f80ff, #1d63dc);
-      border-radius: 16px;
-      box-shadow: 0 8px 20px var(--blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
+      border-radius: var(--radius-md);
+      box-shadow: 0 8px 20px var(--accent-blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
       will-change: transform, width;
       transition:
-        transform 0.48s var(--spring-bounce),
+        transform 0.5s var(--spring-bounce),
         width 0.38s var(--spring-smooth);
       z-index: 0;
     }
@@ -362,24 +581,30 @@
       z-index: 1;
       border: none;
       background: transparent;
-      color: var(--muted);
+      color: var(--text-secondary);
       padding: 10px 20px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
-      transition: color 0.22s ease, transform 0.2s ease;
+      transition: color 0.22s ease, transform 0.22s var(--spring-snappy);
     }
-    .seg-tab:active { transform: scale(0.93); }
+    .seg-tab:active { transform: scale(0.92); }
     .seg-tab.active { color: #fff; }
 
-    /* Packages Grid */
     .packages-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
       gap: 18px;
       margin-bottom: 34px;
+      transition: opacity 0.18s ease, transform 0.22s var(--spring-liquid);
+      will-change: opacity, transform;
     }
+    .packages-grid.liquid-out {
+      opacity: 0;
+      transform: translate3d(0, 8px, 0) scale(0.985);
+    }
+
     .pkg-card {
       padding: 22px;
       display: flex;
@@ -396,16 +621,21 @@
     }
     .pkg-badge {
       padding: 4px 10px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 0.72rem;
       font-weight: 800;
       background: rgba(255, 163, 1, 0.16);
       border: 1px solid rgba(255, 163, 1, 0.38);
-      color: var(--amber);
+      color: var(--accent-amber);
       white-space: nowrap;
     }
+    .pkg-badge.promo-first {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(34, 197, 94, 0.45);
+      color: var(--accent-green);
+    }
     .pkg-card h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
-    .pkg-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.45; margin-bottom: 16px; }
+    .pkg-desc { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.45; margin-bottom: 16px; }
     .pkg-guarantees { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .g-chip {
       font-size: 0.73rem;
@@ -413,35 +643,35 @@
       padding: 4px 9px;
       border-radius: 9px;
       background: var(--glass-pill);
-      color: var(--text);
+      color: var(--text-primary);
     }
     .pkg-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-top: 14px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--border-hairline);
     }
     .price-block .old-price {
       font-size: 0.78rem;
-      color: var(--muted);
+      color: var(--text-secondary);
       text-decoration: line-through;
       display: block;
     }
-    .price-block .now-price { font-size: 1.38rem; font-weight: 800; color: var(--text); }
-    .price-block .now-price small { font-size: 0.8rem; color: var(--muted); font-weight: 700; }
+    .price-block .now-price { font-size: 1.38rem; font-weight: 800; color: var(--text-primary); }
+    .price-block .now-price small { font-size: 0.8rem; color: var(--text-secondary); font-weight: 700; }
     .order-btn {
-      background: var(--blue);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
       color: #fff;
       border: none;
       padding: 9px 17px;
       border-radius: 13px;
       font-size: 0.85rem;
       font-weight: 700;
-      box-shadow: 0 6px 16px var(--blue-glow);
+      box-shadow: 0 6px 16px var(--accent-blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.32);
     }
 
-    /* Recent Local Orders */
+    /* Recent Orders, Steps & FAQ */
     .orders-strip { padding: 22px; margin-bottom: 28px; }
     .section-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.02em; }
     .order-row {
@@ -451,14 +681,13 @@
       flex-wrap: wrap;
       gap: 10px;
       padding: 13px 16px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hairline);
       margin-bottom: 8px;
       font-size: 0.86rem;
     }
 
-    /* How It Works & FAQ */
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -469,50 +698,79 @@
     .step-num {
       width: 34px;
       height: 34px;
-      border-radius: 12px;
-      background: rgba(47, 128, 255, 0.18);
-      border: 1px solid rgba(47, 128, 255, 0.35);
-      color: var(--blue);
+      border-radius: var(--radius-sm);
+      background: rgba(24, 144, 255, 0.18);
+      border: 1px solid rgba(24, 144, 255, 0.35);
+      color: var(--accent-blue);
       font-weight: 800;
       display: grid;
       place-items: center;
       margin-bottom: 12px;
     }
     .step-card h4 { font-size: 1rem; margin-bottom: 6px; }
-    .step-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.45; }
+    .step-card p { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.45; }
 
     .faq-box { padding: 22px; }
-    .faq-item { border-bottom: 1px solid var(--border); padding: 13px 0; }
+    .faq-item { border-bottom: 1px solid var(--border-hairline); padding: 14px 0; }
     .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
     .faq-q {
       width: 100%;
       background: none;
       border: none;
-      color: var(--text);
+      color: var(--text-primary);
       text-align: left;
       font-size: 0.94rem;
       font-weight: 700;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       cursor: pointer;
     }
+    .faq-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--glass-pill);
+      font-size: 1rem;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.34s var(--spring-snappy), background-color 0.2s ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: rgba(24, 144, 255, 0.22);
+      color: var(--accent-blue);
+    }
+    .faq-a-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.34s var(--spring-smooth), opacity 0.25s ease;
+      opacity: 0;
+    }
+    .faq-item.open .faq-a-wrap {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
     .faq-a {
-      display: none;
-      margin-top: 8px;
+      overflow: hidden;
       font-size: 0.85rem;
-      color: var(--muted);
+      color: var(--text-secondary);
       line-height: 1.5;
     }
-    .faq-item.open .faq-a { display: block; }
+    .faq-a-inner { padding-top: 8px; }
 
-    /* GPU-Accelerated Modal Overlay */
+    /* =========================================================================
+       7. MODAL SHEETS, FORMS & TRACKER
+       ========================================================================= */
     .backdrop {
       position: fixed;
       inset: 0;
       background: rgba(2, 5, 14, 0.68);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -526,11 +784,11 @@
     .modal-window {
       width: 100%;
       max-width: 500px;
-      background: var(--glass-modal);
-      border: 1px solid var(--border-spec);
-      border-radius: 30px;
+      background: var(--glass-sheet);
+      border: 1px solid var(--border-specular);
+      border-radius: var(--radius-xl);
       padding: 24px;
-      box-shadow: 0 32px 85px rgba(0, 0, 0, 0.72), inset 0 1px 0 var(--border-spec);
+      box-shadow: var(--shadow-sheet), inset 0 1px 0 var(--inset-top);
       max-height: 92vh;
       overflow-y: auto;
       will-change: transform, opacity;
@@ -548,9 +806,9 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hairline);
       background: var(--glass-card);
-      color: var(--text);
+      color: var(--text-primary);
       font-size: 0.95rem;
       font-weight: 800;
       display: grid;
@@ -563,40 +821,46 @@
       display: block;
       font-size: 0.77rem;
       font-weight: 700;
-      color: var(--muted);
+      color: var(--text-secondary);
       margin-bottom: 6px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      transition: color 0.2s ease;
     }
+    .field:focus-within label { color: var(--accent-blue); }
+
     .input {
       width: 100%;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.24);
-      color: var(--text);
+      border: 1px solid var(--border-hairline);
+      background: var(--glass-input);
+      color: var(--text-primary);
       font-size: 0.94rem;
       outline: none;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease;
     }
-    [data-theme="light"] .input { background: rgba(255, 255, 255, 0.92); }
-    .input:focus { border-color: var(--blue); }
+    .input:focus {
+      border-color: var(--border-glow);
+      box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.18);
+    }
 
     .pay-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
     .pay-tabs-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
     .pay-choice {
       padding: 10px 8px;
       border-radius: 14px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hairline);
       background: var(--glass-card);
-      color: var(--text);
+      color: var(--text-primary);
       font-weight: 700;
       font-size: 0.85rem;
       text-align: center;
     }
     .pay-choice.active {
-      border-color: var(--blue);
-      background: rgba(47, 128, 255, 0.22);
+      border-color: var(--accent-blue);
+      background: rgba(24, 144, 255, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
     }
 
     .preset-row {
@@ -607,25 +871,25 @@
     }
     .preset-chip {
       padding: 8px 4px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
       background: var(--glass-card);
-      color: var(--text);
+      color: var(--text-primary);
       font-weight: 800;
       font-size: 0.82rem;
       text-align: center;
     }
     .preset-chip.active {
-      border-color: var(--amber);
+      border-color: var(--accent-amber);
       background: rgba(255, 163, 1, 0.18);
-      color: var(--amber);
+      color: var(--accent-amber);
     }
 
     .acc-box {
       padding: 13px 15px;
-      border-radius: 16px;
-      background: rgba(47, 128, 255, 0.13);
-      border: 1px solid rgba(47, 128, 255, 0.34);
+      border-radius: var(--radius-md);
+      background: rgba(24, 144, 255, 0.13);
+      border: 1px solid rgba(24, 144, 255, 0.34);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -633,7 +897,7 @@
     }
     .wallet-pay-box {
       padding: 15px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       background: rgba(34, 197, 94, 0.12);
       border: 1px solid rgba(34, 197, 94, 0.35);
       margin-bottom: 14px;
@@ -641,7 +905,7 @@
       line-height: 1.5;
     }
     .copy-pill {
-      background: var(--blue);
+      background: var(--accent-blue);
       color: #fff;
       border: none;
       padding: 7px 13px;
@@ -652,18 +916,23 @@
 
     .dropzone {
       display: block;
-      border: 1.5px dashed var(--border-spec);
-      border-radius: 16px;
+      border: 1.5px dashed var(--border-specular);
+      border-radius: var(--radius-md);
       padding: 14px;
       text-align: center;
       cursor: pointer;
       font-size: 0.85rem;
-      color: var(--muted);
+      color: var(--text-secondary);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .dropzone:hover {
+      border-color: var(--accent-blue);
+      background: rgba(24, 144, 255, 0.06);
     }
     .preview-thumb {
       max-width: 100%;
       max-height: 145px;
-      border-radius: 12px;
+      border-radius: var(--radius-sm);
       margin-top: 10px;
       display: none;
     }
@@ -671,16 +940,29 @@
     .submit-cta {
       width: 100%;
       padding: 14px;
-      border-radius: 16px;
+      border-radius: var(--radius-md);
       border: none;
-      background: linear-gradient(135deg, #2f80ff, #1b5ed4);
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
       color: #fff;
       font-size: 1rem;
       font-weight: 800;
       margin-top: 4px;
-      box-shadow: 0 12px 26px var(--blue-glow);
+      box-shadow: 0 12px 26px var(--accent-blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
     }
-    .submit-cta:disabled { opacity: 0.6; cursor: not-allowed; }
+    .submit-cta:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-spinner {
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spinLoader 0.7s linear infinite;
+      vertical-align: -2px;
+      margin-right: 8px;
+    }
+    @keyframes spinLoader { to { transform: rotate(360deg); } }
 
     .success-card { text-align: center; padding: 8px 4px; }
     .ok-badge {
@@ -689,7 +971,7 @@
       border-radius: 50%;
       background: rgba(34, 197, 94, 0.18);
       border: 1px solid rgba(34, 197, 94, 0.45);
-      color: var(--green);
+      color: var(--accent-green);
       font-size: 1.8rem;
       display: inline-grid;
       place-items: center;
@@ -698,8 +980,8 @@
     .summary-box {
       text-align: left;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
-      border-radius: 16px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
       padding: 14px;
       margin: 14px 0;
       font-size: 0.85rem;
@@ -709,19 +991,18 @@
     .ghost-btn {
       padding: 12px;
       border-radius: 14px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hairline);
       background: var(--glass-card);
-      color: var(--text);
+      color: var(--text-primary);
       font-weight: 700;
       font-size: 0.88rem;
     }
 
-    /* Live Order Tracker Card & Progress Bar */
     .track-card {
       padding: 16px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-hairline);
       margin-bottom: 12px;
     }
     .track-card-top {
@@ -736,16 +1017,16 @@
       align-items: center;
       gap: 6px;
       padding: 4px 10px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 0.74rem;
       font-weight: 800;
       white-space: nowrap;
     }
-    .st-hold { background: rgba(255, 163, 1, 0.18); color: var(--amber); border: 1px solid rgba(255, 163, 1, 0.35); }
-    .st-approved { background: rgba(47, 128, 255, 0.2); color: var(--blue); border: 1px solid rgba(47, 128, 255, 0.38); }
+    .st-hold { background: rgba(255, 163, 1, 0.18); color: var(--accent-amber); border: 1px solid rgba(255, 163, 1, 0.35); }
+    .st-approved { background: rgba(24, 144, 255, 0.2); color: var(--accent-blue); border: 1px solid rgba(24, 144, 255, 0.38); }
     .st-halfway { background: rgba(14, 165, 233, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.38); }
-    .st-done { background: rgba(34, 197, 94, 0.18); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.38); }
-    .st-rejected { background: rgba(239, 68, 68, 0.18); color: var(--red); border: 1px solid rgba(239, 68, 68, 0.38); }
+    .st-done { background: rgba(34, 197, 94, 0.18); color: var(--accent-green); border: 1px solid rgba(34, 197, 94, 0.38); }
+    .st-rejected { background: rgba(239, 68, 68, 0.18); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.38); }
 
     .progress-track {
       display: grid;
@@ -755,60 +1036,116 @@
     }
     .prog-seg {
       height: 6px;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       background: rgba(255, 255, 255, 0.12);
-      transition: background 0.3s ease;
+      transition: background-color 0.35s ease;
     }
-    .prog-seg.filled-amber { background: var(--amber); }
-    .prog-seg.filled-blue { background: var(--blue); }
-    .prog-seg.filled-green { background: var(--green); }
-    .prog-seg.filled-red { background: var(--red); }
+    .prog-seg.filled-amber { background: var(--accent-amber); }
+    .prog-seg.filled-blue { background: var(--accent-blue); }
+    .prog-seg.filled-green { background: var(--accent-green); }
+    .prog-seg.filled-red { background: var(--accent-red); }
 
     .prog-labels {
       display: flex;
       justify-content: space-between;
       font-size: 0.69rem;
-      color: var(--muted);
+      color: var(--text-secondary);
       font-weight: 600;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .tactile:hover, .tactile:active { transform: none !important; }
     }
   </style>
 </head>
 <body>
+  <!-- Launch Intro Splash Screen -->
+  <div id="introSplash" onclick="dismissIntro()">
+    <div class="intro-card">
+      <svg class="intro-logo-mark" viewBox="0 0 220 165" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="ebArrowGradIntro" x1="25" y1="130" x2="195" y2="25" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0052D4"/>
+            <stop offset="55%" stop-color="#1890FF"/>
+            <stop offset="100%" stop-color="#38BDF8"/>
+          </linearGradient>
+          <linearGradient id="ebTriGradIntro" x1="88" y1="145" x2="152" y2="105" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#0052D4"/>
+            <stop offset="100%" stop-color="#1890FF"/>
+          </linearGradient>
+        </defs>
+        <!-- Blue Triangle Base -->
+        <path d="M84 146L138 96L156 146H84Z" fill="url(#ebTriGradIntro)"/>
+        <!-- Bold Stylized White "E" -->
+        <path d="M62 24H154L142 52H87L82 68H124L114 93H74L68 111H112L99 138H45C36 138 30 130 33 121L52 38C54 29 58 24 62 24Z" fill="#FFFFFF"/>
+        <!-- Sweeping Blue Upward Arrow -->
+        <path d="M36 108C34 128 56 142 94 129C128 117 156 90 175 62L193 74L198 18L146 43L162 54C144 80 118 103 87 113C58 122 43 114 36 108Z" fill="url(#ebArrowGradIntro)"/>
+      </svg>
+      <div class="intro-wordmark">Ethio<span>Boost</span></div>
+      <div class="intro-slogan">Real Reach. Instant Momentum.</div>
+      <div class="intro-sub">Ethiopia's Telegram Growth Engine</div>
+      <div class="intro-bar"><div class="intro-bar-fill"></div></div>
+    </div>
+  </div>
+
   <div id="dynamicIsland"><span class="di-pulse"></span><span id="diText">EthioBoost Ready</span></div>
 
   <div class="wrapper">
-    <!-- Top Navigation -->
-    <header class="topbar glass">
-      <div class="brand">
-        <div class="brand-icon">⚡</div>
+    <!-- Floating Glass Navigation -->
+    <header class="topbar glass-chrome">
+      <a href="#" class="brand">
+        <svg class="brand-logo-svg" viewBox="0 0 220 165" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="ebArrowGradNav" x1="25" y1="130" x2="195" y2="25" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#0052D4"/>
+              <stop offset="55%" stop-color="#1890FF"/>
+              <stop offset="100%" stop-color="#38BDF8"/>
+            </linearGradient>
+            <linearGradient id="ebTriGradNav" x1="88" y1="145" x2="152" y2="105" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#0052D4"/>
+              <stop offset="100%" stop-color="#1890FF"/>
+            </linearGradient>
+          </defs>
+          <path d="M84 146L138 96L156 146H84Z" fill="url(#ebTriGradNav)"/>
+          <path d="M62 24H154L142 52H87L82 68H124L114 93H74L68 111H112L99 138H45C36 138 30 130 33 121L52 38C54 29 58 24 62 24Z" style="fill: var(--logo-e-fill);"/>
+          <path d="M36 108C34 128 56 142 94 129C128 117 156 90 175 62L193 74L198 18L146 43L162 54C144 80 118 103 87 113C58 122 43 114 36 108Z" fill="url(#ebArrowGradNav)"/>
+        </svg>
         <div>Ethio<span>Boost</span></div>
-      </div>
+      </a>
       <div class="nav-actions">
-        <button class="wallet-pill tactile" id="navWalletBtn" onclick="openWallet(this)">
+        <button class="wallet-pill tactile magnetic" id="navWalletBtn" onclick="openWallet(this)">
           <span>💳 <span id="navWalletBalance">0</span> ETB</span>
           <span class="wallet-plus">+ Deposit</span>
         </button>
-        <button class="pill-btn tactile" id="navTrackBtn" onclick="openTracker(this)">
+        <button class="pill-btn tactile magnetic" id="navTrackBtn" onclick="openTracker(this)">
           <span>Track Orders</span>
           <span class="order-count-badge" id="navOrderCount" style="display:none;">0</span>
         </button>
-        <button class="pill-btn tactile" onclick="toggleTheme(this)">◐</button>
+        <button class="pill-btn tactile magnetic" aria-label="Toggle Theme" onclick="toggleTheme(this)">
+          <span class="theme-glyph">◐</span>
+        </button>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero glass sheen" onpointermove="trackSheen(event, this)">
+    <section class="hero glass-chrome glass-depth" onpointermove="trackGlassDepth(event, this)">
       <div>
-        <div class="hero-tag">🇪🇹 Ethiopia's #1 Telegram Growth Store • ETB</div>
+        <div class="hero-tag">🇪🇹 Real Reach. Instant Momentum. • ETB</div>
         <h1>Boost Your Telegram Channel & Posts Instantly</h1>
         <p>Real global members, instant post views, emoji reactions, and channel boosts. Deposit once (min 50 ETB) for 1-tap wallet orders or pay per order via TeleBirr & M-Pesa.</p>
         <div class="hero-cta-row">
-          <button class="primary-cta tactile" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore Packages ↓</button>
-          <button class="pill-btn tactile" style="padding:12px 18px;border-radius:15px;" onclick="openTracker(this)">View My Orders</button>
+          <button class="primary-cta tactile magnetic" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore Packages ↓</button>
+          <button class="pill-btn tactile magnetic" style="padding:12px 18px;border-radius:15px;" onclick="openTracker(this)">View My Orders</button>
         </div>
       </div>
 
-      <div class="preview-card glass-card sheen" onpointermove="trackSheen(event, this)">
+      <div class="preview-card glass-card glass-depth" onpointermove="trackGlassDepth(event, this)">
         <div class="preview-header">
           <strong style="font-size:0.9rem;">Live Growth Preview</strong>
           <span class="live-badge">● Delivering Fast</span>
@@ -819,11 +1156,11 @@
         </div>
         <div class="metric-split">
           <div class="metric-mini">
-            <div class="num" style="color:var(--blue);">94,200</div>
+            <div class="num" style="color:var(--accent-blue);">94,200</div>
             <div class="lbl">Post Views</div>
           </div>
           <div class="metric-mini">
-            <div class="num" style="color:var(--amber);">3,100</div>
+            <div class="num" style="color:var(--accent-amber);">3,100</div>
             <div class="lbl">Emoji Reacts</div>
           </div>
         </div>
@@ -832,7 +1169,7 @@
 
     <!-- Sliding Segmented Category Bar -->
     <div id="catalogAnchor" class="segment-container">
-      <div class="segmented-control glass" id="segmentedControl">
+      <div class="segmented-control glass-chrome" id="segmentedControl">
         <div class="segment-glider" id="segmentGlider"></div>
         <button class="seg-tab active" data-cat="Members">Members</button>
         <button class="seg-tab" data-cat="Views">Views</button>
@@ -845,27 +1182,27 @@
     <section class="packages-grid" id="packagesGrid"></section>
 
     <!-- Device Order History -->
-    <section class="orders-strip glass" id="historySection" style="display:none;">
+    <section class="orders-strip glass-chrome" id="historySection" style="display:none;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
         <div class="section-title" style="margin-bottom:0;">Your Orders</div>
-        <button class="pill-btn tactile" style="padding:6px 12px;font-size:0.78rem;" onclick="openTracker(this)">Live Progress →</button>
+        <button class="pill-btn tactile magnetic" style="padding:6px 12px;font-size:0.78rem;" onclick="openTracker(this)">Live Progress →</button>
       </div>
       <div id="historyList"></div>
     </section>
 
     <!-- How It Works -->
     <section class="steps-grid">
-      <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
+      <div class="step-card glass-card glass-depth" onpointermove="trackGlassDepth(event, this)">
         <div class="step-num">1</div>
         <h4>Top Up or Choose a Pack</h4>
         <p>Deposit 50+ ETB into your EthioBoost wallet or pay directly for any single growth package.</p>
       </div>
-      <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
+      <div class="step-card glass-card glass-depth" onpointermove="trackGlassDepth(event, this)">
         <div class="step-num">2</div>
         <h4>Paste Your Public Link</h4>
         <p>Enter your public @channel username or post link—we never ask for your Telegram password.</p>
       </div>
-      <div class="step-card glass-card sheen" onpointermove="trackSheen(event, this)">
+      <div class="step-card glass-card glass-depth" onpointermove="trackGlassDepth(event, this)">
         <div class="step-num">3</div>
         <h4>Live Progress Tracking</h4>
         <p>Tap Track Orders anytime to watch your order move from Payment Approval to Half Way There to Done.</p>
@@ -873,19 +1210,19 @@
     </section>
 
     <!-- FAQ -->
-    <section class="faq-box glass">
+    <section class="faq-box glass-chrome">
       <div class="section-title">Frequently Asked Questions</div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">How does the EthioBoost Wallet work? <span>+</span></button>
-        <div class="faq-a">Tap Wallet (+ Deposit), send at least 50 ETB via TeleBirr or M-Pesa, and upload your screenshot. Once verified, you receive a Top-Up Code on Telegram to load your balance for 1-tap orders.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">How does the EthioBoost Wallet work? <span class="faq-icon">+</span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">Tap Wallet (+ Deposit), send at least 50 ETB via TeleBirr or M-Pesa, and upload your screenshot. Once verified, you receive a Top-Up Code on Telegram to load your balance for 1-tap orders.</div></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Do I need to share my Telegram password? <span>+</span></button>
-        <div class="faq-a">Never. We only use your public Telegram channel, group, or post link to deliver growth safely.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need to share my Telegram password? <span class="faq-icon">+</span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">Never. We only use your public Telegram channel, group, or post link to deliver growth safely.</div></div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">What does the 30–360 Day Stay Guarantee mean? <span>+</span></button>
-        <div class="faq-a">If any delivered members drop during the guarantee window, we refill them free of charge.</div>
+        <button class="faq-q" onclick="toggleFaq(this)">What does the 30–360 Day Stay Guarantee mean? <span class="faq-icon">+</span></button>
+        <div class="faq-a-wrap"><div class="faq-a"><div class="faq-a-inner">If any delivered members drop during the guarantee window, we refill them free of charge.</div></div></div>
       </div>
     </section>
   </div>
@@ -895,10 +1232,10 @@
     <div class="modal-window" id="walletWindow">
       <div class="modal-head">
         <div>
-          <div style="font-size:0.75rem;color:var(--green);font-weight:800;letter-spacing:0.05em;">ETHIOBOOST WALLET</div>
+          <div style="font-size:0.75rem;color:var(--accent-green);font-weight:800;letter-spacing:0.05em;">ETHIOBOOST WALLET</div>
           <h3 style="font-size:1.22rem;">Balance: <span id="modalWalletBalance">0</span> ETB</h3>
         </div>
-        <button type="button" class="close-x tactile" onclick="closeWallet()">✕</button>
+        <button type="button" class="close-x tactile magnetic" onclick="closeWallet()">✕</button>
       </div>
 
       <div class="pay-tabs-2">
@@ -926,10 +1263,10 @@
           </div>
           <div class="acc-box">
             <div>
-              <div style="font-size:0.75rem;color:var(--muted);" id="wAccHolder">TeleBirr Account</div>
+              <div style="font-size:0.75rem;color:var(--text-secondary);" id="wAccHolder">TeleBirr Account</div>
               <div style="font-weight:800;font-size:1.08rem;" id="wAccNumber">0953001360</div>
             </div>
-            <button type="button" class="copy-pill tactile" onclick="copyWalletAccount(this)">Copy</button>
+            <button type="button" class="copy-pill tactile magnetic" onclick="copyWalletAccount(this)">Copy</button>
           </div>
         </div>
 
@@ -952,17 +1289,17 @@
           <input type="file" id="depositFile" accept="image/*" style="display:none;" />
         </div>
 
-        <button type="submit" class="submit-cta tactile" id="depositSubmitBtn">Submit Deposit Request</button>
+        <button type="submit" class="submit-cta tactile magnetic" id="depositSubmitBtn">Submit Deposit Request</button>
       </form>
 
       <div id="depositSuccessView" class="success-card" style="display:none;">
         <div class="ok-badge">✓</div>
         <h3 style="font-size:1.2rem;margin-bottom:6px;">Deposit Request Sent!</h3>
-        <p style="color:var(--muted);font-size:0.86rem;line-height:1.5;">
+        <p style="color:var(--text-secondary);font-size:0.86rem;line-height:1.5;">
           Once verified, we will send your Top-Up Code on Telegram. Paste it under <strong>Redeem Top-Up Code</strong> to load your balance.
         </p>
         <div class="summary-box" id="depositSummaryBox"></div>
-        <button type="button" class="submit-cta tactile" onclick="switchWalletTab('redeem')">Enter Top-Up Code →</button>
+        <button type="button" class="submit-cta tactile magnetic" onclick="switchWalletTab('redeem')">Enter Top-Up Code →</button>
       </div>
 
       <form id="redeemForm" style="display:none;">
@@ -970,10 +1307,10 @@
           <label>Paste Your Top-Up Code</label>
           <input class="input" id="voucherCodeInput" placeholder="e.g. EB-100-BHG82K-8F3A19C2" style="text-transform:uppercase;font-weight:700;" required />
         </div>
-        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:14px;line-height:1.45;">
+        <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:14px;line-height:1.45;">
           Enter the code sent to your Telegram after your TeleBirr or M-Pesa deposit was verified.
         </p>
-        <button type="submit" class="submit-cta tactile">Add Funds to Wallet</button>
+        <button type="submit" class="submit-cta tactile magnetic">Add Funds to Wallet</button>
       </form>
     </div>
   </div>
@@ -983,10 +1320,10 @@
     <div class="modal-window" id="checkoutWindow">
       <div class="modal-head">
         <div>
-          <div style="font-size:0.75rem;color:var(--amber);font-weight:800;letter-spacing:0.05em;" id="modalCat">MEMBERS</div>
+          <div style="font-size:0.75rem;color:var(--accent-amber);font-weight:800;letter-spacing:0.05em;" id="modalCat">MEMBERS</div>
           <h3 id="modalTitle" style="font-size:1.18rem;">1,000 Global Members</h3>
         </div>
-        <button type="button" class="close-x tactile" onclick="closeCheckout()">✕</button>
+        <button type="button" class="close-x tactile magnetic" onclick="closeCheckout()">✕</button>
       </div>
 
       <form id="orderForm">
@@ -996,7 +1333,7 @@
         </div>
 
         <div class="field">
-          <label>Pay <span id="modalPrice" style="color:var(--amber);">340 ETB</span> Via</label>
+          <label>Pay <span id="modalPrice" style="color:var(--accent-amber);">539 ETB</span> Via</label>
           <div class="pay-tabs">
             <div class="pay-choice active tactile" data-method="Wallet" onclick="selectMethod('Wallet', this)">💳 Wallet</div>
             <div class="pay-choice tactile" data-method="TeleBirr" onclick="selectMethod('TeleBirr', this)">TeleBirr</div>
@@ -1006,12 +1343,12 @@
           <div id="walletCheckoutPanel" class="wallet-pay-box">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
               <span>Available Balance:</span>
-              <strong style="font-size:1.05rem;color:var(--green);" id="checkoutWalletBal">0 ETB</strong>
+              <strong style="font-size:1.05rem;color:var(--accent-green);" id="checkoutWalletBal">0 ETB</strong>
             </div>
-            <div id="walletShortfallNote" style="font-size:0.82rem;color:var(--amber);display:none;">
+            <div id="walletShortfallNote" style="font-size:0.82rem;color:var(--accent-amber);display:none;">
               Insufficient balance. Top up at least 50 ETB or pay directly with TeleBirr/M-Pesa.
               <div style="margin-top:8px;">
-                <button type="button" class="copy-pill tactile" onclick="jumpToDepositFromCheckout()">+ Deposit Funds (Min 50 ETB)</button>
+                <button type="button" class="copy-pill tactile magnetic" onclick="jumpToDepositFromCheckout()">+ Deposit Funds (Min 50 ETB)</button>
               </div>
             </div>
           </div>
@@ -1019,10 +1356,10 @@
           <div id="directCheckoutPanel" style="display:none;">
             <div class="acc-box">
               <div>
-                <div style="font-size:0.75rem;color:var(--muted);" id="accHolder">TeleBirr Account</div>
+                <div style="font-size:0.75rem;color:var(--text-secondary);" id="accHolder">TeleBirr Account</div>
                 <div style="font-weight:800;font-size:1.08rem;" id="accNumber">0953001360</div>
               </div>
-              <button type="button" class="copy-pill tactile" onclick="copyAccount(this)">Copy</button>
+              <button type="button" class="copy-pill tactile magnetic" onclick="copyAccount(this)">Copy</button>
             </div>
 
             <div class="field">
@@ -1041,17 +1378,17 @@
           </div>
         </div>
 
-        <button type="submit" class="submit-cta tactile" id="submitBtn">Pay & Dispatch Order</button>
+        <button type="submit" class="submit-cta tactile magnetic" id="submitBtn">Pay & Dispatch Order</button>
       </form>
 
       <div id="confirmationView" class="success-card" style="display:none;">
         <div class="ok-badge">✓</div>
         <h3 style="font-size:1.25rem;margin-bottom:4px;">Order Placed!</h3>
-        <p style="color:var(--muted);font-size:0.86rem;" id="confirmSubtext">Payment is on hold while we verify your receipt.</p>
+        <p style="color:var(--text-secondary);font-size:0.86rem;" id="confirmSubtext">Payment is on hold while we verify your receipt.</p>
         <div class="summary-box" id="receiptSummary"></div>
         <div class="dual-btns">
-          <button type="button" class="ghost-btn tactile" onclick="closeCheckout()">Done</button>
-          <button type="button" class="submit-cta tactile" style="margin-top:0;padding:12px;" onclick="switchToTracker()">Track All Orders</button>
+          <button type="button" class="ghost-btn tactile magnetic" onclick="closeCheckout()">Done</button>
+          <button type="button" class="submit-cta tactile magnetic" style="margin-top:0;padding:12px;" onclick="switchToTracker()">Track All Orders</button>
         </div>
       </div>
     </div>
@@ -1062,12 +1399,12 @@
     <div class="modal-window" id="trackerWindow">
       <div class="modal-head">
         <div>
-          <div style="font-size:0.75rem;color:var(--blue);font-weight:800;letter-spacing:0.05em;">LIVE ORDER STATUS • AUTO-SYNC</div>
+          <div style="font-size:0.75rem;color:var(--accent-blue);font-weight:800;letter-spacing:0.05em;">LIVE ORDER STATUS • AUTO-SYNC</div>
           <h3 style="font-size:1.18rem;">Your Orders (<span id="trackerTotalCount">0</span>)</h3>
         </div>
         <div style="display:flex;gap:8px;align-items:center;">
-          <button type="button" class="pill-btn tactile" style="padding:7px 12px;font-size:0.78rem;" id="syncBtn" onclick="refreshAllOrderStatuses(this)">↻ Sync</button>
-          <button type="button" class="close-x tactile" onclick="closeTracker()">✕</button>
+          <button type="button" class="pill-btn tactile magnetic" style="padding:7px 12px;font-size:0.78rem;" id="syncBtn" onclick="refreshAllOrderStatuses(this)">↻ Sync</button>
+          <button type="button" class="close-x tactile magnetic" onclick="closeTracker()">✕</button>
         </div>
       </div>
 
@@ -1076,11 +1413,28 @@
   </div>
 
   <script>
+    // =========================================================================
+    // 1. INTRO SPLASH CONTROLLER
+    // =========================================================================
+    function dismissIntro() {
+      const splash = document.getElementById("introSplash");
+      if (!splash || splash.classList.contains("dismissed")) return;
+      splash.classList.add("dismissed");
+      setTimeout(() => splash.remove(), 620);
+    }
+    setTimeout(dismissIntro, 1850);
+
+    // =========================================================================
+    // 2. CONFIGURATION & MEMBERSGRAM -> ETB PRICING RULES (200 ETB PROFIT)
+    // =========================================================================
     const CONFIG = {
       BOT_TOKEN: "9156801499:AAHOYRRFjhpnE082Bh0TQJzpH_Bqt6ONuCw",
       ADMIN_CHAT_ID: "6452851282",
       MIN_DEPOSIT_ETB: 50,
       WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY",
+      USD_TO_ETB: 195,
+      STANDARD_MARKUP_ETB: 200,
+      FIRST_ORDER_MARKUP_ETB: 40,
       PAYMENTS: {
         "TeleBirr": { number: "0953001360", holder: "TeleBirr — EthioBoost" },
         "M-Pesa":   { number: "0701217060", holder: "M-Pesa — EthioBoost" }
@@ -1088,29 +1442,63 @@
     };
 
     const PACKAGES = [
-      { id: "m1", cat: "Members", title: "100 Global Members", desc: "Fast start with real global Telegram accounts.", guarantees: ["30-Day Stay", "No Password"], oldPrice: null, price: 75, badge: "Starter" },
-      { id: "m2", cat: "Members", title: "1,000 Global Members", desc: "Steady join rate to build instant channel credibility.", guarantees: ["30-Day Stay", "Fast Start"], oldPrice: 680, price: 340, badge: "50% OFF" },
-      { id: "m3", cat: "Members", title: "1,000 Members (3 Months)", desc: "Extended retention guarantee for growing channels.", guarantees: ["90-Day Stay", "Auto-Refill"], oldPrice: 1360, price: 680, badge: "Popular" },
-      { id: "m4", cat: "Members", title: "10,000 Global Members", desc: "High-volume growth pack at our lowest per-member rate.", guarantees: ["30-Day Stay", "Gradual Pace"], oldPrice: 6800, price: 2050, badge: "70% OFF" },
-      { id: "m5", cat: "Members", title: "1,000 Search Ranking Members", desc: "Premium active members that help rank higher in Telegram search.", guarantees: ["30-Day Stay", "Search Boost"], oldPrice: 2720, price: 1360, badge: "Premium" },
-      { id: "m6", cat: "Members", title: "1,000 Members (12 Months)", desc: "Long-term 360-day stay protection for flagship channels.", guarantees: ["360-Day Stay", "VIP Quality"], oldPrice: 2700, price: 1850, badge: "1 Year" },
+      // Members
+      { id: "m1", cat: "Members", title: "100 Global Members", desc: "Fast start with real global Telegram accounts.", guarantees: ["30-Day Stay", "No Password"], mgUsd: 0.35, mgOldUsd: null, badge: "Starter", firstOrderPromo: true },
+      { id: "m2", cat: "Members", title: "1,000 Global Members", desc: "Steady join rate to build instant channel credibility.", guarantees: ["30-Day Stay", "Fast Start"], mgUsd: 1.74, mgOldUsd: 3.48, badge: "50% OFF" },
+      { id: "m3", cat: "Members", title: "1,000 Members (3 Months)", desc: "Extended retention guarantee for growing channels.", guarantees: ["90-Day Stay", "Auto-Refill"], mgUsd: 3.49, mgOldUsd: 6.98, badge: "Popular" },
+      { id: "m4", cat: "Members", title: "1,000 Search Ranking Members", desc: "Premium active members that help rank higher in Telegram search.", guarantees: ["30-Day Stay", "Search Boost"], mgUsd: 6.99, mgOldUsd: 13.98, badge: "Premium" },
+      { id: "m5", cat: "Members", title: "1,000 Members (12 Months)", desc: "Long-term 360-day stay protection for flagship channels.", guarantees: ["360-Day Stay", "VIP Quality"], mgUsd: 6.99, mgOldUsd: 13.98, badge: "1 Year" },
+      { id: "m6", cat: "Members", title: "10,000 Global Members", desc: "High-volume growth pack at our lowest per-member rate.", guarantees: ["30-Day Stay", "Gradual Pace"], mgUsd: 10.49, mgOldUsd: 34.97, badge: "70% OFF" },
 
-      { id: "v1", cat: "Views", title: "1,000 Post Views", desc: "Instant view boost on any public channel post.", guarantees: ["Instant Start", "Public Post"], oldPrice: null, price: 45, badge: "Fast" },
-      { id: "v2", cat: "Views", title: "5,000 Post Views", desc: "Increase reach and social proof on key announcements.", guarantees: ["Instant Start", "High Speed"], oldPrice: 250, price: 150, badge: "Popular" },
-      { id: "v3", cat: "Views", title: "10,000 Post Views", desc: "Viral post reach delivered smoothly within minutes.", guarantees: ["Instant Start", "Best Value"], oldPrice: 520, price: 260, badge: "50% OFF" },
-      { id: "v4", cat: "Views", title: "1,000 Premium Views", desc: "Gradual organic-style view curve for natural analytics.", guarantees: ["Organic Pace", "Safe"], oldPrice: null, price: 190, badge: "Premium" },
+      // Views
+      { id: "v1", cat: "Views", title: "500 Post Views", desc: "Instant view boost on any single public channel post.", guarantees: ["Instant Start", "Single Post"], mgUsd: 0.09, mgOldUsd: 2.09, badge: "Starter", firstOrderPromo: true },
+      { id: "v2", cat: "Views", title: "5,000 Post Views", desc: "Increase reach and social proof on key announcements.", guarantees: ["Instant Start", "Single Post"], mgUsd: 0.28, mgOldUsd: 1.40, badge: "80% OFF" },
+      { id: "v3", cat: "Views", title: "5,000 Views (Last 5 Posts)", desc: "Automatically distributes views across your latest 5 posts.", guarantees: ["Last 5 Posts", "Fast Start"], mgUsd: 0.70, mgOldUsd: 3.50, badge: "Popular" },
+      { id: "v4", cat: "Views", title: "50,000 Post Views", desc: "Viral post reach delivered smoothly within minutes.", guarantees: ["Instant Start", "Best Value"], mgUsd: 2.79, mgOldUsd: 31.00, badge: "91% OFF" },
 
-      { id: "r1", cat: "Reactions", title: "500 Post Reactions", desc: "Positive emoji reactions (👍 ❤️ 🔥 🎉) on your post.", guarantees: ["Fast Delivery", "Mixed Emojis"], oldPrice: null, price: 95, badge: "Fast" },
-      { id: "r2", cat: "Reactions", title: "2,000 Post Reactions", desc: "High engagement boost to make posts stand out.", guarantees: ["Instant Start", "Positive Set"], oldPrice: 480, price: 290, badge: "Popular" },
-      { id: "r3", cat: "Reactions", title: "1,000 Premium Reactions", desc: "High-retention accounts reacting at a natural pace.", guarantees: ["High Retention", "Natural Pace"], oldPrice: null, price: 450, badge: "Premium" },
+      // Reactions
+      { id: "r1", cat: "Reactions", title: "100 Positive Global Reactions", desc: "Positive emoji reactions (👍 🤩 🎉 🔥 ❤️ 👏) on your post.", guarantees: ["Fast Delivery", "Mixed Emojis"], mgUsd: 0.14, mgOldUsd: 2.14, badge: "Fast" },
+      { id: "r2", cat: "Reactions", title: "1,000 Positive Global Reactions", desc: "High engagement boost to make posts stand out.", guarantees: ["Instant Start", "Positive Set"], mgUsd: 0.21, mgOldUsd: 2.21, badge: "90% OFF" },
+      { id: "r3", cat: "Reactions", title: "1,000 Premium Reactions", desc: "High-retention accounts reacting at a natural pace.", guarantees: ["High Retention", "Natural Pace"], mgUsd: 1.39, mgOldUsd: 3.39, badge: "Premium" },
 
-      { id: "b1", cat: "Boosts", title: "10 Channel Boosts", desc: "Level up your channel to unlock custom Stories & colors.", guarantees: ["30-Day Active", "Story Unlock"], oldPrice: null, price: 490, badge: "Level Up" },
-      { id: "b2", cat: "Boosts", title: "25 Channel Boosts", desc: "Jump multiple channel levels with active Telegram boosts.", guarantees: ["30-Day Active", "Fast Delivery"], oldPrice: 1500, price: 1150, badge: "Popular" },
-      { id: "b3", cat: "Boosts", title: "50 Channel Boosts", desc: "Maximum channel perks, custom wallpapers & emoji status.", guarantees: ["30-Day Active", "Pro Tier"], oldPrice: 3100, price: 2150, badge: "Pro" }
+      // Boosts
+      { id: "b1", cat: "Boosts", title: "5 Channel Boosts (7 Days)", desc: "Level up your channel for 7 days to unlock Stories & colors.", guarantees: ["7-Day Active", "Story Unlock"], mgUsd: 2.09, mgOldUsd: 4.09, badge: "49% OFF" },
+      { id: "b2", cat: "Boosts", title: "5 Channel Boosts (30 Days)", desc: "Full 30-day Telegram channel boost for steady level perks.", guarantees: ["30-Day Active", "Fast Delivery"], mgUsd: 6.29, mgOldUsd: 8.29, badge: "Popular" },
+      { id: "b3", cat: "Boosts", title: "50 Channel Boosts (7 Days)", desc: "Jump multiple channel levels fast with 50 active boosts.", guarantees: ["7-Day Active", "Pro Tier"], mgUsd: 17.49, mgOldUsd: 29.15, badge: "40% OFF" },
+      { id: "b4", cat: "Boosts", title: "50 Channel Boosts (30 Days)", desc: "Maximum channel perks, custom wallpapers & emoji status.", guarantees: ["30-Day Active", "VIP Tier"], mgUsd: 41.99, mgOldUsd: 59.99, badge: "30% OFF" }
     ];
+
+    // Regular: (Membersgram USD * 195) + 200
+    // First Order on 100 Members & 500 Views: (Membersgram USD * 195) + 40
+    function getPackagePricing(pkg) {
+      const isFirstOrderEligible = Boolean(pkg.firstOrderPromo) && getOrders().length === 0;
+      const regularPrice = Math.round(pkg.mgUsd * CONFIG.USD_TO_ETB + CONFIG.STANDARD_MARKUP_ETB);
+      const promoPrice = Math.round(pkg.mgUsd * CONFIG.USD_TO_ETB + CONFIG.FIRST_ORDER_MARKUP_ETB);
+
+      if (isFirstOrderEligible) {
+        return {
+          price: promoPrice,
+          oldPrice: regularPrice,
+          badge: "1st Order Deal",
+          isFirstOrderDeal: true
+        };
+      }
+
+      const oldPrice = pkg.mgOldUsd
+        ? Math.round(pkg.mgOldUsd * CONFIG.USD_TO_ETB + CONFIG.STANDARD_MARKUP_ETB)
+        : null;
+
+      return {
+        price: regularPrice,
+        oldPrice,
+        badge: pkg.badge,
+        isFirstOrderDeal: false
+      };
+    }
 
     let activeCategory = "Members";
     let selectedPkg = null;
+    let selectedPkgPricing = null;
     let selectedMethod = "Wallet";
     let selectedWalletMethod = "TeleBirr";
 
@@ -1157,6 +1545,88 @@
       }
     };
 
+    // =========================================================================
+    // 3. MAGNETIC BUTTONS, SPECULAR RIPPLES & GLASS DEPTH ENGINE
+    // =========================================================================
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isDesktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    function trackGlassDepth(e, el) {
+      if (prefersReducedMotion) return;
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--gx", `${e.clientX - r.left}px`);
+      el.style.setProperty("--gy", `${e.clientY - r.top}px`);
+    }
+
+    if (isDesktopPointer && !prefersReducedMotion) {
+      let activeMagEl = null;
+      document.addEventListener("pointermove", (e) => {
+        const target = e.target.closest(".magnetic");
+        if (activeMagEl && activeMagEl !== target) {
+          activeMagEl.style.setProperty("--mag-x", "0px");
+          activeMagEl.style.setProperty("--mag-y", "0px");
+          activeMagEl = null;
+        }
+        if (target) {
+          activeMagEl = target;
+          const r = target.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) * 0.16;
+          const dy = (e.clientY - (r.top + r.height / 2)) * 0.18;
+          target.style.setProperty("--mag-x", `${dx.toFixed(1)}px`);
+          target.style.setProperty("--mag-y", `${dy.toFixed(1)}px`);
+        }
+      });
+    }
+
+    document.addEventListener("pointerdown", (e) => {
+      if (prefersReducedMotion) return;
+      const btn = e.target.closest(".tactile");
+      if (!btn || btn.disabled) return;
+      const r = btn.getBoundingClientRect();
+      const size = Math.max(r.width, r.height);
+      const ripple = document.createElement("span");
+      ripple.className = "glass-ripple";
+      ripple.style.width = `${size}px`;
+      ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - r.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - r.top - size / 2}px`;
+      btn.appendChild(ripple);
+      ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
+    });
+
+    function springPop(el) {
+      if (!el || !el.animate || prefersReducedMotion) return;
+      el.animate(
+        [
+          { transform: "scale(0.93)" },
+          { transform: "scale(1.038)", offset: 0.42 },
+          { transform: "scale(0.99)", offset: 0.72 },
+          { transform: "scale(1)" }
+        ],
+        { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+      );
+    }
+
+    function animateNumber(el, fromVal, toVal, duration = 480) {
+      if (!el) return;
+      if (prefersReducedMotion || fromVal === toVal) {
+        el.textContent = toVal.toLocaleString();
+        return;
+      }
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const current = Math.round(fromVal + (toVal - fromVal) * eased);
+        el.textContent = current.toLocaleString();
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // =========================================================================
+    // 4. ORDER STORAGE & LIVE TELEGRAM BOT STATUS SYNC
+    // =========================================================================
     function getOrders() {
       return JSON.parse(localStorage.getItem("eb_orders") || "[]");
     }
@@ -1234,15 +1704,27 @@
       } catch (_) {}
     }
 
+    // =========================================================================
+    // 5. WALLET BALANCE & SHA-256 VOUCHER ENGINE
+    // =========================================================================
     function getWalletBalance() {
       return Math.max(0, Number(localStorage.getItem("eb_wallet_etb") || 0));
     }
 
-    function setWalletBalance(amount) {
+    function setWalletBalance(amount, animate = false) {
+      const prev = getWalletBalance();
       const clean = Math.max(0, Math.round(Number(amount)));
       localStorage.setItem("eb_wallet_etb", String(clean));
-      document.getElementById("navWalletBalance").textContent = clean.toLocaleString();
-      document.getElementById("modalWalletBalance").textContent = clean.toLocaleString();
+
+      const navEl = document.getElementById("navWalletBalance");
+      const modalEl = document.getElementById("modalWalletBalance");
+      if (animate) {
+        animateNumber(navEl, prev, clean);
+        animateNumber(modalEl, prev, clean);
+      } else {
+        navEl.textContent = clean.toLocaleString();
+        modalEl.textContent = clean.toLocaleString();
+      }
     }
 
     async function signVoucher(amount, cleanRef) {
@@ -1265,25 +1747,9 @@
       return expected === rawCode.trim().toUpperCase() ? amount : null;
     }
 
-    function trackSheen(e, el) {
-      const r = el.getBoundingClientRect();
-      el.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      el.style.setProperty("--my", `${e.clientY - r.top}px`);
-    }
-
-    function springPop(el) {
-      if (!el || !el.animate) return;
-      el.animate(
-        [
-          { transform: "scale(0.93)" },
-          { transform: "scale(1.038)", offset: 0.42 },
-          { transform: "scale(0.99)", offset: 0.72 },
-          { transform: "scale(1)" }
-        ],
-        { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
-      );
-    }
-
+    // =========================================================================
+    // 6. DYNAMIC ISLAND, THEME & FLIP WINDOW ANIMATIONS
+    // =========================================================================
     let islandTimer = null;
     function showIsland(msg) {
       const el = document.getElementById("dynamicIsland");
@@ -1309,6 +1775,11 @@
 
     function openWindowFromOrigin(backdropEl, windowEl, originEl) {
       backdropEl.classList.add("open");
+      if (prefersReducedMotion) {
+        backdropEl.style.opacity = "1";
+        return;
+      }
+
       backdropEl.animate([{ opacity: 0 }, { opacity: 1 }], {
         duration: 240,
         easing: "ease-out",
@@ -1338,6 +1809,11 @@
 
     function closeWindowToOrigin(backdropEl, windowEl, originEl) {
       if (!backdropEl.classList.contains("open")) return;
+      if (prefersReducedMotion) {
+        backdropEl.classList.remove("open");
+        return;
+      }
+
       const currentRect = windowEl.getBoundingClientRect();
       let dx = 0, dy = 26, sx = 0.84, sy = 0.84;
 
@@ -1371,6 +1847,9 @@
       };
     }
 
+    // =========================================================================
+    // 7. TELEGRAM BOT API DISPATCH
+    // =========================================================================
     async function sendTelegramPayload(captionHTML, file, replyMarkup = null) {
       if (file) {
         const fd = new FormData();
@@ -1419,10 +1898,12 @@
       }
     }
 
-    // Wallet Modal Logic
+    // =========================================================================
+    // 8. WALLET MODAL LOGIC (MIN 50 ETB DEPOSIT & VOUCHER REDEEM)
+    // =========================================================================
     function openWallet(originEl = null) {
       walletOriginEl = originEl || document.getElementById("navWalletBtn");
-      setWalletBalance(getWalletBalance());
+      setWalletBalance(getWalletBalance(), false);
       switchWalletTab("deposit");
       openWindowFromOrigin(
         document.getElementById("walletBackdrop"),
@@ -1443,9 +1924,26 @@
       if (el) springPop(el);
       document.getElementById("wTabDeposit").classList.toggle("active", tab === "deposit");
       document.getElementById("wTabRedeem").classList.toggle("active", tab === "redeem");
-      document.getElementById("depositForm").style.display = tab === "deposit" ? "block" : "none";
-      document.getElementById("depositSuccessView").style.display = "none";
-      document.getElementById("redeemForm").style.display = tab === "redeem" ? "block" : "none";
+
+      const depForm = document.getElementById("depositForm");
+      const depSuccess = document.getElementById("depositSuccessView");
+      const redForm = document.getElementById("redeemForm");
+
+      depSuccess.style.display = "none";
+      const targetPanel = tab === "deposit" ? depForm : redForm;
+      const otherPanel = tab === "deposit" ? redForm : depForm;
+
+      otherPanel.style.display = "none";
+      targetPanel.style.display = "block";
+      if (!prefersReducedMotion && targetPanel.animate) {
+        targetPanel.animate(
+          [
+            { opacity: 0, transform: "translate3d(0, 8px, 0) scale(0.985)" },
+            { opacity: 1, transform: "translate3d(0, 0, 0) scale(1)" }
+          ],
+          { duration: 260, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+        );
+      }
     }
 
     function setDepositAmount(val, el) {
@@ -1502,7 +2000,7 @@
       const btn = document.getElementById("depositSubmitBtn");
 
       btn.disabled = true;
-      btn.textContent = "Sending Deposit Request...";
+      btn.innerHTML = `<span class="btn-spinner"></span>Sending Deposit Request...`;
 
       try {
         const voucherCode = await signVoucher(amount, cleanRef);
@@ -1562,13 +2060,15 @@
       used.push(code);
       localStorage.setItem("eb_used_vouchers", JSON.stringify(used));
       const updated = getWalletBalance() + credit;
-      setWalletBalance(updated);
+      setWalletBalance(updated, true);
 
       e.target.reset();
       showIsland(`+${credit.toLocaleString()} ETB added! Balance: ${updated.toLocaleString()} ETB`);
     });
 
-    // Segmented Tabs & Package Rendering
+    // =========================================================================
+    // 9. LIQUID SECTION SWITCHING & PACKAGE RENDERING
+    // =========================================================================
     function updateGlider(activeBtn) {
       const glider = document.getElementById("segmentGlider");
       if (!activeBtn || !glider) return;
@@ -1578,11 +2078,12 @@
 
     document.querySelectorAll("#segmentedControl .seg-tab").forEach((tab) => {
       tab.addEventListener("click", () => {
+        if (tab.dataset.cat === activeCategory) return;
         document.querySelectorAll("#segmentedControl .seg-tab").forEach((t) => t.classList.remove("active"));
         tab.classList.add("active");
         updateGlider(tab);
         activeCategory = tab.dataset.cat;
-        renderPackages();
+        renderPackages(true);
       });
     });
 
@@ -1590,37 +2091,51 @@
       updateGlider(document.querySelector("#segmentedControl .seg-tab.active"));
     });
 
-    function renderPackages() {
+    function renderPackages(withLiquidTransition = false) {
       const grid = document.getElementById("packagesGrid");
-      const list = PACKAGES.filter((p) => p.cat === activeCategory);
-      grid.innerHTML = list
-        .map(
-          (p, i) => `
-        <div class="pkg-card glass-card sheen tactile"
-             style="animation: cardFadeIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) ${i * 35}ms both;"
-             onpointermove="trackSheen(event, this)"
-             onclick="openCheckout('${p.id}', this)">
-          <div>
-            <div class="pkg-top">
-              <h3>${p.title}</h3>
-              ${p.badge ? `<span class="pkg-badge">${p.badge}</span>` : ""}
-            </div>
-            <p class="pkg-desc">${p.desc}</p>
-            <div class="pkg-guarantees">
-              ${p.guarantees.map((g) => `<span class="g-chip">✓ ${g}</span>`).join("")}
-            </div>
-          </div>
-          <div class="pkg-footer">
-            <div class="price-block">
-              ${p.oldPrice ? `<span class="old-price">${p.oldPrice.toLocaleString()} ETB</span>` : ""}
-              <span class="now-price">${p.price.toLocaleString()} <small>ETB</small></span>
-            </div>
-            <button type="button" class="order-btn">Order</button>
-          </div>
-        </div>
-      `
-        )
-        .join("");
+      const paintCards = () => {
+        const list = PACKAGES.filter((p) => p.cat === activeCategory);
+        grid.innerHTML = list
+          .map((p, i) => {
+            const pricing = getPackagePricing(p);
+            const badgeClass = pricing.isFirstOrderDeal ? "pkg-badge promo-first" : "pkg-badge";
+            return `
+              <div class="pkg-card glass-card glass-depth tactile"
+                   style="animation: cardFadeIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) ${i * 32}ms both;"
+                   onpointermove="trackGlassDepth(event, this)"
+                   onclick="openCheckout('${p.id}', this)">
+                <div>
+                  <div class="pkg-top">
+                    <h3>${p.title}</h3>
+                    ${pricing.badge ? `<span class="${badgeClass}">${pricing.badge}</span>` : ""}
+                  </div>
+                  <p class="pkg-desc">${p.desc}</p>
+                  <div class="pkg-guarantees">
+                    ${p.guarantees.map((g) => `<span class="g-chip">✓ ${g}</span>`).join("")}
+                  </div>
+                </div>
+                <div class="pkg-footer">
+                  <div class="price-block">
+                    ${pricing.oldPrice ? `<span class="old-price">${pricing.oldPrice.toLocaleString()} ETB</span>` : ""}
+                    <span class="now-price">${pricing.price.toLocaleString()} <small>ETB</small></span>
+                  </div>
+                  <button type="button" class="order-btn">Order</button>
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+      };
+
+      if (withLiquidTransition && !prefersReducedMotion) {
+        grid.classList.add("liquid-out");
+        setTimeout(() => {
+          paintCards();
+          requestAnimationFrame(() => grid.classList.remove("liquid-out"));
+        }, 150);
+      } else {
+        paintCards();
+      }
     }
 
     const styleSheet = document.createElement("style");
@@ -1632,17 +2147,22 @@
     `;
     document.head.appendChild(styleSheet);
 
-    // Checkout Logic
+    // =========================================================================
+    // 10. PACKAGE CHECKOUT LOGIC
+    // =========================================================================
     function openCheckout(pkgId, cardEl) {
       checkoutOriginEl = cardEl || null;
       selectedPkg = PACKAGES.find((p) => p.id === pkgId);
+      selectedPkgPricing = getPackagePricing(selectedPkg);
 
       document.getElementById("orderForm").style.display = "block";
       document.getElementById("confirmationView").style.display = "none";
 
-      document.getElementById("modalCat").textContent = selectedPkg.cat.toUpperCase();
+      document.getElementById("modalCat").textContent = selectedPkgPricing.isFirstOrderDeal
+        ? `${selectedPkg.cat.toUpperCase()} • 1ST ORDER PROMO`
+        : selectedPkg.cat.toUpperCase();
       document.getElementById("modalTitle").textContent = selectedPkg.title;
-      document.getElementById("modalPrice").textContent = `${selectedPkg.price.toLocaleString()} ETB`;
+      document.getElementById("modalPrice").textContent = `${selectedPkgPricing.price.toLocaleString()} ETB`;
 
       const isPost = selectedPkg.cat === "Views" || selectedPkg.cat === "Reactions";
       document.getElementById("linkLabel").textContent = isPost
@@ -1652,7 +2172,7 @@
         ? "https://t.me/yourchannel/123"
         : "https://t.me/yourchannel or @yourchannel";
 
-      const defaultMethod = getWalletBalance() >= selectedPkg.price ? "Wallet" : "TeleBirr";
+      const defaultMethod = getWalletBalance() >= selectedPkgPricing.price ? "Wallet" : "TeleBirr";
       selectMethod(defaultMethod);
 
       openWindowFromOrigin(
@@ -1686,6 +2206,7 @@
       const directPanel = document.getElementById("directCheckoutPanel");
       const txInput = document.getElementById("txRef");
       const submitBtn = document.getElementById("submitBtn");
+      const activePrice = selectedPkgPricing ? selectedPkgPricing.price : 0;
 
       if (method === "Wallet") {
         walletPanel.style.display = "block";
@@ -1694,11 +2215,11 @@
 
         const bal = getWalletBalance();
         document.getElementById("checkoutWalletBal").textContent = `${bal.toLocaleString()} ETB`;
-        const enough = selectedPkg && bal >= selectedPkg.price;
+        const enough = selectedPkg && bal >= activePrice;
         document.getElementById("walletShortfallNote").style.display = enough ? "none" : "block";
         submitBtn.disabled = !enough;
         submitBtn.textContent = enough
-          ? `Pay ${selectedPkg.price.toLocaleString()} ETB from Wallet`
+          ? `Pay ${activePrice.toLocaleString()} ETB from Wallet`
           : "Insufficient Wallet Balance";
       } else {
         walletPanel.style.display = "none";
@@ -1744,8 +2265,9 @@
         return;
       }
 
+      const activePricing = getPackagePricing(selectedPkg);
       const isWallet = selectedMethod === "Wallet";
-      if (isWallet && getWalletBalance() < selectedPkg.price) {
+      if (isWallet && getWalletBalance() < activePricing.price) {
         showIsland("Insufficient wallet balance");
         return;
       }
@@ -1759,7 +2281,9 @@
         serviceName: selectedPkg.title,
         category: selectedPkg.cat,
         targetLink,
-        priceETB: selectedPkg.price,
+        priceETB: activePricing.price,
+        mgCostUsd: selectedPkg.mgUsd,
+        isFirstOrderDeal: activePricing.isFirstOrderDeal,
         paymentMethod: isWallet ? "EthioBoost Wallet" : selectedMethod,
         txRef,
         stage: initialStage,
@@ -1767,16 +2291,17 @@
       };
 
       btn.disabled = true;
-      btn.textContent = "Dispatching Order...";
+      btn.innerHTML = `<span class="btn-spinner"></span>Dispatching Order...`;
 
       try {
+        const promoTag = order.isFirstOrderDeal ? " 🎁 <b>[1ST ORDER PROMO]</b>" : "";
         const captionHTML = [
-          isWallet ? "⚡ <b>NEW WALLET ORDER (PRE-PAID)</b>" : "🚀 <b>NEW ETHIOBOOST ORDER</b>",
+          (isWallet ? "⚡ <b>NEW WALLET ORDER (PRE-PAID)</b>" : "🚀 <b>NEW ETHIOBOOST ORDER</b>") + promoTag,
           "",
           `🆔 <b>Order ID:</b> <code>${escapeHTML(order.orderId)}</code>`,
           `📦 <b>Package:</b> ${escapeHTML(order.serviceName)} (${escapeHTML(order.category)})`,
           `🔗 <b>Target:</b> ${escapeHTML(order.targetLink)}`,
-          `💰 <b>Amount:</b> ${escapeHTML(order.priceETB)} ETB`,
+          `💰 <b>Paid:</b> ${escapeHTML(order.priceETB)} ETB <i>(Membersgram: $${order.mgCostUsd.toFixed(2)})</i>`,
           `💳 <b>Method:</b> ${escapeHTML(order.paymentMethod)}`,
           `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`,
           "",
@@ -1799,12 +2324,14 @@
         await sendTelegramPayload(captionHTML, file, inlineKeyboard);
 
         if (isWallet) {
-          setWalletBalance(getWalletBalance() - selectedPkg.price);
+          setWalletBalance(getWalletBalance() - activePricing.price, true);
         }
 
         const saved = getOrders();
         saved.unshift(order);
         saveOrders(saved.slice(0, 25));
+
+        renderPackages(false);
         renderHistory();
 
         document.getElementById("confirmSubtext").textContent = isWallet
@@ -1834,7 +2361,9 @@
       }
     });
 
-    // All-Orders Live Tracker (Auto-syncs every 10s while open)
+    // =========================================================================
+    // 11. ALL-ORDERS LIVE TRACKER & SMOOTH FAQ
+    // =========================================================================
     async function openTracker(originEl = null) {
       trackerOriginEl = originEl || document.getElementById("navTrackBtn");
       renderAllOrdersModal();
@@ -1883,9 +2412,9 @@
 
       if (!orders.length) {
         box.innerHTML = `
-          <div style="text-align:center;padding:32px 12px;color:var(--muted);">
+          <div style="text-align:center;padding:32px 12px;color:var(--text-secondary);">
             <div style="font-size:2rem;margin-bottom:8px;">📦</div>
-            <div style="font-weight:700;color:var(--text);margin-bottom:4px;">No orders yet</div>
+            <div style="font-weight:700;color:var(--text-primary);margin-bottom:4px;">No orders yet</div>
             <div style="font-size:0.85rem;">Once you place an order, its live delivery progress will appear right here automatically.</div>
           </div>
         `;
@@ -1910,7 +2439,7 @@
               <div class="track-card-top">
                 <div>
                   <div style="font-weight:800;font-size:0.98rem;">${escapeHTML(o.serviceName)}</div>
-                  <div style="font-size:0.78rem;color:var(--muted);margin-top:2px;">
+                  <div style="font-size:0.78rem;color:var(--text-secondary);margin-top:2px;">
                     ${escapeHTML(o.orderId)} • ${escapeHTML(o.targetLink)}
                   </div>
                 </div>
@@ -1925,7 +2454,7 @@
                 <span>Done</span>
               </div>
 
-              <div style="display:flex;justify-content:space-between;font-size:0.76rem;color:var(--muted);margin-top:10px;padding-top:8px;border-top:1px solid var(--border);">
+              <div style="display:flex;justify-content:space-between;font-size:0.76rem;color:var(--text-secondary);margin-top:10px;padding-top:8px;border-top:1px solid var(--border-hairline);">
                 <span>${escapeHTML(o.paymentMethod)} • ${o.priceETB.toLocaleString()} ETB</span>
                 <span>${escapeHTML(o.createdAt)}</span>
               </div>
@@ -1953,7 +2482,7 @@
             <div class="order-row tactile" onclick="openTracker(this)">
               <div>
                 <strong>${escapeHTML(o.serviceName)}</strong>
-                <div style="color:var(--muted);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)} (${o.priceETB.toLocaleString()} ETB)</div>
+                <div style="color:var(--text-secondary);font-size:0.78rem;">${escapeHTML(o.targetLink)} • ${escapeHTML(o.paymentMethod)} (${o.priceETB.toLocaleString()} ETB)</div>
               </div>
               <span class="status-pill ${meta.pillClass}">${meta.icon} ${meta.label}</span>
             </div>
@@ -1963,21 +2492,21 @@
     }
 
     function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const isOpen = item.classList.toggle("open");
-      btn.querySelector("span").textContent = isOpen ? "−" : "+";
+      btn.parentElement.classList.toggle("open");
     }
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
+        dismissIntro();
         closeWallet();
         closeCheckout();
         closeTracker();
       }
     });
 
-    setWalletBalance(getWalletBalance());
-    renderPackages();
+    // Initialize Storefront
+    setWalletBalance(getWalletBalance(), false);
+    renderPackages(false);
     renderHistory();
     syncStatusesFromTelegram(false);
     requestAnimationFrame(() => {
