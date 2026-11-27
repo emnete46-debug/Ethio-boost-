@@ -11,38 +11,39 @@
     :root {
       --bg-canvas: #03060e;
       --bg-depth: #071127;
-      --glass-chrome: rgba(14, 24, 52, 0.64);
-      --glass-card: rgba(17, 29, 62, 0.56);
-      --glass-card-hover: rgba(22, 37, 78, 0.68);
-      --glass-sheet: rgba(10, 17, 36, 0.92);
+      --glass-chrome: rgba(14, 24, 52, 0.62);
+      --glass-card: rgba(17, 29, 62, 0.54);
+      --glass-card-hover: rgba(24, 40, 84, 0.68);
+      --glass-sheet: rgba(10, 17, 36, 0.93);
       --glass-pill: rgba(255, 255, 255, 0.08);
-      --glass-input: rgba(3, 7, 18, 0.42);
+      --glass-input: rgba(3, 7, 18, 0.44);
 
-      --border-hairline: rgba(255, 255, 255, 0.11);
-      --border-specular: rgba(255, 255, 255, 0.28);
-      --border-glow: rgba(47, 128, 255, 0.55);
-      --inset-top: rgba(255, 255, 255, 0.26);
-      --inset-bottom: rgba(255, 255, 255, 0.04);
+      --border-hairline: rgba(255, 255, 255, 0.12);
+      --border-specular: rgba(255, 255, 255, 0.32);
+      --border-glow: rgba(24, 144, 255, 0.6);
+      --inset-top: rgba(255, 255, 255, 0.28);
+      --inset-bottom: rgba(255, 255, 255, 0.05);
 
       --text-primary: #f5f8ff;
       --text-secondary: #95a9cf;
       --text-tertiary: #6a7fa8;
       --logo-e-fill: #ffffff;
       --accent-blue: #1890ff;
+      --accent-cyan: #38bdf8;
       --accent-blue-deep: #0057d9;
-      --accent-blue-glow: rgba(24, 144, 255, 0.38);
+      --accent-blue-glow: rgba(24, 144, 255, 0.42);
       --accent-amber: #ffa301;
       --accent-green: #22c55e;
       --accent-red: #ef4444;
 
-      --shadow-chrome: 0 20px 50px rgba(0, 0, 0, 0.52);
-      --shadow-card: 0 14px 34px rgba(0, 0, 0, 0.34);
-      --shadow-sheet: 0 36px 90px rgba(0, 0, 0, 0.78);
+      --shadow-chrome: 0 22px 54px rgba(0, 0, 0, 0.54);
+      --shadow-card: 0 16px 38px rgba(0, 0, 0, 0.36);
+      --shadow-sheet: 0 38px 94px rgba(0, 0, 0, 0.8);
 
       --radius-sm: 12px;
       --radius-md: 16px;
-      --radius-lg: 24px;
-      --radius-xl: 30px;
+      --radius-lg: 26px;
+      --radius-xl: 32px;
       --radius-pill: 999px;
 
       --spring-snappy: cubic-bezier(0.22, 1.36, 0.36, 1);
@@ -61,14 +62,14 @@
       --bg-depth: #dce9ff;
       --glass-chrome: rgba(255, 255, 255, 0.78);
       --glass-card: rgba(255, 255, 255, 0.8);
-      --glass-card-hover: rgba(255, 255, 255, 0.94);
-      --glass-sheet: rgba(255, 255, 255, 0.96);
+      --glass-card-hover: rgba(255, 255, 255, 0.95);
+      --glass-sheet: rgba(255, 255, 255, 0.97);
       --glass-pill: rgba(24, 144, 255, 0.08);
       --glass-input: rgba(255, 255, 255, 0.92);
 
       --border-hairline: rgba(30, 64, 175, 0.12);
       --border-specular: rgba(255, 255, 255, 0.98);
-      --border-glow: rgba(24, 144, 255, 0.45);
+      --border-glow: rgba(24, 144, 255, 0.48);
       --inset-top: rgba(255, 255, 255, 1);
       --inset-bottom: rgba(30, 64, 175, 0.05);
 
@@ -77,8 +78,9 @@
       --text-tertiary: #6d82aa;
       --logo-e-fill: #0b162c;
       --accent-blue: #0e76f5;
+      --accent-cyan: #0284c7;
       --accent-blue-deep: #004ec4;
-      --accent-blue-glow: rgba(14, 118, 245, 0.26);
+      --accent-blue-glow: rgba(14, 118, 245, 0.28);
 
       --shadow-chrome: 0 18px 44px rgba(30, 64, 175, 0.11);
       --shadow-card: 0 12px 28px rgba(30, 64, 175, 0.09);
@@ -103,14 +105,14 @@
       min-height: 100vh;
       background-color: var(--bg-canvas);
       background-image:
-        radial-gradient(680px circle at 10% 6%, rgba(24, 144, 255, 0.22), transparent 64%),
-        radial-gradient(560px circle at 90% 30%, rgba(14, 165, 233, 0.15), transparent 64%),
-        radial-gradient(720px circle at 32% 94%, rgba(30, 58, 138, 0.24), transparent 70%),
+        radial-gradient(720px circle at 10% 6%, rgba(24, 144, 255, 0.25), transparent 64%),
+        radial-gradient(620px circle at 90% 28%, rgba(56, 189, 248, 0.16), transparent 64%),
+        radial-gradient(740px circle at 32% 94%, rgba(30, 58, 138, 0.26), transparent 70%),
         linear-gradient(165deg, var(--bg-canvas) 0%, var(--bg-depth) 100%);
       background-attachment: fixed;
       color: var(--text-primary);
       overflow-x: hidden;
-      padding: 16px 16px 80px;
+      padding: 16px 16px 96px;
       transition: background-color 0.35s ease, color 0.3s ease;
     }
 
@@ -139,17 +141,17 @@
       justify-content: center;
       padding: 24px;
       background:
-        radial-gradient(520px circle at 50% 42%, rgba(24, 144, 255, 0.26), transparent 68%),
+        radial-gradient(540px circle at 50% 42%, rgba(24, 144, 255, 0.28), transparent 68%),
         rgba(3, 6, 14, 0.94);
-      backdrop-filter: blur(28px) saturate(180%);
-      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      backdrop-filter: blur(30px) saturate(185%);
+      -webkit-backdrop-filter: blur(30px) saturate(185%);
       cursor: pointer;
       transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
     }
     #introSplash.dismissed {
       opacity: 0;
-      transform: scale(1.04);
+      transform: scale(1.05);
       pointer-events: none;
     }
     .intro-card {
@@ -157,11 +159,11 @@
       max-width: 420px;
       padding: 36px 28px;
       border-radius: 34px;
-      background: rgba(13, 22, 46, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(13, 22, 46, 0.64);
+      border: 1px solid rgba(255, 255, 255, 0.22);
       box-shadow:
         0 32px 90px rgba(0, 0, 0, 0.8),
-        inset 0 1px 0 rgba(255, 255, 255, 0.32);
+        inset 0 1px 0 rgba(255, 255, 255, 0.34);
       animation: introPop 0.72s var(--spring-snappy) both;
     }
     @keyframes introPop {
@@ -172,7 +174,7 @@
       width: 118px;
       height: 86px;
       margin: 0 auto 12px;
-      filter: drop-shadow(0 12px 28px rgba(24, 144, 255, 0.45));
+      filter: drop-shadow(0 12px 28px rgba(24, 144, 255, 0.48));
       animation: arrowRise 0.85s var(--spring-snappy) 0.1s both;
     }
     @keyframes arrowRise {
@@ -234,16 +236,16 @@
     }
 
     /* =========================================================================
-       3. LAYERED LIQUID GLASS SURFACES & INTERACTION PHYSICS
+       3. LIQUID GLASS SURFACES & FLEXIBLE JELLY PHYSICS
        ========================================================================= */
     .glass-chrome {
       position: relative;
       background: var(--glass-chrome);
-      backdrop-filter: blur(22px) saturate(175%);
-      -webkit-backdrop-filter: blur(22px) saturate(175%);
+      backdrop-filter: blur(24px) saturate(185%);
+      -webkit-backdrop-filter: blur(24px) saturate(185%);
       border: 1px solid var(--border-hairline);
       box-shadow:
-        inset 0 1px 0 0 var(--inset-top),
+        inset 0 1.5px 0 0 var(--inset-top),
         inset 0 -1px 0 0 var(--inset-bottom),
         var(--shadow-chrome);
       border-radius: var(--radius-lg);
@@ -252,15 +254,17 @@
     .glass-card {
       position: relative;
       background: var(--glass-card);
+      backdrop-filter: blur(16px) saturate(165%);
+      -webkit-backdrop-filter: blur(16px) saturate(165%);
       border: 1px solid var(--border-hairline);
       box-shadow:
-        inset 0 1px 0 0 var(--inset-top),
+        inset 0 1.5px 0 0 var(--inset-top),
         inset 0 -1px 0 0 var(--inset-bottom),
         var(--shadow-card);
       border-radius: var(--radius-lg);
       will-change: transform;
       transition:
-        transform 0.42s var(--spring-snappy),
+        transform 0.44s var(--spring-snappy),
         background-color 0.25s ease,
         border-color 0.25s ease,
         box-shadow 0.3s ease;
@@ -269,6 +273,9 @@
     .glass-card:hover {
       background: var(--glass-card-hover);
       border-color: var(--border-specular);
+      box-shadow:
+        inset 0 1.5px 0 0 var(--inset-top),
+        0 20px 46px rgba(24, 144, 255, 0.16);
     }
 
     .glass-depth::after {
@@ -277,14 +284,14 @@
       inset: 0;
       border-radius: inherit;
       background: radial-gradient(
-        260px circle at var(--gx, -260px) var(--gy, -260px),
-        rgba(255, 255, 255, 0.16),
-        rgba(24, 144, 255, 0.05) 45%,
+        290px circle at var(--gx, -290px) var(--gy, -290px),
+        rgba(255, 255, 255, 0.22),
+        rgba(56, 189, 248, 0.08) 42%,
         transparent 72%
       );
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.24s ease;
     }
     .glass-depth:hover::after,
     .glass-depth:focus-within::after {
@@ -298,33 +305,33 @@
       user-select: none;
       will-change: transform;
       transition:
-        transform 0.38s var(--spring-snappy),
+        transform 0.42s var(--spring-snappy),
         border-color 0.22s ease,
         box-shadow 0.25s ease,
         background-color 0.22s ease;
     }
 
     .tactile:hover {
-      transform: translate3d(var(--mag-x, 0px), calc(-3px + var(--mag-y, 0px)), 0) scale(1.016);
+      transform: translate3d(var(--mag-x, 0px), calc(-3px + var(--mag-y, 0px)), 0) scale(1.018);
       border-color: var(--border-specular);
     }
 
     .tactile:active {
-      transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) scale(0.935);
-      transition-duration: 0.11s;
+      transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) scale(1.045, 0.91);
+      transition-duration: 0.09s;
     }
 
     .glass-ripple {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0) 72%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.52) 0%, rgba(56, 189, 248, 0.18) 45%, rgba(255, 255, 255, 0) 74%);
       transform: scale(0);
       pointer-events: none;
-      animation: specularRipple 0.56s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: specularRipple 0.62s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes specularRipple {
-      to { transform: scale(2.8); opacity: 0; }
+      to { transform: scale(3.1); opacity: 0; }
     }
 
     /* Dynamic Island */
@@ -334,10 +341,10 @@
       left: 50%;
       transform: translate3d(-50%, -86px, 0) scale(0.74);
       background: rgba(4, 7, 17, 0.94);
-      backdrop-filter: blur(18px) saturate(180%);
-      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(185%);
+      -webkit-backdrop-filter: blur(20px) saturate(185%);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.24);
       padding: 10px 22px;
       border-radius: var(--radius-pill);
       font-size: 0.87rem;
@@ -345,7 +352,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+      box-shadow: 0 20px 46px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.28);
       z-index: 9999;
       opacity: 0;
       pointer-events: none;
@@ -664,11 +671,134 @@
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
       color: #fff;
       border: none;
-      padding: 9px 17px;
+      padding: 9px 15px;
       border-radius: 13px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 700;
       box-shadow: 0 6px 16px var(--accent-blue-glow), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    }
+
+    /* =========================================================================
+       7. LIQUID GLASS MANNEQUIN & ADMIN-CONTROLLED PROMO SHOWCASE
+       ========================================================================= */
+    .mannequin-showcase {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 24px;
+      align-items: center;
+      padding: 30px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    @media (max-width: 820px) {
+      .mannequin-showcase { grid-template-columns: 1fr; text-align: center; padding: 24px 18px; }
+    }
+
+    .mannequin-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 270px;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(24, 144, 255, 0.28), transparent 68%),
+        rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-hairline);
+      box-shadow: inset 0 1px 0 var(--inset-top);
+      overflow: hidden;
+    }
+
+    .mannequin-svg {
+      width: 210px;
+      height: 245px;
+      filter: drop-shadow(0 18px 34px rgba(24, 144, 255, 0.36));
+      will-change: transform;
+      transition: transform 0.25s ease-out;
+    }
+
+    .holo-orbit-badge {
+      position: absolute;
+      padding: 7px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--glass-chrome);
+      border: 1px solid var(--border-specular);
+      font-size: 0.76rem;
+      font-weight: 800;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35), inset 0 1px 0 var(--inset-top);
+      pointer-events: none;
+    }
+    .orbit-top { top: 16px; left: 16px; color: var(--accent-cyan); }
+    .orbit-bottom { bottom: 16px; right: 16px; color: var(--accent-amber); }
+
+    .promo-scroll-stack { display: grid; gap: 12px; }
+    .promo-reveal-card {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-hairline);
+      box-shadow: inset 0 1px 0 var(--inset-top);
+      opacity: 0;
+      transform: translate3d(26px, 14px, 0) scale(0.96);
+      transition:
+        opacity 0.55s var(--spring-smooth),
+        transform 0.62s var(--spring-snappy),
+        border-color 0.25s ease;
+    }
+    .promo-reveal-card.in-view {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    .promo-reveal-card:nth-child(2) { transition-delay: 90ms; }
+    .promo-reveal-card:nth-child(3) { transition-delay: 180ms; }
+
+    /* Admin-Triggered Floating Promo Banner (Hidden unless /promo is sent by Admin) */
+    #adminPromoBanner {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translate3d(-50%, 120px, 0) scale(0.9);
+      z-index: 900;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px 10px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--glass-chrome);
+      backdrop-filter: blur(24px) saturate(185%);
+      -webkit-backdrop-filter: blur(24px) saturate(185%);
+      border: 1px solid var(--border-specular);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.58), inset 0 1px 0 var(--inset-top);
+      opacity: 0;
+      pointer-events: none;
+      max-width: calc(100vw - 24px);
+      transition:
+        transform 0.52s var(--spring-snappy),
+        opacity 0.3s ease;
+    }
+    #adminPromoBanner.enabled { display: flex; }
+    #adminPromoBanner.visible {
+      transform: translate3d(-50%, 0, 0) scale(1);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .ribbon-text {
+      font-size: 0.83rem;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ribbon-cta {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 800;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* Recent Orders, Steps & FAQ */
@@ -763,7 +893,7 @@
     .faq-a-inner { padding-top: 8px; }
 
     /* =========================================================================
-       7. MODAL SHEETS, FORMS & TRACKER
+       8. MODAL SHEETS, PRODUCT DETAILS VIEW, FORMS & TRACKER
        ========================================================================= */
     .backdrop {
       position: fixed;
@@ -783,7 +913,7 @@
 
     .modal-window {
       width: 100%;
-      max-width: 500px;
+      max-width: 520px;
       background: var(--glass-sheet);
       border: 1px solid var(--border-specular);
       border-radius: var(--radius-xl);
@@ -814,6 +944,92 @@
       display: grid;
       place-items: center;
       flex-shrink: 0;
+    }
+
+    .details-hero-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(24, 144, 255, 0.1);
+      border: 1px solid rgba(24, 144, 255, 0.28);
+      margin-bottom: 14px;
+    }
+    .details-overview {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      color: var(--text-primary);
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      margin-bottom: 14px;
+    }
+    .spec-tile {
+      padding: 11px 13px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-hairline);
+    }
+    .spec-lbl {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+    }
+    .spec-val {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .benefits-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-hairline);
+      margin-bottom: 16px;
+    }
+    .benefits-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+    .benefits-list {
+      list-style: none;
+      display: grid;
+      gap: 7px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    .benefits-list li::before {
+      content: "✓";
+      color: var(--accent-green);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .back-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--glass-card);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 12px;
     }
 
     .field { margin-bottom: 14px; }
@@ -1080,11 +1296,8 @@
             <stop offset="100%" stop-color="#1890FF"/>
           </linearGradient>
         </defs>
-        <!-- Blue Triangle Base -->
         <path d="M84 146L138 96L156 146H84Z" fill="url(#ebTriGradIntro)"/>
-        <!-- Bold Stylized White "E" -->
         <path d="M62 24H154L142 52H87L82 68H124L114 93H74L68 111H112L99 138H45C36 138 30 130 33 121L52 38C54 29 58 24 62 24Z" fill="#FFFFFF"/>
-        <!-- Sweeping Blue Upward Arrow -->
         <path d="M36 108C34 128 56 142 94 129C128 117 156 90 175 62L193 74L198 18L146 43L162 54C144 80 118 103 87 113C58 122 43 114 36 108Z" fill="url(#ebArrowGradIntro)"/>
       </svg>
       <div class="intro-wordmark">Ethio<span>Boost</span></div>
@@ -1095,6 +1308,13 @@
   </div>
 
   <div id="dynamicIsland"><span class="di-pulse"></span><span id="diText">EthioBoost Ready</span></div>
+
+  <!-- Admin-Controlled Floating Promo Banner (Only appears when Admin sends /promo in Bot) -->
+  <div id="adminPromoBanner">
+    <span class="di-pulse"></span>
+    <span class="ribbon-text" id="adminPromoBannerText"></span>
+    <button type="button" class="ribbon-cta tactile magnetic" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">View</button>
+  </div>
 
   <div class="wrapper">
     <!-- Floating Glass Navigation -->
@@ -1181,6 +1401,90 @@
     <!-- Package Cards Grid -->
     <section class="packages-grid" id="packagesGrid"></section>
 
+    <!-- Interactive Liquid Glass Mannequin + Promotional Showcase -->
+    <section class="mannequin-showcase glass-chrome glass-depth" id="mannequinSection" onpointermove="trackGlassDepth(event, this)">
+      <div class="mannequin-stage" onpointermove="tiltMannequin(event, this)" onpointerleave="resetMannequin()">
+        <span class="holo-orbit-badge orbit-top">⚡ 24/7 Auto-Dispatch</span>
+        <span class="holo-orbit-badge orbit-bottom">🇪🇹 TeleBirr & M-Pesa</span>
+
+        <svg id="glassMannequinSvg" class="mannequin-svg" viewBox="0 0 240 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="EthioBoost Glass Growth Mannequin">
+          <defs>
+            <linearGradient id="mannequinGlassBody" x1="50" y1="30" x2="190" y2="250" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#60A5FA" stop-opacity="0.55"/>
+              <stop offset="48%" stop-color="#1890FF" stop-opacity="0.28"/>
+              <stop offset="100%" stop-color="#0F172A" stop-opacity="0.65"/>
+            </linearGradient>
+            <linearGradient id="mannequinRim" x1="40" y1="20" x2="200" y2="240" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.75"/>
+              <stop offset="50%" stop-color="#38BDF8" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0.2"/>
+            </linearGradient>
+            <linearGradient id="visorGlow" x1="85" y1="54" x2="155" y2="74" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#38BDF8"/>
+              <stop offset="100%" stop-color="#2563EB"/>
+            </linearGradient>
+          </defs>
+
+          <ellipse cx="120" cy="256" rx="74" ry="12" fill="rgba(24, 144, 255, 0.22)" stroke="rgba(56, 189, 248, 0.45)" stroke-width="1.2"/>
+          <path d="M62 132C62 110 82 98 120 98C158 98 178 110 178 132L168 214C166 228 152 238 120 238C88 238 74 228 72 214L62 132Z"
+                fill="url(#mannequinGlassBody)" stroke="url(#mannequinRim)" stroke-width="2"/>
+          <circle cx="120" cy="148" r="24" fill="rgba(14, 165, 233, 0.18)" stroke="rgba(255, 255, 255, 0.45)" stroke-width="1.5"/>
+          <path d="M111 154L122 141L129 147L136 138" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M130 138H136V144" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M56 126C42 136 36 162 44 192C47 202 58 202 61 191L67 142"
+                fill="url(#mannequinGlassBody)" stroke="url(#mannequinRim)" stroke-width="1.8"/>
+          <path d="M184 126C198 136 204 162 196 192C193 202 182 202 179 191L173 142"
+                fill="url(#mannequinGlassBody)" stroke="url(#mannequinRim)" stroke-width="1.8"/>
+          <rect x="106" y="84" width="28" height="18" rx="9" fill="url(#mannequinGlassBody)" stroke="url(#mannequinRim)" stroke-width="1.5"/>
+          <rect x="82" y="24" width="76" height="68" rx="34" fill="url(#mannequinGlassBody)" stroke="url(#mannequinRim)" stroke-width="2"/>
+          <rect x="92" y="50" width="56" height="16" rx="8" fill="url(#visorGlow)"/>
+          <rect x="98" y="53" width="24" height="4" rx="2" fill="rgba(255,255,255,0.75)"/>
+        </svg>
+      </div>
+
+      <div>
+        <div class="hero-tag" style="margin-bottom:10px;">✨ Why Creators Choose EthioBoost</div>
+        <h2 style="font-size:1.55rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:8px;">
+          Built for Ethiopian Channels, Brands & Creators
+        </h2>
+        <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.5;margin-bottom:16px;" id="dynamicPromoHeadline">
+          Scale your Telegram audience in ETB without international cards or sharing your password.
+        </p>
+
+        <div class="promo-scroll-stack" id="promoScrollStack">
+          <div class="promo-reveal-card glass-depth" onpointermove="trackGlassDepth(event, this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <strong style="font-size:0.95rem;">🎁 First-Order Welcome Deal</strong>
+              <span class="pkg-badge promo-first">108 ETB / 58 ETB</span>
+            </div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);">
+              Start with 100 Global Members (108 ETB) or 500 Post Views (58 ETB) on your very first order.
+            </div>
+          </div>
+
+          <div class="promo-reveal-card glass-depth" onpointermove="trackGlassDepth(event, this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <strong style="font-size:0.95rem;">💳 1-Tap EthioBoost Wallet</strong>
+              <span class="pkg-badge">Min 50 ETB</span>
+            </div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);">
+              Top up once via TeleBirr or M-Pesa and launch instant repeat orders with zero wait.
+            </div>
+          </div>
+
+          <div class="promo-reveal-card glass-depth" onpointermove="trackGlassDepth(event, this)">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+              <strong style="font-size:0.95rem;">🛡️ 30–360 Day Stay Protection</strong>
+              <span class="pkg-badge">Auto-Refill</span>
+            </div>
+            <div style="font-size:0.82rem;color:var(--text-secondary);">
+              Every member package includes free refill protection and live progress tracking from hold to done.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Device Order History -->
     <section class="orders-strip glass-chrome" id="historySection" style="display:none;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
@@ -1264,7 +1568,7 @@
           <div class="acc-box">
             <div>
               <div style="font-size:0.75rem;color:var(--text-secondary);" id="wAccHolder">TeleBirr Account</div>
-              <div style="font-weight:800;font-size:1.08rem;" id="wAccNumber">0953001360</div>
+              <div style="font-weight:800;font-size:1.08rem;" id="wAccNumber">09XXXXXXXX</div>
             </div>
             <button type="button" class="copy-pill tactile magnetic" onclick="copyWalletAccount(this)">Copy</button>
           </div>
@@ -1315,7 +1619,7 @@
     </div>
   </div>
 
-  <!-- MODAL 2: PACKAGE CHECKOUT -->
+  <!-- MODAL 2: PRODUCT DETAILS & PACKAGE CHECKOUT -->
   <div class="backdrop" id="checkoutBackdrop" onclick="if(event.target===this) closeCheckout()">
     <div class="modal-window" id="checkoutWindow">
       <div class="modal-head">
@@ -1326,7 +1630,43 @@
         <button type="button" class="close-x tactile magnetic" onclick="closeCheckout()">✕</button>
       </div>
 
-      <form id="orderForm">
+      <div id="productDetailsView">
+        <div class="details-hero-box">
+          <p class="details-overview" id="detailOverview"></p>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-tile">
+            <div class="spec-lbl">Start Time</div>
+            <div class="spec-val" id="detailStartTime">0–15 Minutes</div>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-lbl">Delivery Speed</div>
+            <div class="spec-val" id="detailSpeed">Under 1 Hour</div>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-lbl">Stay Guarantee</div>
+            <div class="spec-val" id="detailGuarantee">30 Days Free Refill</div>
+          </div>
+          <div class="spec-tile">
+            <div class="spec-lbl">Account Safety</div>
+            <div class="spec-val" id="detailRequirement">Public Link Only</div>
+          </div>
+        </div>
+
+        <div class="benefits-box">
+          <div class="benefits-title">What You Get</div>
+          <ul class="benefits-list" id="detailBenefitsList"></ul>
+        </div>
+
+        <button type="button" class="submit-cta tactile magnetic" id="proceedToOrderBtn" onclick="showCheckoutFormStep()">
+          Continue to Order →
+        </button>
+      </div>
+
+      <form id="orderForm" style="display:none;">
+        <button type="button" class="back-link-btn tactile" onclick="showProductDetailsStep()">← Back to Package Details</button>
+
         <div class="field">
           <label id="linkLabel">Public Channel or Group Link</label>
           <input class="input" id="targetLink" placeholder="https://t.me/yourchannel or @yourchannel" required />
@@ -1357,7 +1697,7 @@
             <div class="acc-box">
               <div>
                 <div style="font-size:0.75rem;color:var(--text-secondary);" id="accHolder">TeleBirr Account</div>
-                <div style="font-weight:800;font-size:1.08rem;" id="accNumber">0953001360</div>
+                <div style="font-weight:800;font-size:1.08rem;" id="accNumber">09XXXXXXXX</div>
               </div>
               <button type="button" class="copy-pill tactile magnetic" onclick="copyAccount(this)">Copy</button>
             </div>
@@ -1414,7 +1754,27 @@
 
   <script>
     // =========================================================================
-    // 1. INTRO SPLASH CONTROLLER
+    // 1. PLACEHOLDERS — REPLACE THESE WITH YOUR BOT TOKEN, CHAT ID & NUMBERS
+    // =========================================================================
+    const CONFIG = {
+      BOT_TOKEN: "YOUR_TELEGRAM_BOT_TOKEN_HERE",       // From @BotFather
+      ADMIN_CHAT_ID: "YOUR_ADMIN_CHAT_ID_HERE",       // From @userinfobot
+      MIN_DEPOSIT_ETB: 50,
+      WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY",
+      USD_TO_ETB: 195,
+      STANDARD_MARKUP_ETB: 200,
+      FIRST_ORDER_MARKUP_ETB: 40,
+      PAYMENTS: {
+        "TeleBirr": { number: "09XXXXXXXX", holder: "TeleBirr — EthioBoost" },
+        "M-Pesa":   { number: "07XXXXXXXX", holder: "M-Pesa — EthioBoost" }
+      }
+    };
+
+    const DEFAULT_HERO_SUBTITLE =
+      "Scale your Telegram audience in ETB without international cards or sharing your password.";
+
+    // =========================================================================
+    // 2. INTRO SPLASH CONTROLLER
     // =========================================================================
     function dismissIntro() {
       const splash = document.getElementById("introSplash");
@@ -1425,57 +1785,345 @@
     setTimeout(dismissIntro, 1850);
 
     // =========================================================================
-    // 2. CONFIGURATION & MEMBERSGRAM -> ETB PRICING RULES (200 ETB PROFIT)
+    // 3. DEFAULT CATALOG + TELEGRAM BOT REMOTE ADMIN STATE
     // =========================================================================
-    const CONFIG = {
-      BOT_TOKEN: "9156801499:AAHOYRRFjhpnE082Bh0TQJzpH_Bqt6ONuCw",
-      ADMIN_CHAT_ID: "6452851282",
-      MIN_DEPOSIT_ETB: 50,
-      WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY",
-      USD_TO_ETB: 195,
-      STANDARD_MARKUP_ETB: 200,
-      FIRST_ORDER_MARKUP_ETB: 40,
-      PAYMENTS: {
-        "TeleBirr": { number: "0953001360", holder: "TeleBirr — EthioBoost" },
-        "M-Pesa":   { number: "0701217060", holder: "M-Pesa — EthioBoost" }
-      }
-    };
-
-    const PACKAGES = [
+    const DEFAULT_PACKAGES = [
       // Members
-      { id: "m1", cat: "Members", title: "100 Global Members", desc: "Fast start with real global Telegram accounts.", guarantees: ["30-Day Stay", "No Password"], mgUsd: 0.35, mgOldUsd: null, badge: "Starter", firstOrderPromo: true },
-      { id: "m2", cat: "Members", title: "1,000 Global Members", desc: "Steady join rate to build instant channel credibility.", guarantees: ["30-Day Stay", "Fast Start"], mgUsd: 1.74, mgOldUsd: 3.48, badge: "50% OFF" },
-      { id: "m3", cat: "Members", title: "1,000 Members (3 Months)", desc: "Extended retention guarantee for growing channels.", guarantees: ["90-Day Stay", "Auto-Refill"], mgUsd: 3.49, mgOldUsd: 6.98, badge: "Popular" },
-      { id: "m4", cat: "Members", title: "1,000 Search Ranking Members", desc: "Premium active members that help rank higher in Telegram search.", guarantees: ["30-Day Stay", "Search Boost"], mgUsd: 6.99, mgOldUsd: 13.98, badge: "Premium" },
-      { id: "m5", cat: "Members", title: "1,000 Members (12 Months)", desc: "Long-term 360-day stay protection for flagship channels.", guarantees: ["360-Day Stay", "VIP Quality"], mgUsd: 6.99, mgOldUsd: 13.98, badge: "1 Year" },
-      { id: "m6", cat: "Members", title: "10,000 Global Members", desc: "High-volume growth pack at our lowest per-member rate.", guarantees: ["30-Day Stay", "Gradual Pace"], mgUsd: 10.49, mgOldUsd: 34.97, badge: "70% OFF" },
+      {
+        id: "m1", cat: "Members", title: "100 Global Members",
+        desc: "Fast start with real global Telegram accounts.",
+        guarantees: ["30-Day Stay", "No Password"],
+        mgUsd: 0.35, mgOldUsd: null, badge: "Starter", firstOrderPromo: true,
+        details: {
+          overview: "Get 100 real global Telegram members delivered to your public channel or group to build instant credibility, social proof, and organic growth—fast and safe.",
+          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
+          guarantee: "30-Day Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Real global Telegram accounts—zero bots or fake passwords needed",
+            "Works for both public Telegram channels and public groups",
+            "Protected by a 30-day stay guarantee with automatic refill support",
+            "Special first-order welcome discount applied automatically"
+          ]
+        }
+      },
+      {
+        id: "m2", cat: "Members", title: "1,000 Global Members",
+        desc: "Steady join rate to build instant channel credibility.",
+        guarantees: ["30-Day Stay", "Fast Start"],
+        mgUsd: 1.74, mgOldUsd: 3.48, badge: "50% OFF",
+        details: {
+          overview: "Boost your Telegram channel or group by 1,000 real global members. Delivered at a steady, natural join rate to protect your channel while dramatically increasing social proof.",
+          startTime: "Instant (0–15 mins)", speed: "1–3 Hours (Natural Pace)",
+          guarantee: "30-Day Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "1,000 real global Telegram subscribers added smoothly",
+            "Attracts organic visitors who trust active, established channels",
+            "Full 30-day retention protection against drops",
+            "No admin access or Telegram login credentials ever required"
+          ]
+        }
+      },
+      {
+        id: "m3", cat: "Members", title: "1,000 Members (3 Months)",
+        desc: "Extended retention guarantee for growing channels.",
+        guarantees: ["90-Day Stay", "Auto-Refill"],
+        mgUsd: 3.49, mgOldUsd: 6.98, badge: "Popular",
+        details: {
+          overview: "Built for serious channel owners who want long-lasting subscriber stability. Includes 1,000 real global members backed by an extended 90-day (3-month) stay guarantee.",
+          startTime: "Instant (0–15 mins)", speed: "1–3 Hours (Gradual)",
+          guarantee: "90-Day Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Extended 90-day (3-month) retention & free refill coverage",
+            "High-stability real Telegram users with natural join pacing",
+            "Ideal for monetization, sponsor pitches, and brand channels",
+            "100% safe—requires only your public @username or t.me link"
+          ]
+        }
+      },
+      {
+        id: "m4", cat: "Members", title: "1,000 Search Ranking Members",
+        desc: "Premium active members that help rank higher in Telegram search.",
+        guarantees: ["30-Day Stay", "Search Boost"],
+        mgUsd: 6.99, mgOldUsd: 13.98, badge: "Premium",
+        details: {
+          overview: "Premium Telegram members delivered safely and gradually to help improve your channel's visibility and ranking in global Telegram search results while protecting against drops or penalties.",
+          startTime: "Instant (0–30 mins)", speed: "Gradual Organic Rollout",
+          guarantee: "30-Day Premium Guarantee", requirement: "Public Channel • No Password",
+          benefits: [
+            "High-trust active Telegram accounts that strengthen search ranking",
+            "Gradual, safe delivery curve engineered to prevent penalties",
+            "Higher organic discovery when users search keywords in Telegram",
+            "Backed by a 30-day stay guarantee"
+          ]
+        }
+      },
+      {
+        id: "m5", cat: "Members", title: "1,000 Members (12 Months)",
+        desc: "Long-term 360-day stay protection for flagship channels.",
+        guarantees: ["360-Day Stay", "VIP Quality"],
+        mgUsd: 6.99, mgOldUsd: 13.98, badge: "1 Year",
+        details: {
+          overview: "Our longest retention tier: 1,000 high-retention global members protected by a full 360-day (12-month) stay guarantee for flagship communities and businesses.",
+          startTime: "Instant (0–15 mins)", speed: "1–4 Hours (Gradual)",
+          guarantee: "360-Day Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Full 1-year (360 days) stay protection & priority refill",
+            "Premium high-retention accounts with profile photos & activity",
+            "Set-and-forget subscriber base for long-term brand authority",
+            "Zero password or admin permissions required"
+          ]
+        }
+      },
+      {
+        id: "m6", cat: "Members", title: "10,000 Global Members",
+        desc: "High-volume growth pack at our lowest per-member rate.",
+        guarantees: ["30-Day Stay", "Gradual Pace"],
+        mgUsd: 10.49, mgOldUsd: 34.97, badge: "70% OFF",
+        details: {
+          overview: "Scale your channel fast with 10,000 real global Telegram members at 70% off. Delivered gradually over several hours so your growth curve looks natural and organic.",
+          startTime: "Instant (0–20 mins)", speed: "Gradual Over Several Hours",
+          guarantee: "30-Day Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Massive 10,000-member authority boost at our lowest unit cost",
+            "Smart multi-hour gradual rollout to keep channel growth natural",
+            "30-day stay guarantee included on the entire order",
+            "Works on any public Telegram channel or supergroup"
+          ]
+        }
+      },
 
       // Views
-      { id: "v1", cat: "Views", title: "500 Post Views", desc: "Instant view boost on any single public channel post.", guarantees: ["Instant Start", "Single Post"], mgUsd: 0.09, mgOldUsd: 2.09, badge: "Starter", firstOrderPromo: true },
-      { id: "v2", cat: "Views", title: "5,000 Post Views", desc: "Increase reach and social proof on key announcements.", guarantees: ["Instant Start", "Single Post"], mgUsd: 0.28, mgOldUsd: 1.40, badge: "80% OFF" },
-      { id: "v3", cat: "Views", title: "5,000 Views (Last 5 Posts)", desc: "Automatically distributes views across your latest 5 posts.", guarantees: ["Last 5 Posts", "Fast Start"], mgUsd: 0.70, mgOldUsd: 3.50, badge: "Popular" },
-      { id: "v4", cat: "Views", title: "50,000 Post Views", desc: "Viral post reach delivered smoothly within minutes.", guarantees: ["Instant Start", "Best Value"], mgUsd: 2.79, mgOldUsd: 31.00, badge: "91% OFF" },
+      {
+        id: "v1", cat: "Views", title: "500 Post Views",
+        desc: "Instant view boost on any single public channel post.",
+        guarantees: ["Instant Start", "Single Post"],
+        mgUsd: 0.09, mgOldUsd: 2.09, badge: "Starter", firstOrderPromo: true,
+        details: {
+          overview: "Boost your Telegram post views instantly. Higher view counts increase post visibility, social proof, and organic forwarding across Telegram.",
+          startTime: "Instant (0–5 mins)", speed: "Under 15 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Post Link",
+          benefits: [
+            "Instant eye-counter boost on any single public Telegram post",
+            "Makes announcements, ads, and giveaways look active immediately",
+            "Permanent views that never drop",
+            "First-order welcome discount applied automatically"
+          ]
+        }
+      },
+      {
+        id: "v2", cat: "Views", title: "5,000 Post Views",
+        desc: "Increase reach and social proof on key announcements.",
+        guarantees: ["Instant Start", "Single Post"],
+        mgUsd: 0.28, mgOldUsd: 1.40, badge: "80% OFF",
+        details: {
+          overview: "Add 5,000 real views to any public Telegram post within minutes. Ideal for product launches, sponsored posts, and viral videos.",
+          startTime: "Instant (0–5 mins)", speed: "15–30 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Post Link (t.me/channel/123)",
+          benefits: [
+            "Fast 5,000-view surge to elevate post credibility",
+            "Improves engagement ratios for sponsors and advertisers",
+            "Supports text, photo, video, and forwarded channel posts",
+            "No password or channel admin access needed"
+          ]
+        }
+      },
+      {
+        id: "v3", cat: "Views", title: "5,000 Views (Last 5 Posts)",
+        desc: "Automatically distributes views across your latest 5 posts.",
+        guarantees: ["Last 5 Posts", "Fast Start"],
+        mgUsd: 0.70, mgOldUsd: 3.50, badge: "Popular",
+        details: {
+          overview: "Paste your public channel link once and automatically deliver 5,000 views distributed evenly across your 5 most recent posts (1,000 views per post).",
+          startTime: "Instant (0–10 mins)", speed: "15–45 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Channel Link (@channel)",
+          benefits: [
+            "Saves time—automatically boosts your latest 5 posts in one order",
+            "Creates consistent engagement across your channel feed",
+            "Permanent view counter increase on all 5 posts",
+            "Only your public channel username/link is required"
+          ]
+        }
+      },
+      {
+        id: "v4", cat: "Views", title: "50,000 Post Views",
+        desc: "Viral post reach delivered smoothly within minutes.",
+        guarantees: ["Instant Start", "Best Value"],
+        mgUsd: 2.79, mgOldUsd: 31.00, badge: "91% OFF",
+        details: {
+          overview: "Give your flagship post viral reach with 50,000 Telegram views at 91% off. Delivered rapidly and smoothly to maximize visibility and authority.",
+          startTime: "Instant (0–5 mins)", speed: "30–90 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Post Link (t.me/channel/123)",
+          benefits: [
+            "50,000 high-speed views for major campaigns & viral content",
+            "Unbeatable bulk rate per 1,000 views",
+            "Permanent retention with zero drop",
+            "100% safe using only your public post URL"
+          ]
+        }
+      },
 
       // Reactions
-      { id: "r1", cat: "Reactions", title: "100 Positive Global Reactions", desc: "Positive emoji reactions (👍 🤩 🎉 🔥 ❤️ 👏) on your post.", guarantees: ["Fast Delivery", "Mixed Emojis"], mgUsd: 0.14, mgOldUsd: 2.14, badge: "Fast" },
-      { id: "r2", cat: "Reactions", title: "1,000 Positive Global Reactions", desc: "High engagement boost to make posts stand out.", guarantees: ["Instant Start", "Positive Set"], mgUsd: 0.21, mgOldUsd: 2.21, badge: "90% OFF" },
-      { id: "r3", cat: "Reactions", title: "1,000 Premium Reactions", desc: "High-retention accounts reacting at a natural pace.", guarantees: ["High Retention", "Natural Pace"], mgUsd: 1.39, mgOldUsd: 3.39, badge: "Premium" },
+      {
+        id: "r1", cat: "Reactions", title: "100 Positive Global Reactions",
+        desc: "Positive emoji reactions (👍 🤩 🎉 🔥 ❤️ 👏) on your post.",
+        guarantees: ["Fast Delivery", "Mixed Emojis"],
+        mgUsd: 0.14, mgOldUsd: 2.14, badge: "Fast",
+        details: {
+          overview: "Add 100 real positive emoji reactions (👍 🤩 🎉 🔥 ❤️ 👏) to your Telegram post to improve engagement rates and make your content stand out.",
+          startTime: "Instant (0–10 mins)", speed: "Under 30 Minutes",
+          guarantee: "Permanent Reactions", requirement: "Public Post Link",
+          benefits: [
+            "Natural mix of positive emojis (👍 ❤️ 🔥 🎉 🤩 👏)",
+            "Boosts interactive social proof alongside your post views",
+            "Make sure emoji reactions are enabled in your channel settings",
+            "Fast, safe delivery with no password needed"
+          ]
+        }
+      },
+      {
+        id: "r2", cat: "Reactions", title: "1,000 Positive Global Reactions",
+        desc: "High engagement boost to make posts stand out.",
+        guarantees: ["Instant Start", "Positive Set"],
+        mgUsd: 0.21, mgOldUsd: 2.21, badge: "90% OFF",
+        details: {
+          overview: "Supercharge post engagement with 1,000 real positive emoji reactions at 90% off. Ideal for polls, announcements, and high-traffic posts.",
+          startTime: "Instant (0–10 mins)", speed: "20–60 Minutes",
+          guarantee: "Permanent Reactions", requirement: "Public Post Link",
+          benefits: [
+            "1,000 positive emoji reactions distributed naturally",
+            "Dramatically increases perceived community hype and interaction",
+            "Works on any public Telegram channel post with reactions turned on",
+            "Zero login or admin access required"
+          ]
+        }
+      },
+      {
+        id: "r3", cat: "Reactions", title: "1,000 Premium Reactions",
+        desc: "High-retention accounts reacting at a natural pace.",
+        guarantees: ["High Retention", "Natural Pace"],
+        mgUsd: 1.39, mgOldUsd: 3.39, badge: "Premium",
+        details: {
+          overview: "Buy 1,000 premium Telegram reactions from high-trust accounts delivered safely and gradually to maximize engagement and social proof.",
+          startTime: "Instant (0–15 mins)", speed: "Gradual Natural Pace",
+          guarantee: "Premium Retention", requirement: "Public Post Link",
+          benefits: [
+            "Delivered by high-retention active Telegram profiles",
+            "Smooth, realistic reaction timing that matches organic traffic",
+            "Positive emoji mix (❤️ 🔥 👍 🎉 🤩) for maximum appeal",
+            "100% safe and compliant—public post link only"
+          ]
+        }
+      },
 
       // Boosts
-      { id: "b1", cat: "Boosts", title: "5 Channel Boosts (7 Days)", desc: "Level up your channel for 7 days to unlock Stories & colors.", guarantees: ["7-Day Active", "Story Unlock"], mgUsd: 2.09, mgOldUsd: 4.09, badge: "49% OFF" },
-      { id: "b2", cat: "Boosts", title: "5 Channel Boosts (30 Days)", desc: "Full 30-day Telegram channel boost for steady level perks.", guarantees: ["30-Day Active", "Fast Delivery"], mgUsd: 6.29, mgOldUsd: 8.29, badge: "Popular" },
-      { id: "b3", cat: "Boosts", title: "50 Channel Boosts (7 Days)", desc: "Jump multiple channel levels fast with 50 active boosts.", guarantees: ["7-Day Active", "Pro Tier"], mgUsd: 17.49, mgOldUsd: 29.15, badge: "40% OFF" },
-      { id: "b4", cat: "Boosts", title: "50 Channel Boosts (30 Days)", desc: "Maximum channel perks, custom wallpapers & emoji status.", guarantees: ["30-Day Active", "VIP Tier"], mgUsd: 41.99, mgOldUsd: 59.99, badge: "30% OFF" }
+      {
+        id: "b1", cat: "Boosts", title: "5 Channel Boosts (7 Days)",
+        desc: "Level up your channel for 7 days to unlock Stories & colors.",
+        guarantees: ["7-Day Active", "Story Unlock"],
+        mgUsd: 2.09, mgOldUsd: 4.09, badge: "49% OFF",
+        details: {
+          overview: "Add 5 official Telegram Channel Boosts active for 7 days. Leveling up your channel unlocks Telegram Stories, custom name colors, and profile badges.",
+          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
+          guarantee: "7-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "Raises your Telegram channel level immediately",
+            "Unlocks channel Stories, custom accent colors & cover styles",
+            "Active for a full 7 days from delivery",
+            "Only your public channel link is needed"
+          ]
+        }
+      },
+      {
+        id: "b2", cat: "Boosts", title: "5 Channel Boosts (30 Days)",
+        desc: "Full 30-day Telegram channel boost for steady level perks.",
+        guarantees: ["30-Day Active", "Fast Delivery"],
+        mgUsd: 6.29, mgOldUsd: 8.29, badge: "Popular",
+        details: {
+          overview: "Keep your Telegram channel leveled up for a full month with 5 active Channel Boosts lasting 30 days—perfect for posting daily Stories and custom branding.",
+          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
+          guarantee: "30-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "Full 30-day boost duration without weekly renewals",
+            "Unlocks daily channel Stories, custom reply styles & emoji status",
+            "Delivered by real Telegram Premium booster accounts",
+            "100% safe—requires only your public channel link"
+          ]
+        }
+      },
+      {
+        id: "b3", cat: "Boosts", title: "50 Channel Boosts (7 Days)",
+        desc: "Jump multiple channel levels fast with 50 active boosts.",
+        guarantees: ["7-Day Active", "Pro Tier"],
+        mgUsd: 17.49, mgOldUsd: 29.15, badge: "40% OFF",
+        details: {
+          overview: "Jump multiple Telegram channel levels at once with 50 active boosts for 7 days—unlocking higher daily Story limits, custom wallpapers, and VIP channel styling.",
+          startTime: "Instant (0–20 mins)", speed: "1–2 Hours",
+          guarantee: "7-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "50 simultaneous boosts for rapid multi-level progression",
+            "Unlocks custom channel wallpapers, emoji packs & extra Stories",
+            "Ideal for major launches, events, and promotional weeks",
+            "Public channel link only—no admin permissions needed"
+          ]
+        }
+      },
+      {
+        id: "b4", cat: "Boosts", title: "50 Channel Boosts (30 Days)",
+        desc: "Maximum channel perks, custom wallpapers & emoji status.",
+        guarantees: ["30-Day Active", "VIP Tier"],
+        mgUsd: 41.99, mgOldUsd: 59.99, badge: "30% OFF",
+        details: {
+          overview: "Our flagship VIP channel upgrade: 50 official Telegram Channel Boosts active for a full 30 days to unlock maximum customization, Stories, and visual prestige.",
+          startTime: "Instant (0–20 mins)", speed: "1–3 Hours",
+          guarantee: "30-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "Maximum channel level perks for 30 consecutive days",
+            "Unlocks custom backgrounds, emoji statuses, and high Story quotas",
+            "Real Telegram Premium booster accounts with full 30-day warranty",
+            "Zero password or admin access required"
+          ]
+        }
+      }
     ];
 
-    // Regular: (Membersgram USD * 195) + 200
-    // First Order on 100 Members & 500 Views: (Membersgram USD * 195) + 40
+    // Remote Admin State synced exclusively from your Telegram Bot commands
+    let ADMIN_STATE = JSON.parse(localStorage.getItem("eb_admin_state") || "null") || {
+      markupETB: CONFIG.STANDARD_MARKUP_ETB,
+      discountPct: 0,
+      priceOverrides: {},
+      hiddenIds: [],
+      customPackages: [],
+      promoText: ""
+    };
+
+    function getAllPackages() {
+      return [...DEFAULT_PACKAGES, ...(ADMIN_STATE.customPackages || [])].filter(
+        (p) => !(ADMIN_STATE.hiddenIds || []).includes(p.id)
+      );
+    }
+
     function getPackagePricing(pkg) {
       const isFirstOrderEligible = Boolean(pkg.firstOrderPromo) && getOrders().length === 0;
-      const regularPrice = Math.round(pkg.mgUsd * CONFIG.USD_TO_ETB + CONFIG.STANDARD_MARKUP_ETB);
-      const promoPrice = Math.round(pkg.mgUsd * CONFIG.USD_TO_ETB + CONFIG.FIRST_ORDER_MARKUP_ETB);
+      const markup = Number(ADMIN_STATE.markupETB ?? CONFIG.STANDARD_MARKUP_ETB);
+      const override = ADMIN_STATE.priceOverrides?.[pkg.id];
+
+      let regularPrice = override != null
+        ? Number(override)
+        : Math.round(pkg.mgUsd * CONFIG.USD_TO_ETB + markup);
+
+      const discountPct = Number(ADMIN_STATE.discountPct || 0);
+      if (discountPct > 0 && discountPct < 90 && !isFirstOrderEligible) {
+        const discounted = Math.max(10, Math.round(regularPrice * (1 - discountPct / 100)));
+        return {
+          price: discounted,
+          oldPrice: regularPrice,
+          badge: `${discountPct}% OFF`,
+          isFirstOrderDeal: false
+        };
+      }
 
       if (isFirstOrderEligible) {
+        const promoPrice = Math.round(pkg.mgUsd * CONFIG.USD_TO_ETB + CONFIG.FIRST_ORDER_MARKUP_ETB);
         return {
           price: promoPrice,
           oldPrice: regularPrice,
@@ -1485,7 +2133,7 @@
       }
 
       const oldPrice = pkg.mgOldUsd
-        ? Math.round(pkg.mgOldUsd * CONFIG.USD_TO_ETB + CONFIG.STANDARD_MARKUP_ETB)
+        ? Math.round(pkg.mgOldUsd * CONFIG.USD_TO_ETB + markup)
         : null;
 
       return {
@@ -1508,45 +2156,15 @@
     let trackerPollTimer = null;
 
     const STAGE_META = {
-      hold: {
-        step: 1,
-        label: "Payment on Hold / Being Approved",
-        pillClass: "st-hold",
-        barClass: "filled-amber",
-        icon: "⏳"
-      },
-      approved: {
-        step: 2,
-        label: "Payment Approved • Starting",
-        pillClass: "st-approved",
-        barClass: "filled-blue",
-        icon: "💳"
-      },
-      halfway: {
-        step: 3,
-        label: "Half Way There (50% Delivered)",
-        pillClass: "st-halfway",
-        barClass: "filled-blue",
-        icon: "🚀"
-      },
-      done: {
-        step: 4,
-        label: "Done • Completed",
-        pillClass: "st-done",
-        barClass: "filled-green",
-        icon: "✅"
-      },
-      rejected: {
-        step: 1,
-        label: "Payment Not Verified / Rejected",
-        pillClass: "st-rejected",
-        barClass: "filled-red",
-        icon: "❌"
-      }
+      hold: { step: 1, label: "Payment on Hold / Being Approved", pillClass: "st-hold", barClass: "filled-amber", icon: "⏳" },
+      approved: { step: 2, label: "Payment Approved • Starting", pillClass: "st-approved", barClass: "filled-blue", icon: "💳" },
+      halfway: { step: 3, label: "Half Way There (50% Delivered)", pillClass: "st-halfway", barClass: "filled-blue", icon: "🚀" },
+      done: { step: 4, label: "Done • Completed", pillClass: "st-done", barClass: "filled-green", icon: "✅" },
+      rejected: { step: 1, label: "Payment Not Verified / Rejected", pillClass: "st-rejected", barClass: "filled-red", icon: "❌" }
     };
 
     // =========================================================================
-    // 3. MAGNETIC BUTTONS, SPECULAR RIPPLES & GLASS DEPTH ENGINE
+    // 4. LIQUID GLASS JELLY PHYSICS, MAGNETS & MANNEQUIN TILT
     // =========================================================================
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isDesktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
@@ -1556,6 +2174,21 @@
       const r = el.getBoundingClientRect();
       el.style.setProperty("--gx", `${e.clientX - r.left}px`);
       el.style.setProperty("--gy", `${e.clientY - r.top}px`);
+    }
+
+    function tiltMannequin(e, stageEl) {
+      if (prefersReducedMotion) return;
+      const svg = document.getElementById("glassMannequinSvg");
+      if (!svg) return;
+      const r = stageEl.getBoundingClientRect();
+      const nx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+      const ny = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+      svg.style.transform = `translate3d(${nx * 10}px, ${ny * 8}px, 0) rotate(${nx * 5}deg) scale(1.03)`;
+    }
+
+    function resetMannequin() {
+      const svg = document.getElementById("glassMannequinSvg");
+      if (svg) svg.style.transform = "translate3d(0, 0, 0) rotate(0deg) scale(1)";
     }
 
     if (isDesktopPointer && !prefersReducedMotion) {
@@ -1570,12 +2203,26 @@
         if (target) {
           activeMagEl = target;
           const r = target.getBoundingClientRect();
-          const dx = (e.clientX - (r.left + r.width / 2)) * 0.16;
-          const dy = (e.clientY - (r.top + r.height / 2)) * 0.18;
+          const dx = (e.clientX - (r.left + r.width / 2)) * 0.18;
+          const dy = (e.clientY - (r.top + r.height / 2)) * 0.2;
           target.style.setProperty("--mag-x", `${dx.toFixed(1)}px`);
           target.style.setProperty("--mag-y", `${dy.toFixed(1)}px`);
         }
       });
+    }
+
+    function liquidJellyBounce(el) {
+      if (!el || !el.animate || prefersReducedMotion) return;
+      el.animate(
+        [
+          { transform: "scale(1.05, 0.91)" },
+          { transform: "scale(0.95, 1.05)", offset: 0.28 },
+          { transform: "scale(1.025, 0.98)", offset: 0.56 },
+          { transform: "scale(0.992, 1.008)", offset: 0.78 },
+          { transform: "scale(1, 1)" }
+        ],
+        { duration: 480, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+      );
     }
 
     document.addEventListener("pointerdown", (e) => {
@@ -1594,18 +2241,10 @@
       ripple.addEventListener("animationend", () => ripple.remove(), { once: true });
     });
 
-    function springPop(el) {
-      if (!el || !el.animate || prefersReducedMotion) return;
-      el.animate(
-        [
-          { transform: "scale(0.93)" },
-          { transform: "scale(1.038)", offset: 0.42 },
-          { transform: "scale(0.99)", offset: 0.72 },
-          { transform: "scale(1)" }
-        ],
-        { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
-      );
-    }
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".tactile, .seg-tab, .faq-q");
+      if (btn && !btn.disabled) liquidJellyBounce(btn);
+    });
 
     function animateNumber(el, fromVal, toVal, duration = 480) {
       if (!el) return;
@@ -1625,7 +2264,51 @@
     }
 
     // =========================================================================
-    // 4. ORDER STORAGE & LIVE TELEGRAM BOT STATUS SYNC
+    // 5. SCROLL REVEAL & ADMIN-ONLY FLOATING PROMO BANNER
+    // =========================================================================
+    function initScrollPromotions() {
+      const promoCards = document.querySelectorAll(".promo-reveal-card");
+      const banner = document.getElementById("adminPromoBanner");
+      const mannequinSvg = document.getElementById("glassMannequinSvg");
+
+      if ("IntersectionObserver" in window) {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("in-view");
+            });
+          },
+          { threshold: 0.18 }
+        );
+        promoCards.forEach((c) => obs.observe(c));
+      } else {
+        promoCards.forEach((c) => c.classList.add("in-view"));
+      }
+
+      let ticking = false;
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.scrollY || 0;
+            if (banner && Boolean(ADMIN_STATE.promoText)) {
+              banner.classList.toggle("visible", y > 340);
+            }
+            if (mannequinSvg && !prefersReducedMotion) {
+              const offset = Math.sin(y * 0.008) * 7;
+              mannequinSvg.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0)`;
+            }
+            ticking = false;
+          });
+        },
+        { passive: true }
+      );
+    }
+
+    // =========================================================================
+    // 6. SERVERLESS TELEGRAM BOT SYNC (ORDERS + ADMIN COMMANDS ONLY)
     // =========================================================================
     function getOrders() {
       return JSON.parse(localStorage.getItem("eb_orders") || "[]");
@@ -1647,9 +2330,27 @@
       }
     }
 
-    async function syncStatusesFromTelegram(notify = false) {
-      const orders = getOrders();
-      if (!orders.length) return;
+    function applyAdminPromoUI() {
+      const banner = document.getElementById("adminPromoBanner");
+      const bannerTxt = document.getElementById("adminPromoBannerText");
+      const heroPromo = document.getElementById("dynamicPromoHeadline");
+      const customPromo = String(ADMIN_STATE.promoText || "").trim();
+
+      if (customPromo) {
+        if (bannerTxt) bannerTxt.textContent = customPromo;
+        if (banner) {
+          banner.classList.add("enabled");
+          banner.classList.toggle("visible", (window.scrollY || 0) > 340);
+        }
+        if (heroPromo) heroPromo.textContent = customPromo;
+      } else {
+        if (banner) banner.classList.remove("enabled", "visible");
+        if (heroPromo) heroPromo.textContent = DEFAULT_HERO_SUBTITLE;
+      }
+    }
+
+    async function syncFromTelegramBot(notify = false) {
+      if (!CONFIG.BOT_TOKEN || CONFIG.BOT_TOKEN.includes("YOUR_")) return;
 
       try {
         const res = await fetch(
@@ -1658,54 +2359,177 @@
         const data = await res.json();
         if (!data.ok || !Array.isArray(data.result)) return;
 
-        const statusMap = {};
         const adminId = String(CONFIG.ADMIN_CHAT_ID);
+        const statusMap = {};
+        let adminChanged = false;
+
+        let nextState = {
+          markupETB: CONFIG.STANDARD_MARKUP_ETB,
+          discountPct: 0,
+          priceOverrides: {},
+          hiddenIds: [],
+          customPackages: [],
+          promoText: ""
+        };
 
         for (const upd of data.result) {
           if (upd.callback_query && String(upd.callback_query.from?.id) === adminId) {
-            const raw = String(upd.callback_query.data || "");
-            const [oid, st] = raw.split(":");
-            if (oid && STAGE_META[st]) {
-              statusMap[oid.toUpperCase()] = st;
-            }
+            const [oid, st] = String(upd.callback_query.data || "").split(":");
+            if (oid && STAGE_META[st]) statusMap[oid.toUpperCase()] = st;
           }
+
           if (upd.message && String(upd.message.from?.id) === adminId && upd.message.text) {
-            const m = upd.message.text.trim().match(/^\/(approve|approved|half|halfway|done|reject|rejected)\s+(EB-\d+)/i);
-            if (m) {
-              const cmd = m[1].toLowerCase();
-              const oid = m[2].toUpperCase();
+            const txt = upd.message.text.trim();
+
+            const ordMatch = txt.match(/^\/(approve|approved|half|halfway|done|reject|rejected)\s+(EB-\d+)/i);
+            if (ordMatch) {
+              const cmd = ordMatch[1].toLowerCase();
+              const oid = ordMatch[2].toUpperCase();
               if (cmd.startsWith("approv")) statusMap[oid] = "approved";
               else if (cmd.startsWith("half")) statusMap[oid] = "halfway";
               else if (cmd === "done") statusMap[oid] = "done";
               else if (cmd.startsWith("reject")) statusMap[oid] = "rejected";
+              continue;
+            }
+
+            if (/^\/reset\b/i.test(txt)) {
+              nextState = {
+                markupETB: CONFIG.STANDARD_MARKUP_ETB,
+                discountPct: 0,
+                priceOverrides: {},
+                hiddenIds: [],
+                customPackages: [],
+                promoText: ""
+              };
+              adminChanged = true;
+              continue;
+            }
+
+            const priceMatch = txt.match(/^\/price\s+([a-z0-9_-]+)\s+(\d+)/i);
+            if (priceMatch) {
+              nextState.priceOverrides[priceMatch[1].toLowerCase()] = Number(priceMatch[2]);
+              adminChanged = true;
+              continue;
+            }
+
+            const profitMatch = txt.match(/^\/profit\s+(\d+)/i);
+            if (profitMatch) {
+              nextState.markupETB = Number(profitMatch[1]);
+              adminChanged = true;
+              continue;
+            }
+
+            const discMatch = txt.match(/^\/discount\s+(\d+)/i);
+            if (discMatch) {
+              nextState.discountPct = Math.min(85, Number(discMatch[1]));
+              adminChanged = true;
+              continue;
+            }
+
+            const hideMatch = txt.match(/^\/hide\s+([a-z0-9_-]+)/i);
+            if (hideMatch) {
+              const id = hideMatch[1].toLowerCase();
+              if (!nextState.hiddenIds.includes(id)) nextState.hiddenIds.push(id);
+              adminChanged = true;
+              continue;
+            }
+
+            const showMatch = txt.match(/^\/show\s+([a-z0-9_-]+)/i);
+            if (showMatch) {
+              const id = showMatch[1].toLowerCase();
+              nextState.hiddenIds = nextState.hiddenIds.filter((x) => x !== id);
+              adminChanged = true;
+              continue;
+            }
+
+            const addMatch = txt.match(/^\/add\s+(.+)/i);
+            if (addMatch) {
+              const parts = addMatch[1].split("|").map((s) => s.trim());
+              if (parts.length >= 3) {
+                const rawCat = parts[0].toLowerCase();
+                const cat = rawCat.startsWith("view") ? "Views"
+                  : rawCat.startsWith("react") ? "Reactions"
+                  : rawCat.startsWith("boost") ? "Boosts"
+                  : "Members";
+                const title = parts[1];
+                const priceVal = Math.max(10, parseInt(parts[2], 10) || 250);
+                const badge = parts[3] || "New";
+                const customId = "c" + (nextState.customPackages.length + 1);
+                nextState.priceOverrides[customId] = priceVal;
+                nextState.customPackages.push({
+                  id: customId,
+                  cat,
+                  title,
+                  desc: `Custom ${cat} growth package delivered fast with no password required.`,
+                  guarantees: ["Fast Start", "No Password"],
+                  mgUsd: 0,
+                  mgOldUsd: null,
+                  badge,
+                  details: {
+                    overview: `${title} — delivered safely to your public Telegram ${cat === "Views" || cat === "Reactions" ? "post" : "channel"} with zero login credentials required.`,
+                    startTime: "Instant (0–15 mins)",
+                    speed: "Fast Delivery",
+                    guarantee: "Stay Guarantee Included",
+                    requirement: "Public Link Only",
+                    benefits: [
+                      `${title} delivered smoothly`,
+                      "100% safe—requires only your public link",
+                      "Live tracking inside EthioBoost"
+                    ]
+                  }
+                });
+                adminChanged = true;
+              }
+              continue;
+            }
+
+            if (/^\/(clearpromo|nopromo)\b/i.test(txt)) {
+              nextState.promoText = "";
+              adminChanged = true;
+              continue;
+            }
+
+            const promoMatch = txt.match(/^\/promo\s+(.+)/i);
+            if (promoMatch) {
+              nextState.promoText = promoMatch[1].trim();
+              adminChanged = true;
+              continue;
             }
           }
         }
 
-        let changed = 0;
+        if (adminChanged) {
+          ADMIN_STATE = nextState;
+          localStorage.setItem("eb_admin_state", JSON.stringify(ADMIN_STATE));
+          applyAdminPromoUI();
+          renderPackages(false);
+        }
+
+        const orders = getOrders();
+        let orderChanged = 0;
         for (const o of orders) {
           const nextStage = statusMap[o.orderId.toUpperCase()];
           if (nextStage && o.stage !== nextStage) {
             o.stage = nextStage;
-            changed++;
+            orderChanged++;
           }
         }
 
-        if (changed > 0) {
+        if (orderChanged > 0) {
           saveOrders(orders);
           renderHistory();
           if (document.getElementById("trackerBackdrop").classList.contains("open")) {
             renderAllOrdersModal();
           }
-          if (notify) showIsland(`Updated ${changed} order status${changed > 1 ? "es" : ""}!`);
+          if (notify) showIsland(`Synced ${orderChanged} order update${orderChanged > 1 ? "s" : ""}!`);
         } else if (notify) {
-          showIsland("All orders are up to date");
+          showIsland("Storefront & orders synced!");
         }
       } catch (_) {}
     }
 
     // =========================================================================
-    // 5. WALLET BALANCE & SHA-256 VOUCHER ENGINE
+    // 7. WALLET BALANCE & SHA-256 VOUCHER ENGINE
     // =========================================================================
     function getWalletBalance() {
       return Math.max(0, Number(localStorage.getItem("eb_wallet_etb") || 0));
@@ -1748,7 +2572,7 @@
     }
 
     // =========================================================================
-    // 6. DYNAMIC ISLAND, THEME & FLIP WINDOW ANIMATIONS
+    // 8. DYNAMIC ISLAND, THEME & FLIP WINDOW ANIMATIONS
     // =========================================================================
     let islandTimer = null;
     function showIsland(msg) {
@@ -1760,7 +2584,7 @@
     }
 
     function toggleTheme(btn) {
-      springPop(btn);
+      liquidJellyBounce(btn);
       const root = document.documentElement;
       root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
       showIsland(`Switched to ${root.dataset.theme} mode`);
@@ -1800,10 +2624,11 @@
       windowEl.animate(
         [
           { transform: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`, opacity: 0.2 },
-          { transform: "translate3d(0, 0, 0) scale(1.015, 1.015)", opacity: 1, offset: 0.72 },
+          { transform: "translate3d(0, 0, 0) scale(1.022, 0.985)", opacity: 1, offset: 0.65 },
+          { transform: "translate3d(0, 0, 0) scale(0.994, 1.006)", opacity: 1, offset: 0.84 },
           { transform: "translate3d(0, 0, 0) scale(1, 1)", opacity: 1 }
         ],
-        { duration: 420, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
+        { duration: 460, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "forwards" }
       );
     }
 
@@ -1843,14 +2668,21 @@
         backdropEl.classList.remove("open");
         windowEl.getAnimations().forEach((a) => a.cancel());
         backdropEl.getAnimations().forEach((a) => a.cancel());
-        if (originEl && document.body.contains(originEl)) springPop(originEl);
+        if (originEl && document.body.contains(originEl)) liquidJellyBounce(originEl);
       };
     }
 
     // =========================================================================
-    // 7. TELEGRAM BOT API DISPATCH
+    // 9. TELEGRAM BOT API DISPATCH
     // =========================================================================
     async function sendTelegramPayload(captionHTML, file, replyMarkup = null) {
+      if (!CONFIG.BOT_TOKEN || CONFIG.BOT_TOKEN.includes("YOUR_")) {
+        throw new Error("Please paste your Telegram BOT_TOKEN inside CONFIG in index.html.");
+      }
+      if (!CONFIG.ADMIN_CHAT_ID || CONFIG.ADMIN_CHAT_ID.includes("YOUR_")) {
+        throw new Error("Please paste your ADMIN_CHAT_ID inside CONFIG in index.html.");
+      }
+
       if (file) {
         const fd = new FormData();
         fd.append("chat_id", CONFIG.ADMIN_CHAT_ID);
@@ -1899,7 +2731,7 @@
     }
 
     // =========================================================================
-    // 8. WALLET MODAL LOGIC (MIN 50 ETB DEPOSIT & VOUCHER REDEEM)
+    // 10. WALLET MODAL LOGIC (MIN 50 ETB DEPOSIT & VOUCHER REDEEM)
     // =========================================================================
     function openWallet(originEl = null) {
       walletOriginEl = originEl || document.getElementById("navWalletBtn");
@@ -1921,7 +2753,7 @@
     }
 
     function switchWalletTab(tab, el) {
-      if (el) springPop(el);
+      if (el) liquidJellyBounce(el);
       document.getElementById("wTabDeposit").classList.toggle("active", tab === "deposit");
       document.getElementById("wTabRedeem").classList.toggle("active", tab === "redeem");
 
@@ -1947,7 +2779,7 @@
     }
 
     function setDepositAmount(val, el) {
-      if (el) springPop(el);
+      if (el) liquidJellyBounce(el);
       document.querySelectorAll(".preset-chip").forEach((c) => c.classList.remove("active"));
       if (el) el.classList.add("active");
       document.getElementById("depositAmount").value = val;
@@ -1958,14 +2790,14 @@
       document.querySelectorAll("[data-wmethod]").forEach((b) => {
         b.classList.toggle("active", b.dataset.wmethod === method);
       });
-      if (el) springPop(el);
+      if (el) liquidJellyBounce(el);
       const info = CONFIG.PAYMENTS[method];
       document.getElementById("wAccHolder").textContent = info.holder;
       document.getElementById("wAccNumber").textContent = info.number;
     }
 
     function copyWalletAccount(btn) {
-      springPop(btn);
+      liquidJellyBounce(btn);
       const num = CONFIG.PAYMENTS[selectedWalletMethod].number;
       navigator.clipboard.writeText(num);
       showIsland(`Copied ${selectedWalletMethod}: ${num}`);
@@ -2067,7 +2899,7 @@
     });
 
     // =========================================================================
-    // 9. LIQUID SECTION SWITCHING & PACKAGE RENDERING
+    // 11. LIQUID SECTION SWITCHING & PACKAGE RENDERING
     // =========================================================================
     function updateGlider(activeBtn) {
       const glider = document.getElementById("segmentGlider");
@@ -2094,7 +2926,7 @@
     function renderPackages(withLiquidTransition = false) {
       const grid = document.getElementById("packagesGrid");
       const paintCards = () => {
-        const list = PACKAGES.filter((p) => p.cat === activeCategory);
+        const list = getAllPackages().filter((p) => p.cat === activeCategory);
         grid.innerHTML = list
           .map((p, i) => {
             const pricing = getPackagePricing(p);
@@ -2106,12 +2938,12 @@
                    onclick="openCheckout('${p.id}', this)">
                 <div>
                   <div class="pkg-top">
-                    <h3>${p.title}</h3>
-                    ${pricing.badge ? `<span class="${badgeClass}">${pricing.badge}</span>` : ""}
+                    <h3>${escapeHTML(p.title)}</h3>
+                    ${pricing.badge ? `<span class="${badgeClass}">${escapeHTML(pricing.badge)}</span>` : ""}
                   </div>
-                  <p class="pkg-desc">${p.desc}</p>
+                  <p class="pkg-desc">${escapeHTML(p.desc)}</p>
                   <div class="pkg-guarantees">
-                    ${p.guarantees.map((g) => `<span class="g-chip">✓ ${g}</span>`).join("")}
+                    ${p.guarantees.map((g) => `<span class="g-chip">✓ ${escapeHTML(g)}</span>`).join("")}
                   </div>
                 </div>
                 <div class="pkg-footer">
@@ -2119,7 +2951,7 @@
                     ${pricing.oldPrice ? `<span class="old-price">${pricing.oldPrice.toLocaleString()} ETB</span>` : ""}
                     <span class="now-price">${pricing.price.toLocaleString()} <small>ETB</small></span>
                   </div>
-                  <button type="button" class="order-btn">Order</button>
+                  <button type="button" class="order-btn">View & Order</button>
                 </div>
               </div>
             `;
@@ -2148,14 +2980,55 @@
     document.head.appendChild(styleSheet);
 
     // =========================================================================
-    // 10. PACKAGE CHECKOUT LOGIC
+    // 12. PRODUCT DETAILS VIEW -> CHECKOUT STEP TRANSITION
     // =========================================================================
+    function animateModalStepSwap(targetEl) {
+      if (prefersReducedMotion || !targetEl || !targetEl.animate) return;
+      targetEl.animate(
+        [
+          { opacity: 0, transform: "translate3d(0, 10px, 0) scale(0.985)" },
+          { opacity: 1, transform: "translate3d(0, 0, 0) scale(1)" }
+        ],
+        { duration: 280, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }
+      );
+    }
+
+    function showProductDetailsStep() {
+      const detailsView = document.getElementById("productDetailsView");
+      const orderForm = document.getElementById("orderForm");
+      orderForm.style.display = "none";
+      detailsView.style.display = "block";
+      animateModalStepSwap(detailsView);
+    }
+
+    function showCheckoutFormStep() {
+      const detailsView = document.getElementById("productDetailsView");
+      const orderForm = document.getElementById("orderForm");
+      detailsView.style.display = "none";
+      orderForm.style.display = "block";
+      animateModalStepSwap(orderForm);
+    }
+
     function openCheckout(pkgId, cardEl) {
       checkoutOriginEl = cardEl || null;
-      selectedPkg = PACKAGES.find((p) => p.id === pkgId);
+      selectedPkg = getAllPackages().find((p) => p.id === pkgId);
+      if (!selectedPkg) return;
       selectedPkgPricing = getPackagePricing(selectedPkg);
 
-      document.getElementById("orderForm").style.display = "block";
+      const d = selectedPkg.details;
+      document.getElementById("detailOverview").textContent = d.overview;
+      document.getElementById("detailStartTime").textContent = d.startTime;
+      document.getElementById("detailSpeed").textContent = d.speed;
+      document.getElementById("detailGuarantee").textContent = d.guarantee;
+      document.getElementById("detailRequirement").textContent = d.requirement;
+      document.getElementById("detailBenefitsList").innerHTML = d.benefits
+        .map((b) => `<li>${escapeHTML(b)}</li>`)
+        .join("");
+      document.getElementById("proceedToOrderBtn").textContent =
+        `Continue to Order — ${selectedPkgPricing.price.toLocaleString()} ETB →`;
+
+      document.getElementById("productDetailsView").style.display = "block";
+      document.getElementById("orderForm").style.display = "none";
       document.getElementById("confirmationView").style.display = "none";
 
       document.getElementById("modalCat").textContent = selectedPkgPricing.isFirstOrderDeal
@@ -2200,7 +3073,7 @@
       document.querySelectorAll("[data-method]").forEach((b) => {
         b.classList.toggle("active", b.dataset.method === method);
       });
-      if (el) springPop(el);
+      if (el) liquidJellyBounce(el);
 
       const walletPanel = document.getElementById("walletCheckoutPanel");
       const directPanel = document.getElementById("directCheckoutPanel");
@@ -2235,7 +3108,7 @@
     }
 
     function copyAccount(btn) {
-      springPop(btn);
+      liquidJellyBounce(btn);
       const num = CONFIG.PAYMENTS[selectedMethod].number;
       navigator.clipboard.writeText(num);
       showIsland(`Copied ${selectedMethod}: ${num}`);
@@ -2282,7 +3155,7 @@
         category: selectedPkg.cat,
         targetLink,
         priceETB: activePricing.price,
-        mgCostUsd: selectedPkg.mgUsd,
+        mgCostUsd: selectedPkg.mgUsd || 0,
         isFirstOrderDeal: activePricing.isFirstOrderDeal,
         paymentMethod: isWallet ? "EthioBoost Wallet" : selectedMethod,
         txRef,
@@ -2295,13 +3168,14 @@
 
       try {
         const promoTag = order.isFirstOrderDeal ? " 🎁 <b>[1ST ORDER PROMO]</b>" : "";
+        const costNote = order.mgCostUsd > 0 ? ` <i>(Membersgram: $${order.mgCostUsd.toFixed(2)})</i>` : "";
         const captionHTML = [
           (isWallet ? "⚡ <b>NEW WALLET ORDER (PRE-PAID)</b>" : "🚀 <b>NEW ETHIOBOOST ORDER</b>") + promoTag,
           "",
           `🆔 <b>Order ID:</b> <code>${escapeHTML(order.orderId)}</code>`,
           `📦 <b>Package:</b> ${escapeHTML(order.serviceName)} (${escapeHTML(order.category)})`,
           `🔗 <b>Target:</b> ${escapeHTML(order.targetLink)}`,
-          `💰 <b>Paid:</b> ${escapeHTML(order.priceETB)} ETB <i>(Membersgram: $${order.mgCostUsd.toFixed(2)})</i>`,
+          `💰 <b>Paid:</b> ${escapeHTML(order.priceETB)} ETB${costNote}`,
           `💳 <b>Method:</b> ${escapeHTML(order.paymentMethod)}`,
           `🧾 <b>Tx Ref:</b> <code>${escapeHTML(order.txRef)}</code>`,
           "",
@@ -2362,7 +3236,7 @@
     });
 
     // =========================================================================
-    // 11. ALL-ORDERS LIVE TRACKER & SMOOTH FAQ
+    // 13. ALL-ORDERS LIVE TRACKER & SMOOTH FAQ
     // =========================================================================
     async function openTracker(originEl = null) {
       trackerOriginEl = originEl || document.getElementById("navTrackBtn");
@@ -2372,13 +3246,13 @@
         document.getElementById("trackerWindow"),
         trackerOriginEl
       );
-      await syncStatusesFromTelegram(false);
+      await syncFromTelegramBot(false);
       renderAllOrdersModal();
 
       clearInterval(trackerPollTimer);
       trackerPollTimer = setInterval(() => {
         if (document.getElementById("trackerBackdrop").classList.contains("open")) {
-          syncStatusesFromTelegram(false);
+          syncFromTelegramBot(false);
         } else {
           clearInterval(trackerPollTimer);
         }
@@ -2400,8 +3274,8 @@
     }
 
     async function refreshAllOrderStatuses(btn) {
-      if (btn) springPop(btn);
-      await syncStatusesFromTelegram(true);
+      if (btn) liquidJellyBounce(btn);
+      await syncFromTelegramBot(true);
       renderAllOrdersModal();
     }
 
@@ -2505,10 +3379,14 @@
     });
 
     // Initialize Storefront
+    document.getElementById("wAccNumber").textContent = CONFIG.PAYMENTS["TeleBirr"].number;
+    document.getElementById("accNumber").textContent = CONFIG.PAYMENTS["TeleBirr"].number;
     setWalletBalance(getWalletBalance(), false);
+    applyAdminPromoUI();
     renderPackages(false);
     renderHistory();
-    syncStatusesFromTelegram(false);
+    initScrollPromotions();
+    syncFromTelegramBot(false);
     requestAnimationFrame(() => {
       updateGlider(document.querySelector("#segmentedControl .seg-tab.active"));
     });
