@@ -557,9 +557,9 @@
     .metric-mini .lbl { font-size: 0.76rem; color: var(--text-secondary); }
 
     /* =========================================================================
-       6. SEGMENTED CONTROL & PACKAGES GRID
+       6. SEGMENTED CONTROL, SUB-FILTER PILLS & PACKAGES GRID
        ========================================================================= */
-    .segment-container { display: flex; justify-content: center; margin-bottom: 26px; }
+    .segment-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 26px; }
     .segmented-control {
       position: relative;
       display: inline-flex;
@@ -598,6 +598,27 @@
     }
     .seg-tab:active { transform: scale(0.92); }
     .seg-tab.active { color: #fff; }
+
+    .subfilter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .subfilter-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-hairline);
+      background: var(--glass-card);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+    .subfilter-pill.active {
+      background: rgba(24, 144, 255, 0.2);
+      border-color: var(--accent-blue);
+      color: var(--text-primary);
+    }
 
     .packages-grid {
       display: grid;
@@ -641,7 +662,7 @@
       border-color: rgba(34, 197, 94, 0.45);
       color: var(--accent-green);
     }
-    .pkg-card h3 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .pkg-card h3 { font-size: 1.12rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
     .pkg-desc { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.45; margin-bottom: 16px; }
     .pkg-guarantees { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .g-chip {
@@ -665,7 +686,7 @@
       text-decoration: line-through;
       display: block;
     }
-    .price-block .now-price { font-size: 1.38rem; font-weight: 800; color: var(--text-primary); }
+    .price-block .now-price { font-size: 1.35rem; font-weight: 800; color: var(--text-primary); }
     .price-block .now-price small { font-size: 0.8rem; color: var(--text-secondary); font-weight: 700; }
     .order-btn {
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-deep));
@@ -1358,9 +1379,9 @@
       <div>
         <div class="hero-tag">🇪🇹 Real Reach. Instant Momentum. • ETB</div>
         <h1>Boost Your Telegram Channel & Posts Instantly</h1>
-        <p>Real global members, instant post views, emoji reactions, and channel boosts. Deposit once (min 50 ETB) for 1-tap wallet orders or pay per order via TeleBirr & M-Pesa.</p>
+        <p>All 103 Membersgram growth packages in ETB—global & country-targeted members, single & multi-post views, all positive/negative/emoji reactions, and channel boosts via TeleBirr, M-Pesa, or Wallet.</p>
         <div class="hero-cta-row">
-          <button class="primary-cta tactile magnetic" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore Packages ↓</button>
+          <button class="primary-cta tactile magnetic" onclick="document.getElementById('catalogAnchor').scrollIntoView({behavior:'smooth'})">Explore All 103 Packages ↓</button>
           <button class="pill-btn tactile magnetic" style="padding:12px 18px;border-radius:15px;" onclick="openTracker(this)">View My Orders</button>
         </div>
       </div>
@@ -1387,15 +1408,17 @@
       </div>
     </section>
 
-    <!-- Sliding Segmented Category Bar -->
+    <!-- Sliding Segmented Category Bar + Dynamic Sub-Filters -->
     <div id="catalogAnchor" class="segment-container">
       <div class="segmented-control glass-chrome" id="segmentedControl">
         <div class="segment-glider" id="segmentGlider"></div>
-        <button class="seg-tab active" data-cat="Members">Members</button>
-        <button class="seg-tab" data-cat="Views">Views</button>
-        <button class="seg-tab" data-cat="Reactions">Reactions</button>
-        <button class="seg-tab" data-cat="Boosts">Boosts</button>
+        <button class="seg-tab active" data-cat="Members">Members (24)</button>
+        <button class="seg-tab" data-cat="Views">Views (8)</button>
+        <button class="seg-tab" data-cat="Reactions">Reactions (63)</button>
+        <button class="seg-tab" data-cat="Boosts">Boosts (8)</button>
       </div>
+
+      <div class="subfilter-row" id="subfilterRow"></div>
     </div>
 
     <!-- Package Cards Grid -->
@@ -1785,53 +1808,136 @@
     setTimeout(dismissIntro, 1850);
 
     // =========================================================================
-    // 3. DEFAULT CATALOG + TELEGRAM BOT REMOTE ADMIN STATE
+    // 3. COMPLETE MEMBERSGRAM CATALOG (ALL 103 PACKAGES)
     // =========================================================================
+    function makeReactionPkg(id, sub, title, emojiSet, qty, mgUsd, mgOldUsd, badge) {
+      const isMulti = emojiSet.split(" ").length > 1;
+      return {
+        id,
+        cat: "Reactions",
+        sub,
+        title,
+        desc: `${qty.toLocaleString()} real ${emojiSet} emoji reactions on 1 public post.`,
+        guarantees: [emojiSet, "1 Post", "Permanent"],
+        mgUsd,
+        mgOldUsd,
+        badge,
+        details: {
+          overview: `Add ${qty.toLocaleString()} real ${emojiSet} Telegram reactions to your post to boost engagement rates and social proof immediately.`,
+          startTime: "Instant (0–10 mins)",
+          speed: qty >= 1000 ? "20–60 Minutes" : "Under 25 Minutes",
+          guarantee: "Permanent Reactions",
+          requirement: "Public Post Link (Reactions Enabled)",
+          benefits: [
+            isMulti
+              ? `Natural mix of ${emojiSet} reactions delivered smoothly`
+              : `${qty.toLocaleString()} ${emojiSet} reactions added to your chosen post`,
+            "Boosts interactive engagement alongside your post views",
+            "Make sure emoji reactions are enabled in your channel/group settings",
+            "100% safe—requires only your public post URL"
+          ]
+        }
+      };
+    }
+
     const DEFAULT_PACKAGES = [
-      // Members
+      // =======================================================================
+      // MEMBERS (24 PACKAGES: GLOBAL 1M / 3M / 12M + COUNTRY TARGETED)
+      // =======================================================================
       {
-        id: "m1", cat: "Members", title: "100 Global Members",
-        desc: "Fast start with real global Telegram accounts.",
-        guarantees: ["30-Day Stay", "No Password"],
+        id: "m1", cat: "Members", sub: "global", title: "100 Global Members (1 Month)",
+        desc: "Starter global Telegram members with 30-day stay guarantee.",
+        guarantees: ["30-Day Stay", "1 Month", "No Password"],
         mgUsd: 0.35, mgOldUsd: null, badge: "Starter", firstOrderPromo: true,
         details: {
-          overview: "Get 100 real global Telegram members delivered to your public channel or group to build instant credibility, social proof, and organic growth—fast and safe.",
+          overview: "Get 100 real global Telegram members delivered to your public channel or group to build instant credibility and social proof—fast and safe.",
           startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
-          guarantee: "30-Day Stay Guarantee", requirement: "Public Link • No Password",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
           benefits: [
-            "Real global Telegram accounts—zero bots or fake passwords needed",
+            "100 real, active global Telegram users—zero bots",
             "Works for both public Telegram channels and public groups",
-            "Protected by a 30-day stay guarantee with automatic refill support",
-            "Special first-order welcome discount applied automatically"
+            "30-day stay guarantee with bonus members included",
+            "First-order welcome discount applied automatically"
           ]
         }
       },
       {
-        id: "m2", cat: "Members", title: "1,000 Global Members",
-        desc: "Steady join rate to build instant channel credibility.",
-        guarantees: ["30-Day Stay", "Fast Start"],
+        id: "m2", cat: "Members", sub: "global", title: "1,000 Global Members (1 Month)",
+        desc: "Popular 1,000 global subscribers with 30-day stay guarantee.",
+        guarantees: ["30-Day Stay", "1 Month", "Fast Start"],
         mgUsd: 1.74, mgOldUsd: 3.48, badge: "50% OFF",
         details: {
-          overview: "Boost your Telegram channel or group by 1,000 real global members. Delivered at a steady, natural join rate to protect your channel while dramatically increasing social proof.",
+          overview: "Boost your Telegram channel or group by 1,000 real global members. Delivered at a steady, natural join rate to protect your channel while increasing social proof.",
           startTime: "Instant (0–15 mins)", speed: "1–3 Hours (Natural Pace)",
-          guarantee: "30-Day Stay Guarantee", requirement: "Public Link • No Password",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
           benefits: [
             "1,000 real global Telegram subscribers added smoothly",
             "Attracts organic visitors who trust active, established channels",
-            "Full 30-day retention protection against drops",
+            "Full 30-day retention protection with bonus buffer",
             "No admin access or Telegram login credentials ever required"
           ]
         }
       },
       {
-        id: "m3", cat: "Members", title: "1,000 Members (3 Months)",
-        desc: "Extended retention guarantee for growing channels.",
-        guarantees: ["90-Day Stay", "Auto-Refill"],
-        mgUsd: 3.49, mgOldUsd: 6.98, badge: "Popular",
+        id: "m3", cat: "Members", sub: "global", title: "10,000 Global Members (1 Month)",
+        desc: "High-volume 10,000 global members with 30-day stay guarantee.",
+        guarantees: ["30-Day Stay", "1 Month", "Gradual Pace"],
+        mgUsd: 10.49, mgOldUsd: 34.97, badge: "70% OFF",
+        details: {
+          overview: "Scale your channel fast with 10,000 real global Telegram members at 70% off. Delivered gradually over several hours so your growth curve looks natural.",
+          startTime: "Instant (0–20 mins)", speed: "Gradual Over Several Hours",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Massive 10,000-member authority boost at 70% off",
+            "Smart multi-hour gradual rollout to keep channel growth natural",
+            "30-day stay guarantee included on the entire order",
+            "Works on any public Telegram channel or supergroup"
+          ]
+        }
+      },
+      {
+        id: "m4", cat: "Members", sub: "global", title: "100,000 Global Members (1 Month)",
+        desc: "Enterprise 100K global member pack with 30-day stay guarantee.",
+        guarantees: ["30-Day Stay", "1 Month", "Mega Scale"],
+        mgUsd: 69.99, mgOldUsd: 349.95, badge: "80% OFF",
+        details: {
+          overview: "Transform your channel into a major authority with 100,000 real global Telegram members at 80% off, rolled out steadily with full 30-day protection.",
+          startTime: "Instant (0–30 mins)", speed: "Gradual Multi-Hour Rollout",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "100,000 real global Telegram members for flagship scale",
+            "Controlled gradual join curve for complete safety",
+            "30-day stay guarantee with bonus refill buffer",
+            "Public channel or group link only"
+          ]
+        }
+      },
+      {
+        id: "m5", cat: "Members", sub: "global", title: "1,000 Better Search Ranking (Premium)",
+        desc: "Premium active members engineered to boost Telegram search ranking.",
+        guarantees: ["30-Day Stay", "1 Month Premium", "Search Boost"],
+        mgUsd: 6.99, mgOldUsd: 13.98, badge: "50% OFF",
+        details: {
+          overview: "Premium Telegram members delivered safely and gradually to improve your channel's ranking in Telegram global search results while protecting against drops or penalties.",
+          startTime: "Instant (0–30 mins)", speed: "Gradual Organic Rollout",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Channel • No Password",
+          benefits: [
+            "High-trust active Telegram accounts that boost search ranking",
+            "Gradual, safe delivery curve engineered to prevent penalties",
+            "Higher organic discovery when users search keywords in Telegram",
+            "Backed by a 30-day stay guarantee"
+          ]
+        }
+      },
+      {
+        id: "m6", cat: "Members", sub: "global", title: "1,000 Global Members (3 Months)",
+        desc: "Extended 90-day stay guarantee for steady channel growth.",
+        guarantees: ["90-Day Stay", "3 Months", "Auto-Refill"],
+        mgUsd: 3.49, mgOldUsd: 6.98, badge: "50% OFF",
         details: {
           overview: "Built for serious channel owners who want long-lasting subscriber stability. Includes 1,000 real global members backed by an extended 90-day (3-month) stay guarantee.",
           startTime: "Instant (0–15 mins)", speed: "1–3 Hours (Gradual)",
-          guarantee: "90-Day Stay Guarantee", requirement: "Public Link • No Password",
+          guarantee: "90 Days Stay Guarantee", requirement: "Public Link • No Password",
           benefits: [
             "Extended 90-day (3-month) retention & free refill coverage",
             "High-stability real Telegram users with natural join pacing",
@@ -1841,31 +1947,48 @@
         }
       },
       {
-        id: "m4", cat: "Members", title: "1,000 Search Ranking Members",
-        desc: "Premium active members that help rank higher in Telegram search.",
-        guarantees: ["30-Day Stay", "Search Boost"],
-        mgUsd: 6.99, mgOldUsd: 13.98, badge: "Premium",
+        id: "m7", cat: "Members", sub: "global", title: "10,000 Global Members (3 Months)",
+        desc: "Bulk 10,000 global members backed by a 90-day stay guarantee.",
+        guarantees: ["90-Day Stay", "3 Months", "Bulk Value"],
+        mgUsd: 20.99, mgOldUsd: 69.97, badge: "70% OFF",
         details: {
-          overview: "Premium Telegram members delivered safely and gradually to help improve your channel's visibility and ranking in global Telegram search results while protecting against drops or penalties.",
-          startTime: "Instant (0–30 mins)", speed: "Gradual Organic Rollout",
-          guarantee: "30-Day Premium Guarantee", requirement: "Public Channel • No Password",
+          overview: "Scale to 10,000 real global members with a full 90-day (3-month) stay guarantee at 70% off.",
+          startTime: "Instant (0–20 mins)", speed: "Gradual Over Several Hours",
+          guarantee: "90 Days Stay Guarantee", requirement: "Public Link • No Password",
           benefits: [
-            "High-trust active Telegram accounts that strengthen search ranking",
-            "Gradual, safe delivery curve engineered to prevent penalties",
-            "Higher organic discovery when users search keywords in Telegram",
-            "Backed by a 30-day stay guarantee"
+            "10,000 real global members with 3-month retention guarantee",
+            "Gradual delivery preserves organic channel metrics",
+            "Automatic refill support throughout the 90-day period",
+            "No password or admin permissions required"
           ]
         }
       },
       {
-        id: "m5", cat: "Members", title: "1,000 Members (12 Months)",
-        desc: "Long-term 360-day stay protection for flagship channels.",
-        guarantees: ["360-Day Stay", "VIP Quality"],
-        mgUsd: 6.99, mgOldUsd: 13.98, badge: "1 Year",
+        id: "m8", cat: "Members", sub: "global", title: "100 Global Members (12 Months)",
+        desc: "100 global members protected for a full 360 days (1 year).",
+        guarantees: ["360-Day Stay", "12 Months", "VIP Quality"],
+        mgUsd: 1.39, mgOldUsd: null, badge: "1 Year",
         details: {
-          overview: "Our longest retention tier: 1,000 high-retention global members protected by a full 360-day (12-month) stay guarantee for flagship communities and businesses.",
+          overview: "100 high-retention global Telegram members backed by a full 360-day (12-month) stay guarantee.",
+          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
+          guarantee: "360 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Full 1-year (360 days) stay protection",
+            "High-retention real Telegram profiles",
+            "Ideal starter pack for long-term channels",
+            "Public link only—no password required"
+          ]
+        }
+      },
+      {
+        id: "m9", cat: "Members", sub: "global", title: "1,000 Global Members (12 Months)",
+        desc: "1,000 global members with 360-day (1-year) stay protection.",
+        guarantees: ["360-Day Stay", "12 Months", "VIP Quality"],
+        mgUsd: 6.99, mgOldUsd: 13.98, badge: "50% OFF",
+        details: {
+          overview: "1,000 high-retention global members protected by a full 360-day (12-month) stay guarantee for flagship communities and businesses.",
           startTime: "Instant (0–15 mins)", speed: "1–4 Hours (Gradual)",
-          guarantee: "360-Day Stay Guarantee", requirement: "Public Link • No Password",
+          guarantee: "360 Days Stay Guarantee", requirement: "Public Link • No Password",
           benefits: [
             "Full 1-year (360 days) stay protection & priority refill",
             "Premium high-retention accounts with profile photos & activity",
@@ -1875,52 +1998,292 @@
         }
       },
       {
-        id: "m6", cat: "Members", title: "10,000 Global Members",
-        desc: "High-volume growth pack at our lowest per-member rate.",
-        guarantees: ["30-Day Stay", "Gradual Pace"],
-        mgUsd: 10.49, mgOldUsd: 34.97, badge: "70% OFF",
+        id: "m10", cat: "Members", sub: "global", title: "10,000 Global Members (12 Months)",
+        desc: "10,000 global members with 360-day (1-year) stay guarantee.",
+        guarantees: ["360-Day Stay", "12 Months", "Pro Scale"],
+        mgUsd: 41.99, mgOldUsd: 139.97, badge: "70% OFF",
         details: {
-          overview: "Scale your channel fast with 10,000 real global Telegram members at 70% off. Delivered gradually over several hours so your growth curve looks natural and organic.",
-          startTime: "Instant (0–20 mins)", speed: "Gradual Over Several Hours",
-          guarantee: "30-Day Stay Guarantee", requirement: "Public Link • No Password",
+          overview: "Build a permanent 10,000-member community backed by a full 360-day (12-month) stay guarantee at 70% off.",
+          startTime: "Instant (0–25 mins)", speed: "Gradual Rollout",
+          guarantee: "360 Days Stay Guarantee", requirement: "Public Link • No Password",
           benefits: [
-            "Massive 10,000-member authority boost at our lowest unit cost",
-            "Smart multi-hour gradual rollout to keep channel growth natural",
-            "30-day stay guarantee included on the entire order",
-            "Works on any public Telegram channel or supergroup"
+            "10,000 long-term global members protected for 360 days",
+            "Natural multi-hour delivery for maximum safety",
+            "Full 1-year warranty against drops",
+            "Requires only your public channel or group link"
+          ]
+        }
+      },
+      {
+        id: "m11", cat: "Members", sub: "global", title: "100,000 Global Members (12 Months)",
+        desc: "100,000 global members with 360-day (1-year) stay guarantee.",
+        guarantees: ["360-Day Stay", "12 Months", "Flagship"],
+        mgUsd: 349.99, mgOldUsd: 1399.96, badge: "75% OFF",
+        details: {
+          overview: "Our largest flagship package: 100,000 real global members with a full 360-day (12-month) stay guarantee at 75% off.",
+          startTime: "Instant (0–30 mins)", speed: "Controlled Gradual Rollout",
+          guarantee: "360 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "100,000 real global subscribers with 1-year stay protection",
+            "VIP priority processing and gradual organic pacing",
+            "Complete 360-day retention warranty",
+            "Zero login credentials required"
+          ]
+        }
+      },
+      {
+        id: "m12", cat: "Members", sub: "country", title: "1,000 India Members 🇮🇳 (3 Months)",
+        desc: "Real Telegram members from India with 90-day stay guarantee.",
+        guarantees: ["🇮🇳 India Targeted", "90-Day Stay", "3 Months"],
+        mgUsd: 3.49, mgOldUsd: 6.98, badge: "50% OFF",
+        details: {
+          overview: "Grow your channel with 1,000 real Telegram users from India, backed by a 90-day (3-month) stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "1–4 Hours",
+          guarantee: "90 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Geo-targeted real Telegram accounts from India 🇮🇳",
+            "90-day (3-month) stay guarantee included",
+            "Ideal for South Asian tech, crypto, and educational channels",
+            "Public channel or group link only"
+          ]
+        }
+      },
+      {
+        id: "m13", cat: "Members", sub: "country", title: "10,000 India Members 🇮🇳 (3 Months)",
+        desc: "Bulk 10,000 Telegram members from India with 90-day guarantee.",
+        guarantees: ["🇮🇳 India Targeted", "90-Day Stay", "3 Months"],
+        mgUsd: 41.99, mgOldUsd: 83.98, badge: "50% OFF",
+        details: {
+          overview: "Scale fast in India with 10,000 real geo-targeted Telegram members backed by a 90-day (3-month) stay guarantee.",
+          startTime: "Instant (0–25 mins)", speed: "Gradual Over Several Hours",
+          guarantee: "90 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "10,000 geo-targeted real users from India 🇮🇳",
+            "Full 90-day retention protection",
+            "Smart gradual delivery curve",
+            "No password required"
+          ]
+        }
+      },
+      {
+        id: "m14", cat: "Members", sub: "country", title: "100 USA Members 🇺🇸 (1 Month)",
+        desc: "100 geo-targeted USA Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇸 USA Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 1.39, mgOldUsd: null, badge: "USA 🇺🇸",
+        details: {
+          overview: "Add 100 real Telegram users from the United States to boost international credibility with a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "Under 1 Hour",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Geo-targeted USA Telegram accounts 🇺🇸",
+            "30-day stay guarantee included",
+            "Great for English-language, Web3, and global brand channels",
+            "Public link only—no password needed"
+          ]
+        }
+      },
+      {
+        id: "m15", cat: "Members", sub: "country", title: "1,000 USA Members 🇺🇸 (1 Month)",
+        desc: "1,000 geo-targeted USA Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇸 USA Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 5.59, mgOldUsd: 11.18, badge: "50% OFF",
+        details: {
+          overview: "Boost your channel with 1,000 real Telegram members from the USA at 50% off, backed by a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "1–4 Hours",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "1,000 real geo-targeted USA subscribers 🇺🇸",
+            "30-day retention guarantee",
+            "Elevates sponsor and advertiser value for English channels",
+            "Safe public-link delivery"
+          ]
+        }
+      },
+      {
+        id: "m16", cat: "Members", sub: "country", title: "10,000 USA Members 🇺🇸 (1 Month)",
+        desc: "10,000 geo-targeted USA Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇸 USA Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 34.99, mgOldUsd: 116.63, badge: "70% OFF",
+        details: {
+          overview: "Scale your international presence with 10,000 real USA Telegram members at 70% off with a 30-day stay guarantee.",
+          startTime: "Instant (0–30 mins)", speed: "Gradual Multi-Hour Delivery",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "10,000 geo-targeted USA Telegram users 🇺🇸",
+            "30-day stay guarantee included",
+            "Smooth gradual rollout",
+            "Public channel or group link only"
+          ]
+        }
+      },
+      {
+        id: "m17", cat: "Members", sub: "country", title: "100 Russia Members 🇷🇺 (1 Month)",
+        desc: "100 geo-targeted Russia Telegram members with 30-day guarantee.",
+        guarantees: ["🇷🇺 Russia Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 2.09, mgOldUsd: null, badge: "Russia 🇷🇺",
+        details: {
+          overview: "Add 100 real Telegram members from Russia with a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "Under 1 Hour",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "Geo-targeted Russian Telegram accounts 🇷🇺",
+            "30-day stay guarantee",
+            "Fast, safe delivery via public link",
+            "No password required"
+          ]
+        }
+      },
+      {
+        id: "m18", cat: "Members", sub: "country", title: "1,000 Russia Members 🇷🇺 (1 Month)",
+        desc: "1,000 geo-targeted Russia Telegram members with 30-day guarantee.",
+        guarantees: ["🇷🇺 Russia Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 13.99, mgOldUsd: 27.98, badge: "50% OFF",
+        details: {
+          overview: "Grow your channel with 1,000 real Russian Telegram members at 50% off, backed by a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "1–4 Hours",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "1,000 geo-targeted Russia subscribers 🇷🇺",
+            "30-day retention guarantee",
+            "Natural join pacing",
+            "Public link only"
+          ]
+        }
+      },
+      {
+        id: "m19", cat: "Members", sub: "country", title: "10,000 Russia Members 🇷🇺 (1 Month)",
+        desc: "10,000 geo-targeted Russia Telegram members with 30-day guarantee.",
+        guarantees: ["🇷🇺 Russia Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 34.99, mgOldUsd: 116.63, badge: "70% OFF",
+        details: {
+          overview: "Scale fast with 10,000 real Russian Telegram members at 70% off with a 30-day stay guarantee.",
+          startTime: "Instant (0–30 mins)", speed: "Gradual Multi-Hour Delivery",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "10,000 geo-targeted Russian users 🇷🇺",
+            "30-day stay guarantee included",
+            "Gradual rollout for channel safety",
+            "No password required"
+          ]
+        }
+      },
+      {
+        id: "m20", cat: "Members", sub: "country", title: "1,000 Iran Members 🇮🇷 (1 Month)",
+        desc: "1,000 geo-targeted Iran Telegram members with 30-day guarantee.",
+        guarantees: ["🇮🇷 Iran Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 5.24, mgOldUsd: 10.48, badge: "50% OFF",
+        details: {
+          overview: "Add 1,000 real Telegram members from Iran at 50% off, backed by a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "1–3 Hours",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "1,000 geo-targeted Telegram members from Iran 🇮🇷",
+            "30-day stay guarantee",
+            "Fast, safe delivery",
+            "Public channel or group link only"
+          ]
+        }
+      },
+      {
+        id: "m21", cat: "Members", sub: "country", title: "100 Ukraine Members 🇺🇦 (1 Month)",
+        desc: "100 geo-targeted Ukraine Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇦 Ukraine Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 1.39, mgOldUsd: null, badge: "Ukraine 🇺🇦",
+        details: {
+          overview: "Add 100 real Telegram members from Ukraine with a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "Under 1 Hour",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "100 geo-targeted Ukrainian Telegram accounts 🇺🇦",
+            "30-day stay guarantee",
+            "Public link only—no password required",
+            "Fast start"
+          ]
+        }
+      },
+      {
+        id: "m22", cat: "Members", sub: "country", title: "1,000 Ukraine Members 🇺🇦 (1 Month)",
+        desc: "1,000 geo-targeted Ukraine Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇦 Ukraine Targeted", "30-Day Stay", "1 Month"],
+        mgUsd: 6.99, mgOldUsd: 13.98, badge: "50% OFF",
+        details: {
+          overview: "Grow your channel with 1,000 real Ukrainian Telegram members at 50% off, backed by a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "1–4 Hours",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "1,000 geo-targeted Ukrainian subscribers 🇺🇦",
+            "30-day retention guarantee",
+            "Natural delivery pacing",
+            "Public link only"
+          ]
+        }
+      },
+      {
+        id: "m23", cat: "Members", sub: "country", title: "100 Uzbek Members 🇺🇿 (1 Month)",
+        desc: "100 geo-targeted Uzbekistan Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇿 Uzbekistan", "30-Day Stay", "1 Month"],
+        mgUsd: 1.39, mgOldUsd: null, badge: "Uzbek 🇺🇿",
+        details: {
+          overview: "Add 100 real Telegram members from Uzbekistan with a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "Under 1 Hour",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "100 geo-targeted Uzbekistan Telegram accounts 🇺🇿",
+            "30-day stay guarantee",
+            "Public link only—no password required",
+            "Fast delivery"
+          ]
+        }
+      },
+      {
+        id: "m24", cat: "Members", sub: "country", title: "1,000 Uzbek Members 🇺🇿 (1 Month)",
+        desc: "1,000 geo-targeted Uzbekistan Telegram members with 30-day guarantee.",
+        guarantees: ["🇺🇿 Uzbekistan", "30-Day Stay", "1 Month"],
+        mgUsd: 6.99, mgOldUsd: 13.98, badge: "50% OFF",
+        details: {
+          overview: "Grow your channel with 1,000 real Uzbekistan Telegram members at 50% off, backed by a 30-day stay guarantee.",
+          startTime: "Instant (0–20 mins)", speed: "1–4 Hours",
+          guarantee: "30 Days Stay Guarantee", requirement: "Public Link • No Password",
+          benefits: [
+            "1,000 geo-targeted Uzbekistan subscribers 🇺🇿",
+            "30-day retention guarantee",
+            "Smooth join rate",
+            "Public link only"
           ]
         }
       },
 
-      // Views
+      // =======================================================================
+      // VIEWS (8 PACKAGES: SINGLE POST, LAST 5 POSTS & LAST 100 POSTS)
+      // =======================================================================
       {
-        id: "v1", cat: "Views", title: "500 Post Views",
-        desc: "Instant view boost on any single public channel post.",
-        guarantees: ["Instant Start", "Single Post"],
-        mgUsd: 0.09, mgOldUsd: 2.09, badge: "Starter", firstOrderPromo: true,
+        id: "v1", cat: "Views", sub: "single", title: "500 Post Views (Single Post)",
+        desc: "Instant view boost on 1 public channel post.",
+        guarantees: ["Single Post", "Permanent", "Instant Start"],
+        mgUsd: 0.09, mgOldUsd: 2.09, badge: "96% OFF", firstOrderPromo: true,
         details: {
           overview: "Boost your Telegram post views instantly. Higher view counts increase post visibility, social proof, and organic forwarding across Telegram.",
           startTime: "Instant (0–5 mins)", speed: "Under 15 Minutes",
-          guarantee: "Permanent Views", requirement: "Public Post Link",
+          guarantee: "Permanent Views (Never Drops)", requirement: "Public Post Link",
           benefits: [
-            "Instant eye-counter boost on any single public Telegram post",
-            "Makes announcements, ads, and giveaways look active immediately",
-            "Permanent views that never drop",
+            "500 real views added to 1 public Telegram post",
+            "Views are a permanent count that never decreases",
+            "Makes announcements and promos look active right away",
             "First-order welcome discount applied automatically"
           ]
         }
       },
       {
-        id: "v2", cat: "Views", title: "5,000 Post Views",
-        desc: "Increase reach and social proof on key announcements.",
-        guarantees: ["Instant Start", "Single Post"],
+        id: "v2", cat: "Views", sub: "single", title: "5,000 Post Views (Single Post)",
+        desc: "5,000 real views delivered fast to 1 public Telegram post.",
+        guarantees: ["Single Post", "Permanent", "Fast Delivery"],
         mgUsd: 0.28, mgOldUsd: 1.40, badge: "80% OFF",
         details: {
-          overview: "Add 5,000 real views to any public Telegram post within minutes. Ideal for product launches, sponsored posts, and viral videos.",
+          overview: "Add 5,000 real views to any single public Telegram post within minutes. Ideal for product launches, sponsored posts, and viral videos.",
           startTime: "Instant (0–5 mins)", speed: "15–30 Minutes",
           guarantee: "Permanent Views", requirement: "Public Post Link (t.me/channel/123)",
           benefits: [
-            "Fast 5,000-view surge to elevate post credibility",
+            "Fast 5,000-view surge on 1 chosen post",
             "Improves engagement ratios for sponsors and advertisers",
             "Supports text, photo, video, and forwarded channel posts",
             "No password or channel admin access needed"
@@ -1928,96 +2291,236 @@
         }
       },
       {
-        id: "v3", cat: "Views", title: "5,000 Views (Last 5 Posts)",
-        desc: "Automatically distributes views across your latest 5 posts.",
-        guarantees: ["Last 5 Posts", "Fast Start"],
-        mgUsd: 0.70, mgOldUsd: 3.50, badge: "Popular",
+        id: "v3", cat: "Views", sub: "single", title: "50,000 Post Views (Single Post)",
+        desc: "Viral 50,000 views on 1 public post at 91% off.",
+        guarantees: ["Single Post", "Permanent", "Viral Reach"],
+        mgUsd: 2.79, mgOldUsd: 31.00, badge: "91% OFF",
         details: {
-          overview: "Paste your public channel link once and automatically deliver 5,000 views distributed evenly across your 5 most recent posts (1,000 views per post).",
-          startTime: "Instant (0–10 mins)", speed: "15–45 Minutes",
+          overview: "Give your flagship post viral reach with 50,000 Telegram views at 91% off. Delivered rapidly and smoothly to maximize visibility.",
+          startTime: "Instant (0–5 mins)", speed: "30–90 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Post Link (t.me/channel/123)",
+          benefits: [
+            "50,000 high-speed views on 1 post for major campaigns",
+            "Permanent retention with zero drop",
+            "Boosts post visibility in Telegram search",
+            "100% safe using only your public post URL"
+          ]
+        }
+      },
+      {
+        id: "v4", cat: "Views", sub: "last5", title: "500 Views (Last 5 Posts)",
+        desc: "Distributes 500 views across your latest 5 channel posts.",
+        guarantees: ["Last 5 Posts", "Permanent", "Popular"],
+        mgUsd: 0.14, mgOldUsd: 2.14, badge: "93% OFF",
+        details: {
+          overview: "Paste your public channel link once and automatically deliver 500 views distributed across your 5 most recent posts.",
+          startTime: "Instant (0–10 mins)", speed: "15–30 Minutes",
           guarantee: "Permanent Views", requirement: "Public Channel Link (@channel)",
           benefits: [
-            "Saves time—automatically boosts your latest 5 posts in one order",
-            "Creates consistent engagement across your channel feed",
-            "Permanent view counter increase on all 5 posts",
+            "Automatically covers your last 5 channel posts in one order",
+            "Creates consistent view counts across your recent feed",
+            "Permanent view counter increase",
             "Only your public channel username/link is required"
           ]
         }
       },
       {
-        id: "v4", cat: "Views", title: "50,000 Post Views",
-        desc: "Viral post reach delivered smoothly within minutes.",
-        guarantees: ["Instant Start", "Best Value"],
-        mgUsd: 2.79, mgOldUsd: 31.00, badge: "91% OFF",
+        id: "v5", cat: "Views", sub: "last5", title: "5,000 Views (Last 5 Posts)",
+        desc: "Distributes 5,000 views across your latest 5 channel posts.",
+        guarantees: ["Last 5 Posts", "Permanent", "Fast Start"],
+        mgUsd: 0.70, mgOldUsd: 3.50, badge: "80% OFF",
         details: {
-          overview: "Give your flagship post viral reach with 50,000 Telegram views at 91% off. Delivered rapidly and smoothly to maximize visibility and authority.",
-          startTime: "Instant (0–5 mins)", speed: "30–90 Minutes",
-          guarantee: "Permanent Views", requirement: "Public Post Link (t.me/channel/123)",
+          overview: "Automatically deliver 5,000 views distributed evenly across your 5 most recent channel posts (1,000 views per post).",
+          startTime: "Instant (0–10 mins)", speed: "15–45 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Channel Link (@channel)",
           benefits: [
-            "50,000 high-speed views for major campaigns & viral content",
-            "Unbeatable bulk rate per 1,000 views",
+            "Saves time—boosts your latest 5 posts automatically",
+            "Keeps your entire recent channel feed looking active",
+            "Permanent views that never decrease",
+            "Public channel link only"
+          ]
+        }
+      },
+      {
+        id: "v6", cat: "Views", sub: "last5", title: "50,000 Views (Last 5 Posts)",
+        desc: "Distributes 50,000 views across your latest 5 channel posts.",
+        guarantees: ["Last 5 Posts", "Permanent", "High Impact"],
+        mgUsd: 5.59, mgOldUsd: 55.90, badge: "90% OFF",
+        details: {
+          overview: "Deliver 50,000 views across your latest 5 posts (10,000 views per post) at 90% off for massive multi-post social proof.",
+          startTime: "Instant (0–15 mins)", speed: "30–90 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Channel Link (@channel)",
+          benefits: [
+            "10,000 views added to each of your last 5 posts",
+            "90% off bulk multi-post package",
             "Permanent retention with zero drop",
-            "100% safe using only your public post URL"
+            "No password required"
+          ]
+        }
+      },
+      {
+        id: "v7", cat: "Views", sub: "last100", title: "5,000 Views (Last 100 Posts)",
+        desc: "Refreshes your entire channel history across the last 100 posts.",
+        guarantees: ["Last 100 Posts", "Permanent", "Deep Refresh"],
+        mgUsd: 6.99, mgOldUsd: 17.47, badge: "60% OFF",
+        details: {
+          overview: "Automatically distributes 5,000 views across your last 100 channel posts—making your entire channel history look active for new visitors.",
+          startTime: "Instant (0–15 mins)", speed: "30–90 Minutes",
+          guarantee: "Permanent Views", requirement: "Public Channel Link (@channel)",
+          benefits: [
+            "Covers up to 100 recent posts in a single order",
+            "Eliminates low-view posts when visitors scroll up your channel",
+            "Permanent view counter boost",
+            "Public channel link only"
+          ]
+        }
+      },
+      {
+        id: "v8", cat: "Views", sub: "last100", title: "50,000 Views (Last 100 Posts)",
+        desc: "Full-channel 50,000 view boost across your last 100 posts.",
+        guarantees: ["Last 100 Posts", "Permanent", "Full History"],
+        mgUsd: 97.99, mgOldUsd: 326.63, badge: "70% OFF",
+        details: {
+          overview: "Complete channel makeover: 50,000 views distributed across your last 100 posts (500 views per post) at 70% off.",
+          startTime: "Instant (0–20 mins)", speed: "1–3 Hours",
+          guarantee: "Permanent Views", requirement: "Public Channel Link (@channel)",
+          benefits: [
+            "50,000 views across 100 posts in one automated order",
+            "Transforms older posts so your whole channel looks established",
+            "Permanent views with zero drop",
+            "No password or admin permissions required"
           ]
         }
       },
 
-      // Reactions
+      // =======================================================================
+      // REACTIONS (ALL 63 PACKAGES FROM MEMBERSGRAM.COM/BUY-TELEGRAM-REACTION)
+      // =======================================================================
+      // Positive Multiple Reactions (4 Quality Tiers x 3 Quantities = 12)
+      makeReactionPkg("r1", "positive", "10 Positive Global Reactions 🌍", "👍 🤩 🎉 🔥 ❤️ 👏", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r2", "positive", "100 Positive Global Reactions 🔥", "👍 🤩 🎉 🔥 ❤️ 👏", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r3", "positive", "1,000 Positive Global Reactions 🌍", "👍 🤩 🎉 🔥 ❤️ 👏", 1000, 0.21, 2.21, "90% OFF"),
+      makeReactionPkg("r4", "positive", "10 Positive Global Reactions (Plus)", "👍 🤩 🎉 🔥 ❤️ 👏", 10, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r5", "positive", "100 Positive Global Reactions (Plus)", "👍 🤩 🎉 🔥 ❤️ 👏", 100, 0.21, 2.21, "90% OFF"),
+      makeReactionPkg("r6", "positive", "1,000 Positive Global Reactions (Plus)", "👍 🤩 🎉 🔥 ❤️ 👏", 1000, 1.39, 3.39, "59% OFF"),
+      makeReactionPkg("r7", "positive", "10 Positive Global Reactions (Pro)", "👍 🤩 🎉 🔥 ❤️ 👏", 10, 0.21, 2.21, "90% OFF"),
+      makeReactionPkg("r8", "positive", "100 Positive Global Reactions (Pro)", "👍 🤩 🎉 🔥 ❤️ 👏", 100, 0.70, 2.70, "74% OFF"),
+      makeReactionPkg("r9", "positive", "1,000 Positive Global Reactions (Pro)", "👍 🤩 🎉 🔥 ❤️ 👏", 1000, 4.89, 6.89, "29% OFF"),
+      makeReactionPkg("r10", "positive", "10 Positive Global Reactions (VIP)", "👍 🤩 🎉 🔥 ❤️ 👏", 10, 0.70, 2.70, "74% OFF"),
+      makeReactionPkg("r11", "positive", "100 Positive Global Reactions (VIP)", "👍 🤩 🎉 🔥 ❤️ 👏", 100, 2.79, 4.79, "42% OFF"),
+      makeReactionPkg("r12", "positive", "1,000 Positive Global Reactions (VIP)", "👍 🤩 🎉 🔥 ❤️ 👏", 1000, 20.99, 22.99, "VIP"),
+
+      // Negative Multiple Reactions (3)
+      makeReactionPkg("r13", "negative", "10 Mild Shade (Negative Mix)", "👎 😁 😢 💩 🤮 🤔 🤯 🤬", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r14", "negative", "100 Hard Hit (Negative Mix)", "👎 😁 😢 💩 🤮 🤔 🤯 🤬", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r15", "negative", "1,000 Total Chaos (Negative Mix)", "👎 😁 😢 💩 🤮 🤔 🤯 🤬", 1000, 0.21, 2.21, "90% OFF"),
+
+      // Positive Individual Emojis (7 Emojis x 3 Quantities = 21)
+      makeReactionPkg("r16", "single", "10 Show Love ❤️", "❤️", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r17", "single", "100 Spread Love ❤️", "❤️", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r18", "single", "1,000 Love Storm ❤️", "❤️", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r19", "single", "10 Light It Up 🔥", "🔥", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r20", "single", "100 Burn It Down 🔥", "🔥", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r21", "single", "1,000 Inferno Mode 🔥", "🔥", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r22", "single", "10 Keep It Real 💯", "💯", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r23", "single", "100 Pure Approval 💯", "💯", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r24", "single", "1,000 Total Respect 💯", "💯", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r25", "single", "10 Quick Like 👍", "👍", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r26", "single", "100 Solid Likes 👍", "👍", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r27", "single", "1,000 Like Flood 👍", "👍", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r28", "single", "10 Cute Vibes 😍", "😍", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r29", "single", "100 Love It 😍", "😍", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r30", "single", "1,000 Obsessed Fans 😍", "😍", 1000, 0.70, 2.70, "74% OFF"),
+
+      makeReactionPkg("r31", "single", "10 Small Party 🎉", "🎉", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r32", "single", "100 Big Party 🎉", "🎉", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r33", "single", "1,000 Mega Party 🎉", "🎉", 1000, 0.70, 2.70, "74% OFF"),
+
+      makeReactionPkg("r34", "single", "10 Nice Clap 👏", "👏", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r35", "single", "100 Big Applause 👏", "👏", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r36", "single", "1,000 Standing Ovation 👏", "👏", 1000, 0.21, 2.21, "90% OFF"),
+
+      // Negative Individual Emojis (5 Emojis x 3 Quantities = 15)
+      makeReactionPkg("r37", "negative", "10 Soft Dislike 👎", "👎", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r38", "negative", "100 Heavy Dislike 👎", "👎", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r39", "negative", "1,000 Dislike Wave 👎", "👎", 1000, 0.70, 2.70, "74% OFF"),
+
+      makeReactionPkg("r40", "negative", "10 Angry Start 🤬", "🤬", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r41", "negative", "100 Rage Mode 🤬", "🤬", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r42", "negative", "1,000 Full Rage 🤬", "🤬", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r43", "negative", "10 Little Mess 💩", "💩", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r44", "negative", "100 Big Mess 💩", "💩", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r45", "negative", "1,000 Total Trash 💩", "💩", 1000, 0.70, 2.70, "74% OFF"),
+
+      makeReactionPkg("r46", "negative", "10 Tiny Rebel 🖕", "🖕", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r47", "negative", "100 Full Rebel 🖕", "🖕", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r48", "negative", "1,000 No Mercy 🖕", "🖕", 1000, 0.70, 2.70, "74% OFF"),
+
+      makeReactionPkg("r49", "negative", "10 Weird Start 🍌", "🍌", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r50", "negative", "100 Banana Mode 🍌", "🍌", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r51", "negative", "1,000 Total Madness 🍌", "🍌", 1000, 0.70, 2.70, "74% OFF"),
+
+      // Other Expressive Emojis (4 Emojis x 3 Quantities = 12)
+      makeReactionPkg("r52", "single", "10 Think About 🤔", "🤔", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r53", "single", "100 Make Them Think 🤔", "🤔", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r54", "single", "1,000 Deep Thinking 🤔", "🤔", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r55", "single", "10 Silly Start 🤪", "🤪", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r56", "single", "100 Go Crazy 🤪", "🤪", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r57", "single", "1,000 Pure Madness 🤪", "🤪", 1000, 0.21, 2.21, "90% OFF"),
+
+      makeReactionPkg("r58", "single", "10 Peek Now 👀", "👀", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r59", "single", "100 Watch This 👀", "👀", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r60", "single", "1,000 All Eyes 👀", "👀", 1000, 0.70, 2.70, "74% OFF"),
+
+      makeReactionPkg("r61", "single", "10 Stay Cool 😎", "😎", 10, 0.09, 2.09, "96% OFF"),
+      makeReactionPkg("r62", "single", "100 Cool Vibes 😎", "😎", 100, 0.14, 2.14, "93% OFF"),
+      makeReactionPkg("r63", "single", "1,000 Too Cool 😎", "😎", 1000, 0.21, 2.21, "90% OFF"),
+
+      // =======================================================================
+      // BOOSTS (8 PACKAGES: 1 DAY, 7 DAYS & 30 DAYS)
+      // =======================================================================
       {
-        id: "r1", cat: "Reactions", title: "100 Positive Global Reactions",
-        desc: "Positive emoji reactions (👍 🤩 🎉 🔥 ❤️ 👏) on your post.",
-        guarantees: ["Fast Delivery", "Mixed Emojis"],
-        mgUsd: 0.14, mgOldUsd: 2.14, badge: "Fast",
+        id: "b1", cat: "Boosts", sub: "1d", title: "5 Channel Boosts (1 Day)",
+        desc: "24-hour channel boost for quick Stories & level perks.",
+        guarantees: ["1-Day Active", "Instant Apply"],
+        mgUsd: 0.70, mgOldUsd: 2.70, badge: "74% OFF",
         details: {
-          overview: "Add 100 real positive emoji reactions (👍 🤩 🎉 🔥 ❤️ 👏) to your Telegram post to improve engagement rates and make your content stand out.",
+          overview: "Add 5 official Telegram Channel Boosts active for 1 day (24 hours)—ideal for publishing time-sensitive channel Stories or event announcements.",
           startTime: "Instant (0–10 mins)", speed: "Under 30 Minutes",
-          guarantee: "Permanent Reactions", requirement: "Public Post Link",
+          guarantee: "24-Hour Active Boosts", requirement: "Public Channel Link",
           benefits: [
-            "Natural mix of positive emojis (👍 ❤️ 🔥 🎉 🤩 👏)",
-            "Boosts interactive social proof alongside your post views",
-            "Make sure emoji reactions are enabled in your channel settings",
-            "Fast, safe delivery with no password needed"
+            "5 official channel boosts applied immediately",
+            "Unlocks channel Stories & level perks for 24 hours",
+            "Lowest entry price for quick promotions",
+            "Public channel link only—no password required"
           ]
         }
       },
       {
-        id: "r2", cat: "Reactions", title: "1,000 Positive Global Reactions",
-        desc: "High engagement boost to make posts stand out.",
-        guarantees: ["Instant Start", "Positive Set"],
-        mgUsd: 0.21, mgOldUsd: 2.21, badge: "90% OFF",
+        id: "b2", cat: "Boosts", sub: "1d", title: "50 Channel Boosts (1 Day)",
+        desc: "50 simultaneous boosts for 24 hours to jump multiple levels.",
+        guarantees: ["1-Day Active", "High Level"],
+        mgUsd: 6.29, mgOldUsd: 12.58, badge: "50% OFF",
         details: {
-          overview: "Supercharge post engagement with 1,000 real positive emoji reactions at 90% off. Ideal for polls, announcements, and high-traffic posts.",
-          startTime: "Instant (0–10 mins)", speed: "20–60 Minutes",
-          guarantee: "Permanent Reactions", requirement: "Public Post Link",
+          overview: "Jump multiple channel levels for 24 hours with 50 official Telegram Channel Boosts at 50% off.",
+          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
+          guarantee: "24-Hour Active Boosts", requirement: "Public Channel Link",
           benefits: [
-            "1,000 positive emoji reactions distributed naturally",
-            "Dramatically increases perceived community hype and interaction",
-            "Works on any public Telegram channel post with reactions turned on",
-            "Zero login or admin access required"
+            "50 simultaneous boosts for rapid 24-hour level jumps",
+            "Unlocks custom colors, wallpapers, and high Story quotas",
+            "Applied automatically via your public channel link",
+            "No admin permissions required"
           ]
         }
       },
       {
-        id: "r3", cat: "Reactions", title: "1,000 Premium Reactions",
-        desc: "High-retention accounts reacting at a natural pace.",
-        guarantees: ["High Retention", "Natural Pace"],
-        mgUsd: 1.39, mgOldUsd: 3.39, badge: "Premium",
-        details: {
-          overview: "Buy 1,000 premium Telegram reactions from high-trust accounts delivered safely and gradually to maximize engagement and social proof.",
-          startTime: "Instant (0–15 mins)", speed: "Gradual Natural Pace",
-          guarantee: "Premium Retention", requirement: "Public Post Link",
-          benefits: [
-            "Delivered by high-retention active Telegram profiles",
-            "Smooth, realistic reaction timing that matches organic traffic",
-            "Positive emoji mix (❤️ 🔥 👍 🎉 🤩) for maximum appeal",
-            "100% safe and compliant—public post link only"
-          ]
-        }
-      },
-
-      // Boosts
-      {
-        id: "b1", cat: "Boosts", title: "5 Channel Boosts (7 Days)",
+        id: "b3", cat: "Boosts", sub: "7d", title: "5 Channel Boosts (7 Days)",
         desc: "Level up your channel for 7 days to unlock Stories & colors.",
         guarantees: ["7-Day Active", "Story Unlock"],
         mgUsd: 2.09, mgOldUsd: 4.09, badge: "49% OFF",
@@ -2034,24 +2537,7 @@
         }
       },
       {
-        id: "b2", cat: "Boosts", title: "5 Channel Boosts (30 Days)",
-        desc: "Full 30-day Telegram channel boost for steady level perks.",
-        guarantees: ["30-Day Active", "Fast Delivery"],
-        mgUsd: 6.29, mgOldUsd: 8.29, badge: "Popular",
-        details: {
-          overview: "Keep your Telegram channel leveled up for a full month with 5 active Channel Boosts lasting 30 days—perfect for posting daily Stories and custom branding.",
-          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
-          guarantee: "30-Day Active Boosts", requirement: "Public Channel Link",
-          benefits: [
-            "Full 30-day boost duration without weekly renewals",
-            "Unlocks daily channel Stories, custom reply styles & emoji status",
-            "Delivered by real Telegram Premium booster accounts",
-            "100% safe—requires only your public channel link"
-          ]
-        }
-      },
-      {
-        id: "b3", cat: "Boosts", title: "50 Channel Boosts (7 Days)",
+        id: "b4", cat: "Boosts", sub: "7d", title: "50 Channel Boosts (7 Days)",
         desc: "Jump multiple channel levels fast with 50 active boosts.",
         guarantees: ["7-Day Active", "Pro Tier"],
         mgUsd: 17.49, mgOldUsd: 29.15, badge: "40% OFF",
@@ -2068,7 +2554,41 @@
         }
       },
       {
-        id: "b4", cat: "Boosts", title: "50 Channel Boosts (30 Days)",
+        id: "b5", cat: "Boosts", sub: "7d", title: "500 Channel Boosts (7 Days)",
+        desc: "Maximum 500 channel boosts for 7 days at 60% off.",
+        guarantees: ["7-Day Active", "Enterprise"],
+        mgUsd: 139.99, mgOldUsd: 349.98, badge: "60% OFF",
+        details: {
+          overview: "Unlock top-tier Telegram channel levels and maximum customization for 7 days with 500 official channel boosts at 60% off.",
+          startTime: "Instant (0–25 mins)", speed: "1–3 Hours",
+          guarantee: "7-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "500 official Telegram Premium boosts active for 7 days",
+            "Maximum Story limits, custom emojis, and channel styling",
+            "60% off bulk boost rate",
+            "Public channel link only"
+          ]
+        }
+      },
+      {
+        id: "b6", cat: "Boosts", sub: "30d", title: "5 Channel Boosts (30 Days)",
+        desc: "Full 30-day Telegram channel boost for steady level perks.",
+        guarantees: ["30-Day Active", "Fast Delivery"],
+        mgUsd: 6.29, mgOldUsd: 8.29, badge: "Popular",
+        details: {
+          overview: "Keep your Telegram channel leveled up for a full month with 5 active Channel Boosts lasting 30 days—perfect for posting daily Stories and custom branding.",
+          startTime: "Instant (0–15 mins)", speed: "Under 1 Hour",
+          guarantee: "30-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "Full 30-day boost duration without weekly renewals",
+            "Unlocks daily channel Stories, custom reply styles & emoji status",
+            "Delivered by real Telegram Premium booster accounts",
+            "100% safe—requires only your public channel link"
+          ]
+        }
+      },
+      {
+        id: "b7", cat: "Boosts", sub: "30d", title: "50 Channel Boosts (30 Days)",
         desc: "Maximum channel perks, custom wallpapers & emoji status.",
         guarantees: ["30-Day Active", "VIP Tier"],
         mgUsd: 41.99, mgOldUsd: 59.99, badge: "30% OFF",
@@ -2083,8 +2603,51 @@
             "Zero password or admin access required"
           ]
         }
+      },
+      {
+        id: "b8", cat: "Boosts", sub: "30d", title: "500 Channel Boosts (30 Days)",
+        desc: "500 channel boosts for a full 30 days at 50% off.",
+        guarantees: ["30-Day Active", "Ultimate VIP"],
+        mgUsd: 349.99, mgOldUsd: 699.98, badge: "50% OFF",
+        details: {
+          overview: "The ultimate 30-day Telegram channel upgrade: 500 official channel boosts at 50% off for flagship media brands and large communities.",
+          startTime: "Instant (0–30 mins)", speed: "1–4 Hours",
+          guarantee: "30-Day Active Boosts", requirement: "Public Channel Link",
+          benefits: [
+            "500 official boosts maintained for a full 30 days",
+            "Unlocks every channel level perk, Story quota, and custom theme",
+            "50% off enterprise rate",
+            "Public channel link only"
+          ]
+        }
       }
     ];
+
+    const SUBFILTER_CONFIG = {
+      Members: [
+        { key: "all", label: "All Members" },
+        { key: "global", label: "🌍 Global & Search" },
+        { key: "country", label: "🇺🇳 Country Targeted" }
+      ],
+      Views: [
+        { key: "all", label: "All Views" },
+        { key: "single", label: "💬 Single Post" },
+        { key: "last5", label: "📑 Last 5 Posts" },
+        { key: "last100", label: "📚 Last 100 Posts" }
+      ],
+      Reactions: [
+        { key: "all", label: "All Reactions (63)" },
+        { key: "positive", label: "🔥 Positive Mix" },
+        { key: "single", label: "❤️ Single Emojis" },
+        { key: "negative", label: "👎 Negative & Shade" }
+      ],
+      Boosts: [
+        { key: "all", label: "All Boosts" },
+        { key: "1d", label: "⚡ 1 Day" },
+        { key: "7d", label: "📅 7 Days" },
+        { key: "30d", label: "👑 30 Days" }
+      ]
+    };
 
     // Remote Admin State synced exclusively from your Telegram Bot commands
     let ADMIN_STATE = JSON.parse(localStorage.getItem("eb_admin_state") || "null") || {
@@ -2145,6 +2708,7 @@
     }
 
     let activeCategory = "Members";
+    let activeSubfilter = "all";
     let selectedPkg = null;
     let selectedPkgPricing = null;
     let selectedMethod = "Wallet";
@@ -2459,6 +3023,7 @@
                 nextState.customPackages.push({
                   id: customId,
                   cat,
+                  sub: "all",
                   title,
                   desc: `Custom ${cat} growth package delivered fast with no password required.`,
                   guarantees: ["Fast Start", "No Password"],
@@ -2899,13 +3464,33 @@
     });
 
     // =========================================================================
-    // 11. LIQUID SECTION SWITCHING & PACKAGE RENDERING
+    // 11. LIQUID SECTION SWITCHING, SUB-FILTERS & PACKAGE RENDERING
     // =========================================================================
     function updateGlider(activeBtn) {
       const glider = document.getElementById("segmentGlider");
       if (!activeBtn || !glider) return;
       glider.style.width = `${activeBtn.offsetWidth}px`;
       glider.style.transform = `translate3d(${activeBtn.offsetLeft}px, 0, 0)`;
+    }
+
+    function renderSubfilters() {
+      const row = document.getElementById("subfilterRow");
+      const items = SUBFILTER_CONFIG[activeCategory] || [];
+      row.innerHTML = items
+        .map(
+          (item) => `
+          <button type="button"
+                  class="subfilter-pill tactile ${activeSubfilter === item.key ? "active" : ""}"
+                  onclick="setSubfilter('${item.key}')">${item.label}</button>
+        `
+        )
+        .join("");
+    }
+
+    function setSubfilter(sub) {
+      activeSubfilter = sub;
+      renderSubfilters();
+      renderPackages(true);
     }
 
     document.querySelectorAll("#segmentedControl .seg-tab").forEach((tab) => {
@@ -2915,6 +3500,8 @@
         tab.classList.add("active");
         updateGlider(tab);
         activeCategory = tab.dataset.cat;
+        activeSubfilter = "all";
+        renderSubfilters();
         renderPackages(true);
       });
     });
@@ -2926,14 +3513,17 @@
     function renderPackages(withLiquidTransition = false) {
       const grid = document.getElementById("packagesGrid");
       const paintCards = () => {
-        const list = getAllPackages().filter((p) => p.cat === activeCategory);
+        let list = getAllPackages().filter((p) => p.cat === activeCategory);
+        if (activeSubfilter !== "all") {
+          list = list.filter((p) => (p.sub || "all") === activeSubfilter);
+        }
         grid.innerHTML = list
           .map((p, i) => {
             const pricing = getPackagePricing(p);
             const badgeClass = pricing.isFirstOrderDeal ? "pkg-badge promo-first" : "pkg-badge";
             return `
               <div class="pkg-card glass-card glass-depth tactile"
-                   style="animation: cardFadeIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) ${i * 32}ms both;"
+                   style="animation: cardFadeIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) ${Math.min(i, 8) * 28}ms both;"
                    onpointermove="trackGlassDepth(event, this)"
                    onclick="openCheckout('${p.id}', this)">
                 <div>
@@ -3037,7 +3627,7 @@
       document.getElementById("modalTitle").textContent = selectedPkg.title;
       document.getElementById("modalPrice").textContent = `${selectedPkgPricing.price.toLocaleString()} ETB`;
 
-      const isPost = selectedPkg.cat === "Views" || selectedPkg.cat === "Reactions";
+      const isPost = (selectedPkg.cat === "Views" && !selectedPkg.title.includes("Last")) || selectedPkg.cat === "Reactions";
       document.getElementById("linkLabel").textContent = isPost
         ? "Public Telegram Post Link"
         : "Public Channel or Group Link";
@@ -3383,6 +3973,7 @@
     document.getElementById("accNumber").textContent = CONFIG.PAYMENTS["TeleBirr"].number;
     setWalletBalance(getWalletBalance(), false);
     applyAdminPromoUI();
+    renderSubfilters();
     renderPackages(false);
     renderHistory();
     initScrollPromotions();
