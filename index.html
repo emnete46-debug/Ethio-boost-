@@ -752,7 +752,7 @@
     .promo-reveal-card:nth-child(2) { transition-delay: 90ms; }
     .promo-reveal-card:nth-child(3) { transition-delay: 180ms; }
 
-    /* Admin-Triggered Floating Promo Banner (Hidden unless /promo is sent by Admin) */
+    /* Admin-Triggered Floating Promo Banner (Only appears when Admin sends /promo in Bot) */
     #adminPromoBanner {
       position: fixed;
       bottom: 16px;
@@ -1568,7 +1568,7 @@
           <div class="acc-box">
             <div>
               <div style="font-size:0.75rem;color:var(--text-secondary);" id="wAccHolder">TeleBirr Account</div>
-              <div style="font-weight:800;font-size:1.08rem;" id="wAccNumber">09XXXXXXXX</div>
+              <div style="font-weight:800;font-size:1.08rem;" id="wAccNumber">0953001360</div>
             </div>
             <button type="button" class="copy-pill tactile magnetic" onclick="copyWalletAccount(this)">Copy</button>
           </div>
@@ -1697,7 +1697,7 @@
             <div class="acc-box">
               <div>
                 <div style="font-size:0.75rem;color:var(--text-secondary);" id="accHolder">TeleBirr Account</div>
-                <div style="font-weight:800;font-size:1.08rem;" id="accNumber">09XXXXXXXX</div>
+                <div style="font-weight:800;font-size:1.08rem;" id="accNumber">0953001360</div>
               </div>
               <button type="button" class="copy-pill tactile magnetic" onclick="copyAccount(this)">Copy</button>
             </div>
@@ -1754,19 +1754,19 @@
 
   <script>
     // =========================================================================
-    // 1. PLACEHOLDERS — REPLACE THESE WITH YOUR BOT TOKEN, CHAT ID & NUMBERS
+    // 1. CONFIGURATION (BOT API, ADMIN CHAT ID & PAYMENT ACCOUNTS)
     // =========================================================================
     const CONFIG = {
-      BOT_TOKEN: "YOUR_TELEGRAM_BOT_TOKEN_HERE",       // From @BotFather
-      ADMIN_CHAT_ID: "YOUR_ADMIN_CHAT_ID_HERE",       // From @userinfobot
+      BOT_TOKEN: "9156801499:AAHOYRRFjhpnE082Bh0TQJzpH_Bqt6ONuCw",
+      ADMIN_CHAT_ID: "6452851282",
       MIN_DEPOSIT_ETB: 50,
       WALLET_SECRET: "EB-PROSUB-2026-SECRET-KEY",
       USD_TO_ETB: 195,
       STANDARD_MARKUP_ETB: 200,
       FIRST_ORDER_MARKUP_ETB: 40,
       PAYMENTS: {
-        "TeleBirr": { number: "09XXXXXXXX", holder: "TeleBirr — EthioBoost" },
-        "M-Pesa":   { number: "07XXXXXXXX", holder: "M-Pesa — EthioBoost" }
+        "TeleBirr": { number: "0953001360", holder: "TeleBirr — EthioBoost" },
+        "M-Pesa":   { number: "0701217060", holder: "M-Pesa — EthioBoost" }
       }
     };
 
